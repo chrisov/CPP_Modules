@@ -14,7 +14,6 @@ private:
 public:
 	Phonebook();
 
-	void	get_field(std::string value);
 	void	save_contact(Contact *contact, int i);
 	void	list_contacts(int size);
 	void	contact_info(int size);

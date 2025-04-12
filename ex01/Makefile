@@ -2,7 +2,7 @@
 #
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++17
-MAKEFLAGS += -s
+# MAKEFLAGS += -s
 
 SRCS = main.cpp Contact.cpp Phonebook.cpp
 

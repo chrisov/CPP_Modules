@@ -15,9 +15,9 @@ void	Phonebook::save_contact(Contact *contact, int i) {
 
 static std::string formatField(const std::string& str) {
     if (str.length() > 10)
-        return str.substr(0, 9) + ".";
+        return (str.substr(0, 9) + ".");
     else
-        return std::string(10 - str.length(), ' ') + str;
+        return (std::string(10 - str.length(), ' ') + str);
 }
 
 void	Phonebook::list_contacts(int size) {
@@ -25,7 +25,7 @@ void	Phonebook::list_contacts(int size) {
 		<< std::setw(10) << "First Name" << "|"
 		<< std::setw(10) << "Last Name" << "|"
 		<< std::setw(10) << "Nickname" << std::endl;
-	for (int i = 0; i < size; ++i) {
+	for (int i = 0; i < size; i++) {
 		std::cout << std::setw(10) << i << "|"
 			<< formatField(this->_contact[i].get_field("first_name")) << "|"
 			<< formatField(this->_contact[i].get_field("last_name")) << "|"
@@ -39,7 +39,7 @@ void	Phonebook::contact_info(int i) {
 	list_contacts(i);
 	std::cout << "Enter the contact's index to display: ";
 	std::getline(std::cin, input);
-	while (std::stoi(input) <= 0 || std::stoi(input) >= i)
+	while (std::stoi(input) < 0 || std::stoi(input) > i)
 	{
 		std::cout << RED << "Invalid index!" << RES << std::endl;
 		std::cout << "Enter the contact's index to display: ";
