@@ -33,21 +33,34 @@ void	Phonebook::list_contacts(int size) {
 	}
 }
 
-void	Phonebook::contact_info(int i) {
+void	Phonebook::contact_info(int size) {
 	std::string	input;
+	int			i;
 
-	list_contacts(i);
-	std::cout << "Enter the contact's index to display: ";
-	std::getline(std::cin, input);
-	while (std::stoi(input) < 0 || std::stoi(input) > i)
+	list_contacts(size);
+	while (true)
 	{
-		std::cout << RED << "Invalid index!" << RES << std::endl;
 		std::cout << "Enter the contact's index to display: ";
 		std::getline(std::cin, input);
+		if (input == ".")
+			return ;
+		try {
+			i = std::stoi(input);
+			if (i < 1 || i > size) {
+                std::cout << RED << "❌ Error: Out of range " << RES;
+				std::cout << "(Press . to return to the menu)" << std::endl;
+                continue;
+			}
+			break ;
+		}
+		catch (const std::invalid_argument& e) {
+			std::cout << RED << "❌ Error: Invalid input " << RES ;
+			std::cout << "(Press . to return to the menu)" << std::endl;
+		}
 	}
-	std::cout << this->_contact[std::stoi(input)].get_field("first_name") << std::endl;
-	std::cout << this->_contact[std::stoi(input)].get_field("last_name") << std::endl;
-	std::cout << this->_contact[std::stoi(input)].get_field("nickname") << std::endl;
-	std::cout << this->_contact[std::stoi(input)].get_field("phone_number") << std::endl;
-	std::cout << this->_contact[std::stoi(input)].get_field("secret") << std::endl;
+	std::cout << this->_contact[i].get_field("first_name") << std::endl;
+	std::cout << this->_contact[i].get_field("last_name") << std::endl;
+	std::cout << this->_contact[i].get_field("nickname") << std::endl;
+	std::cout << this->_contact[i].get_field("phone_number") << std::endl;
+	std::cout << this->_contact[i].get_field("secret") << std::endl;
 }

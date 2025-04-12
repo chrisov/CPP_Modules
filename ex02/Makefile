@@ -7,10 +7,10 @@ MAKEFLAGS += -s
 INCDIR = ./inc
 SRCDIR = ./src
 OBJDIR = ./obj
-SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Contact.cpp $(SRCDIR)/Phonebook.cpp
+SRCS = $(SRCDIR)/tests.cpp $(SRCDIR)/Account.cpp
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-NAME = phonebook
+NAME = account
 
 all: $(NAME)
 
