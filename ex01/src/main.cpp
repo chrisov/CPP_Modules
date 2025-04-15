@@ -1,4 +1,6 @@
-#include "MyAwesomePhonebook.hpp"
+#include "Phonebook.hpp"
+#include "Contact.hpp"
+#include <iostream>
 
 int	main (void)
 {
