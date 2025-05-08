@@ -16,9 +16,9 @@ NAME = fixed
 all: $(NAME)
 
 $(NAME): $(OBJDIR) $(OBJS)
-	@echo "\033[33mCompilating $(NAME)...\033[0m"
+	@echo "\033[33mCompilating '$(NAME)'...\033[0m"
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(NAME) compiled \033[32msuccessfully\033[0m!"
+	@echo "'$(NAME)' compiled \033[32msuccessfully\033[0m!"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
@@ -34,9 +34,9 @@ clean:
 
 
 fclean: clean
-	@echo "\033[33mRemoving executable $(NAME)...\033[0m"
+	@echo "\033[33mRemoving executable '$(NAME)'...\033[0m"
 	rm -f $(NAME)
-	@echo "Executable $NAME removed \033[32msuccessfully\033[0m!"
+	@echo "Executable '$(NAME)' removed \033[32msuccessfully\033[0m!"
 
 re: fclean all
 
