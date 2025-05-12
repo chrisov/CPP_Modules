@@ -1,3 +1,6 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
 #include <cmath>
 
@@ -23,3 +26,5 @@ public:
 	int		toInt(void) const;
 
 };
+
+#endif

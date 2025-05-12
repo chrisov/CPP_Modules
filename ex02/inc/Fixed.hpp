@@ -1,3 +1,6 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
 #include <cmath>
 
@@ -18,7 +21,7 @@ public:
 
 	Fixed&					operator=(const Fixed& other);
 	Fixed					operator+(const Fixed	& other);
-	Fixed					operator-(const Fixed& other	);
+	Fixed					operator-(const Fixed& other);
 	Fixed					operator*(const Fixed& other);	
 	Fixed					operator/(const Fixed& other);	
 
@@ -44,3 +47,5 @@ public:
 	static Fixed&			min(Fixed& a, Fixed& b);
 	static Fixed&			max(Fixed& a, Fixed& b);
 };
+
+#endif

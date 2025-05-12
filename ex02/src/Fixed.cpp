@@ -131,7 +131,7 @@ bool	Fixed::operator!=(const Fixed& other) const {
 }
 
 //*************************************************
-//					FUCNTIONS				  	  *
+//					FUNCTIONS				  	  *
 //*************************************************
 
 int	Fixed::getRawBits(void) const {
