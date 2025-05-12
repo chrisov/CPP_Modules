@@ -10,7 +10,7 @@ Fixed&	Fixed::operator=(const Fixed& other)
 
 std::ostream&	operator<<(std::ostream& out, const Fixed& obj)
 {
-	out << obj.getRawBits() / static_cast<float>(1 << obj._fract);
+	out << obj.toFloat();
 	return (out);
 }
 
