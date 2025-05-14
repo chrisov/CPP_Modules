@@ -10,15 +10,10 @@ int	main(void) {
 	c.attack(b.getName());
 	b.takeDamage(c.getAttackDmg());
 	std::cout << a << b << c;
-
-	// b.attack(a.getName());
-	// a.takeDamage(b.getAttackDmg());
-	// std::cout << a;
-	// std::cout << b;
-	// a.attack(b.getName());
-	// b.takeDamage(a.getAttackDmg());
-	// std::cout << a;
-	// std::cout << b;
-	// a.guardGate();
-	// std::cout << a << b;
+	a.attack(b.getName());
+	b.takeDamage(a.getAttackDmg());
+	b.beRepaired(10);
+	b.guardGate();
+	c.highFiveGuys();
+	std::cout << a << b << c;
 }
