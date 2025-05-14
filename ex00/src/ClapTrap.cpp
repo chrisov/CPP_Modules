@@ -46,24 +46,30 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 }
 
 std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
-	int	filled = (obj._hitPoints * 20) / 10;
-	int	empty = 20 - (obj._hitPoints * 20) / 10;
-	
+	const unsigned int maxHitPoints = 10;
+	const unsigned int maxEnergyPoints = 10;
+	const unsigned int barLength = 20;
+
+	int filledHealth = (obj._hitPoints > 0) ? (obj._hitPoints * barLength) / maxHitPoints : 0;
+    int emptyHealth = barLength - filledHealth;
+    int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / maxEnergyPoints : 0;
+    int emptyEnergy = barLength - filledEnergy;
+
 	out << YLW << obj._name << RST << " (Attack dmg: " << obj._attackDamage << ")" << std::endl;
+
 	out << "Hit points: ";
-	for (int i = 0; i < filled; ++i)
+	for (int i = 0; i < filledHealth; ++i)
 		out << GRN << "#" << RST;
-	for (int i = 0; i < empty; ++i)
+	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << filled / 2 << "/" << "10)" << std::endl;
+	out << " (" << obj._hitPoints << "/" << maxHitPoints << ")" << std::endl;
+
 	out << "Energy points: ";
-	filled = (obj._energyPoints * 20) / 10;
-	empty = 20 - (obj._energyPoints * 20) / 10;
-	for (int i = 0; i < filled; ++i)
+	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
-	for (int i = 0; i < empty; ++i)
+	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << "(" << filled / 2 << "/" << "10)" << std::endl << std::endl;
+	out << " (" << obj._energyPoints << "/" << maxEnergyPoints << ")" << std::endl << std::endl;
 	return (out);
 }
 

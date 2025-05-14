@@ -18,13 +18,28 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name) {
 	_attackDamage = 20;
 }
 
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap::ClapTrap(other) {
+	std::cout << "Copy constructor created another " << YLW << other._name << RST << " ScavTrap instance" << std::endl;
+	*this = other;
+}
+
 ScavTrap::~ScavTrap() {
-	std::cout << YLW << getName() << RST << " ScavTrap "<< RED << "destructor " << RST << "called" << std::endl;
+	std::cout << YLW << _name << RST << " ScavTrap "<< RED << "destructor " << RST << "called" << std::endl;
 }
 
 /****************************************************
 *						OPERATORS					*
 ****************************************************/
+
+ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
+	if (this != &other) {
+		this->_name = other._name;
+		this->_hitPoints = other._hitPoints;
+		this->_energyPoints = other._energyPoints;
+		this->_attackDamage = other._attackDamage;
+	}
+	return (*this);
+}
 
 std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj) {
 	const unsigned int maxHitPoints = 100;
