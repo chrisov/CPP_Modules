@@ -1,4 +1,4 @@
-#include "Contact.hpp"
+	#include "Contact.hpp"
 
 Contact::Contact() :
 	_firstname(""),
@@ -8,92 +8,59 @@ Contact::Contact() :
 	_secret("")
 	{}
 
-static Action parse_action(const std::string input) {
-	if (input == "first_name")
-		return FIRST_NAME;
-	else if (input == "last_name")
-		return LAST_NAME;
-	else if (input == "nickname")
-		return NICKNAME;
-	else if (input == "phone_number")
-		return PHONE_NUMBER;
-	return SECRET;
-}
+/**
+ * @brief Request for user input, checks its validity and returns the result.
+ */
+static std::string	parse_input(const std::string case_input) {
+	std::string	user_input;
 
-static void	action_input(Action action) {
-	switch (action) {
-		case (FIRST_NAME):
-			std::cout << "First name: ";
-			break;
-		case (LAST_NAME):
-			std::cout << "Last name: ";
-			break;
-		case (NICKNAME):
-			std::cout << "Nickname: ";
-			break;
-		case (PHONE_NUMBER):
-			std::cout << "Phone number: ";
-			break;
-		case (SECRET):
-			std::cout << "Darkest secret: ";
-			break;
+	if (case_input == "fname")
+		std::cout << "First name: ";
+	else if (case_input == "lname")
+		std::cout << "Last name: ";
+	else if (case_input == "nname")
+		std::cout << "Nickname: ";
+	else if (case_input == "ph_number")
+		std::cout << "Phone number: ";
+	else
+		std::cout << "Darkest secret: ";
+	while (true)
+	{
+		std::getline(std::cin, user_input);
+		if (user_input == "" || user_input.find_first_not_of(' ') == std::string::npos)
+			std::cout << RED << "Invalid input!" << RES << std::endl;
+		else
+			break ;
 	}
-}
-
-void	Contact::action_attribute_set(Action action, std::string value) {
-	switch (action) {
-		case (FIRST_NAME):
-			this->_firstname = value;
-			break;
-		case (LAST_NAME):
-			this->_lastname = value;
-			break;
-		case (NICKNAME):
-			this->_nickname = value;
-			break;
-		case (PHONE_NUMBER):
-			this->_phonenumber = value;
-			break;
-		case (SECRET):
-			this->_secret = value;
-			break;
-	}
+	return (user_input);
 }
 
 void	Contact::set_field(const std::string case_input) {
-	std::string	input;
-	Action		action;
+	std::string		user_input;
 
-	action = parse_action(case_input);
-	action_input(action);
-	std::getline(std::cin, input);
-	while (input == "")
-	{
-		if (input == "" || input.find_first_not_of(' ') == std::string::npos) {
-			std::cout << RED << "Invalid input!" << RES << std::endl;
-		}		
-		action = parse_action(case_input);
-		action_input(action);
-		std::getline(std::cin, input);
-	}
-	action_attribute_set(action, input);
+	user_input = parse_input(case_input);
+	if (case_input == "fname")
+		this->_firstname = user_input;
+	else if (case_input == "lname")
+		this->_lastname = user_input;
+	else if (case_input == "nname")
+		this->_nickname = user_input;
+	else if (case_input == "ph_number")
+		this->_phonenumber = user_input;
+	else
+		this->_secret = user_input;
 }
 
 std::string	Contact::get_field(const std::string case_input) {
-	Action	action;
-
-	action = parse_action(case_input);
-	switch (action) {
-		case (FIRST_NAME):
-			return (this->_firstname);
-		case (LAST_NAME):
-			return (this->_lastname);
-		case (NICKNAME):
-			return (this->_nickname);
-		case (PHONE_NUMBER):
-			return (this->_phonenumber);
-		default:
-			return (this->_secret);
-	}
+	if (case_input == "fname")
+		return (this->_firstname);
+	else if (case_input == "lname")
+		return (this->_lastname);
+	else if (case_input == "nname")
+		return (this->_nickname);
+	else if (case_input == "ph_number")
+		return (this->_phonenumber);
+	else
+		return (this->_secret);
 }
 

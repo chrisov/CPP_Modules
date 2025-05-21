@@ -4,26 +4,25 @@
 
 int	main (void)
 {
-	std::string	input;
+	std::string	user_input;
 	Phonebook	book;
 	Contact		contact;
-	int			num;
+	int			cont_i;
 
-	num = 0;
+	cont_i = 0;
+	std::cout << "Welcome to the phonebook!" << std::endl;
 	while (1)
 	{
-		std::cout << "Input one of the following commands: (ADD, SEARCH, EXIT): ";
-		std::getline(std::cin, input);
-		if (input == "ADD")
-			book.save_contact(&contact, num++);
-		else if (input == "SEARCH")
-			book.contact_info(num);
-		else if (input == "EXIT")
+		std::cout << "Input one of the following commands (ADD, SEARCH, EXIT): ";
+		std::getline(std::cin, user_input);
+		if (user_input == "ADD")
+			book.save_contact(&contact, cont_i++);
+		else if (user_input == "SEARCH")
+			book.contact_info(cont_i);
+		else if (user_input == "EXIT")
 			break ;
 		else
 			std::cout << RED << "Invalid request!" << RES << std::endl;
-		if (num == 7)
-			num = 0;
 	}
 	return (0);
 }

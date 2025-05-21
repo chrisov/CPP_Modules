@@ -5,12 +5,12 @@ Phonebook::Phonebook() :
 	{};
 
 void	Phonebook::save_contact(Contact *contact, int i) {
-	contact->set_field("first_name");
-	contact->set_field("last_name");
-	contact->set_field("nickname");
-	contact->set_field("phone_number");
+	contact->set_field("fname");
+	contact->set_field("lname");
+	contact->set_field("nname");
+	contact->set_field("ph_number");
 	contact->set_field("secret");
-	this->_contact[i] = *contact;
+	this->_contact[i % 8] = *contact;
 }
 
 static std::string formatField(const std::string& str) {
@@ -21,32 +21,37 @@ static std::string formatField(const std::string& str) {
 }
 
 void	Phonebook::list_contacts(int size) {
+	int	list_size;
+
+	list_size = size;
+	if (size >= 8)
+		list_size = 8;
 	std::cout << std::setw(10) << "Index" << "|"
 		<< std::setw(10) << "First Name" << "|"
 		<< std::setw(10) << "Last Name" << "|"
 		<< std::setw(10) << "Nickname" << std::endl;
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < list_size; i++) {
 		std::cout << std::setw(10) << i << "|"
-			<< formatField(this->_contact[i].get_field("first_name")) << "|"
-			<< formatField(this->_contact[i].get_field("last_name")) << "|"
-			<< formatField(this->_contact[i].get_field("nickname")) << std::endl;
+			<< formatField(this->_contact[i].get_field("fname")) << "|"
+			<< formatField(this->_contact[i].get_field("lname")) << "|"
+			<< formatField(this->_contact[i].get_field("nname")) << std::endl;
 	}
 }
 
 void	Phonebook::contact_info(int size) {
-	std::string	input;
+	std::string	user_input;
 	int			i;
 
 	list_contacts(size);
 	while (true)
 	{
 		std::cout << "Enter the contact's index to display: ";
-		std::getline(std::cin, input);
-		if (input == ".")
+		std::getline(std::cin, user_input);
+		if (user_input == ".")
 			return ;
 		try {
-			i = std::stoi(input);
-			if (i < 1 || i > size) {
+			i = std::stoi(user_input);
+			if (i < 0 || i > size - 1) {
                 std::cout << RED << "❌ Error: Out of range " << RES;
 				std::cout << "(Press . to return to the menu)" << std::endl;
                 continue;
@@ -58,9 +63,9 @@ void	Phonebook::contact_info(int size) {
 			std::cout << "(Press . to return to the menu)" << std::endl;
 		}
 	}
-	std::cout << this->_contact[i].get_field("first_name") << std::endl;
-	std::cout << this->_contact[i].get_field("last_name") << std::endl;
-	std::cout << this->_contact[i].get_field("nickname") << std::endl;
-	std::cout << this->_contact[i].get_field("phone_number") << std::endl;
+	std::cout << this->_contact[i].get_field("fname") << std::endl;
+	std::cout << this->_contact[i].get_field("lname") << std::endl;
+	std::cout << this->_contact[i].get_field("nname") << std::endl;
+	std::cout << this->_contact[i].get_field("ph_number") << std::endl;
 	std::cout << this->_contact[i].get_field("secret") << std::endl;
 }
