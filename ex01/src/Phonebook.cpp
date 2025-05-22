@@ -31,8 +31,10 @@ void	Phonebook::list_contacts(int size) {
 		<< std::setw(10) << "Last Name" << "|"
 		<< std::setw(10) << "Nickname" << std::endl;
 	for (int i = 0; i < list_size; i++) {
-		std::cout << std::setw(10) << i << "|" << formatField(_contact[i].get_field("fname")) << "|"
-			<< formatField(_contact[i].get_field("lname")) << "|" << formatField(_contact[i].get_field("nname")) << std::endl;
+		std::cout << std::setw(10) << i << "|"
+			<< formatField(_contact[i].get_field("fname")) << "|"
+			<< formatField(_contact[i].get_field("lname")) << "|"
+			<< formatField(_contact[i].get_field("nname")) << std::endl;
 	}
 }
 
