@@ -6,10 +6,20 @@ Phonebook::Phonebook() :
 
 void	Phonebook::save_contact(Contact *contact, int i) {
 	contact->set_field("fname");
+	if (contact->get_field("fname") == "")
+		return ((void)(std::cout << std::endl));
 	contact->set_field("lname");
+	if (contact->get_field("lname") == "")
+		return ((void)(std::cout << std::endl));
 	contact->set_field("nname");
+	if (contact->get_field("nname") == "")
+		return ((void)(std::cout << std::endl));
 	contact->set_field("ph_number");
+	if (contact->get_field("ph_number") == "")
+		return ((void)(std::cout << std::endl));
 	contact->set_field("secret");
+	if (contact->get_field("secret") == "")
+		return ((void)(std::cout << std::endl));
 	this->_contact[i % 8] = *contact;
 }
 
@@ -47,6 +57,8 @@ void	Phonebook::contact_info(int size) {
 	{
 		std::cout << "Enter the contact's index to display: ";
 		std::getline(std::cin, user_input);
+		if (std::cin.eof())
+			return ((void)(std::cout << std::endl));
 		if (user_input == ".")
 			return ;
 		try {

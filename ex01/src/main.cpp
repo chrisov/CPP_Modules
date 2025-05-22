@@ -15,17 +15,17 @@ int	main (void)
 	{
 		std::cout << "Input one of the following commands (ADD, SEARCH, EXIT): ";
 		std::getline(std::cin, user_input);
-		if (user_input == "ADD")
-			book.save_contact(&contact, cont_i++);
-		else if (user_input == "SEARCH")
-			book.contact_info(cont_i);
-		else if (user_input == "EXIT")
-			break ;
 		if (std::cin.eof())
 		{
 			std::cout << RED << "\nEOF detected, exiting program!" << RES << std::endl;
 			break;
 		}
+		else if (user_input == "ADD")
+			book.save_contact(&contact, cont_i++);
+		else if (user_input == "SEARCH")
+			book.contact_info(cont_i);
+		else if (user_input == "EXIT")
+			break ;
 		else
 			std::cout << RED << "Invalid request!" << RES << std::endl;
 	}

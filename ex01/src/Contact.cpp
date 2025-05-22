@@ -27,6 +27,8 @@ static std::string	parse_input(const std::string case_input) {
 	while (true)
 	{
 		std::getline(std::cin, user_input);
+		if (std::cin.eof())
+			return ("");
 		if (user_input == "" || user_input.find_first_not_of(' ') == std::string::npos)
 			std::cout << RED << "Invalid input!" << RES << std::endl;
 		else
