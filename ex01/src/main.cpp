@@ -21,6 +21,11 @@ int	main (void)
 			book.contact_info(cont_i);
 		else if (user_input == "EXIT")
 			break ;
+		if (std::cin.eof())
+		{
+			std::cout << RED << "\nEOF detected, exiting program!" << RES << std::endl;
+			break;
+		}
 		else
 			std::cout << RED << "Invalid request!" << RES << std::endl;
 	}
