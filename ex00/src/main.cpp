@@ -1,9 +1,8 @@
-
 #include "../inc/Zombie.hpp"
 #include <iostream>
 
-int	main(void)
-{
+int	main(void) {
+
 	std::cout << std::endl;
 	Zombie z1("Antonis");
 	z1.announce();
@@ -11,7 +10,7 @@ int	main(void)
 	std::cout << std::endl;
 	randomChump("Paraskevas");
 
-		std::cout << std::endl;
+	std::cout << std::endl;
 	Zombie* z3 = newZombie("Elenanta");
 	z3->announce();
 	delete z3;
