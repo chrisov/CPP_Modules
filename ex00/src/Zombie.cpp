@@ -1,7 +1,7 @@
 #include "../inc/Zombie.hpp"
 
 Zombie::Zombie(std::string name) : _name(name) {
-	std::cout << "Zombie " << YLW << _name << GREEN << " has been created!" << RES << std::endl;
+	std::cout << "Zombie " << YLW << _name << GRN << " has been created!" << RES << std::endl;
 }
 
 void	Zombie::announce(void) {
