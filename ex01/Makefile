@@ -29,13 +29,13 @@ clean:
 	@echo "\033[33mRemoving project build...\033[0m"
 	rm -f $(OBJDIR)/*.o
 	rm -rf $(OBJDIR)
-	@echo "All build files removed \033[32msuccessfully\033[0m!"
+	@echo "Project build removed \033[32msuccessfully\033[0m!"
 
 
 fclean: clean
-	@echo "\033[33mRemoving executable and project build...\033[0m"
+	@echo "\033[33mRemoving executable $(NAME)...\033[0m"
 	rm -f $(NAME)
-	@echo "Executable and project build removed \033[32msuccessfully\033[0m!"
+	@echo "Executable $(NAME) removed \033[32msuccessfully\033[0m!"
 
 re: fclean all
 

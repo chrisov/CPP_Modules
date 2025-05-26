@@ -3,23 +3,24 @@
 
 #include <iostream>
 
-#define GREEN "\033[32m"
-#define RED "\033[31m"
 #define RES "\033[0m"
+#define RED "\033[31m"
+#define GRN "\033[32m"
+#define YLW "\033[33m"
 
 class Zombie {
 
-private:
-	std::string	_name;
+	private:
+		std::string	_name;
 
-public:
-	Zombie(std::string name);
-	~Zombie();
-	
-	void	announce(void);
-};
+	public:
+		Zombie(std::string name);
+		~Zombie();
+		
+		void	announce(void);
+	};
 
-Zombie*	newZombie(std::string name);
-Zombie*	zombieHorde(int N, std::string name);
+	Zombie*	newZombie(std::string name);
+	Zombie*	zombieHorde(int N, std::string name);
 
 #endif
