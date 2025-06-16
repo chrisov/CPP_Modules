@@ -12,4 +12,4 @@ int main(void) {
 	else
 		std::cout << "Point " << c << "doesn't belong to the triangle" << std::endl;
 	return (0);
-	}
+}
