@@ -5,12 +5,12 @@
 
 class HumanA {
 public:
-	HumanA(std::string name, Weapon weapon);
+	HumanA(std::string name, Weapon& weapon);
 
-	std::string	name;
-	std::string	Weapon;
+	std::string	_name;
+	Weapon&		_weapon;
 	
-	void	attack(void);
+	void		attack(void) const;
 };
 
 #endif
