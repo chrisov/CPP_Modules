@@ -3,5 +3,5 @@
 int	main(void) {
 	Harl harl;
 	
-	harl.complain("INFO");
+	harl.complain("ERROR");
 }
