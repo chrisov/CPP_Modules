@@ -33,8 +33,8 @@ Fixed	Fixed::operator++(void) {
 }
 
 Fixed	Fixed::operator++(int) {
-	Fixed temp(*this);
-	this->_result++;
+	Fixed temp = *this;
+	++(*this)._result;
 	return (temp);
 }
 
@@ -44,8 +44,8 @@ Fixed	Fixed::operator--(void) {
 }
 
 Fixed	Fixed::operator--(int) {
-	Fixed temp(*this);
-	this->_result--;
+	Fixed temp = *this;
+	--(*this)._result;
 	return (temp);
 }
 
@@ -54,26 +54,34 @@ Fixed	Fixed::operator--(int) {
 //*************************************************
 
 Fixed	Fixed::operator+(const Fixed& other) {
-	Fixed res;
-	res.setRawBits(this->getRawBits() + other.getRawBits());
+	Fixed	res;
+
+	long long add = static_cast<long long>(_result) * other._result;
+	res._result = static_cast<int>(add >> _fract);
 	return (res);
 }
 
 Fixed	Fixed::operator-(const Fixed& other) {
-	Fixed res;
-	res.setRawBits(this->getRawBits() - other.getRawBits());
+	Fixed	res;
+
+	long long subtr = static_cast<long long>(_result) * other._result;
+	res._result = static_cast<int>(subtr >> _fract);
 	return (res);
 }
 
-Fixed	Fixed::operator*(const Fixed& other) {
-	Fixed res;
-	res.setRawBits(this->getRawBits() * other.getRawBits());
+Fixed	Fixed::operator*(const Fixed& other) const {
+	Fixed	res;
+
+	long long mult = static_cast<long long>(_result) * other._result;
+	res._result = static_cast<int>(mult >> _fract);
 	return (res);
 }
 
 Fixed	Fixed::operator/(const Fixed& other) {
 	Fixed res;
-	res.setRawBits(this->getRawBits() / other.getRawBits());
+	
+	long long div = static_cast<long long>(_result) / other._result;
+	res._result = static_cast<int>(div >> _fract);
 	return (res);
 }
 
