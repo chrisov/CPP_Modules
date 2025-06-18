@@ -15,16 +15,17 @@ private:
 	std::string					_name;
 	unsigned int				_hitPoints;
 	unsigned int				_energyPoints;
-	unsigned int				_attackDamage;
-	static const unsigned int	maxHitPoints = 10;
-	static const unsigned int	maxEnergyPoints = 10;
-
+	
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap &other);
 	~ClapTrap();
-
+	
+	static const unsigned int	attackDamage = 0;
+	static const unsigned int	maxHitPoints = 10;
+	static const unsigned int	maxEnergyPoints = 10;
+	
 	friend	std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
 
 	ClapTrap&		operator=(const ClapTrap& other);

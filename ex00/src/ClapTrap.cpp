@@ -9,17 +9,15 @@
 ClapTrap::ClapTrap() {
 	std::cout << YLW << "Default "<< RST << "constructor called" << std::endl;
 	this->_name = "Default";
-	this->_hitPoints = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->_hitPoints = maxHitPoints;
+	this->_energyPoints = maxEnergyPoints;
 }
 
 ClapTrap::ClapTrap(std::string name) {
 	std::cout << "Parameterized constructor " << GRN << "created " << RST << "ClapTrap named " << YLW << name << RST << std::endl;
 	this->_name = name;
-	this->_hitPoints = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->_hitPoints = maxHitPoints;
+	this->_energyPoints = maxEnergyPoints;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
@@ -40,7 +38,6 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 		this->_name = other._name;
 		this->_hitPoints = other._hitPoints;
 		this->_energyPoints = other._energyPoints;
-		this->_attackDamage = other._attackDamage;
 	}
 	return (*this);
 }
@@ -53,7 +50,7 @@ std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
     int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / obj.maxEnergyPoints : 0;
     int emptyEnergy = barLength - filledEnergy;
 
-	out << YLW << obj._name << RST << " (Attack dmg: " << obj._attackDamage << ")" << std::endl;
+	out << YLW << obj._name << RST << " (Attack dmg: " << obj.attackDamage << ")" << std::endl;
 
 	out << "Hit points: ";
 	for (int i = 0; i < filledHealth; ++i)
@@ -104,10 +101,6 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 			_hitPoints = maxHitPoints;
 		std::cout << YLW << _name << RST << " repairs itself (" << GRN << "+" << amount << RST << ")!" << std::endl << std::endl;
 	}
-}
-
-unsigned int	ClapTrap::getAttackDmg(void) const {
-	return (_attackDamage);
 }
 
 std::string		ClapTrap::getName(void) const {

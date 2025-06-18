@@ -7,19 +7,19 @@ int	main(void) {
 
 	std::cout << std::endl << a << b << c;
 
-	c.attack("Default");
-	b.takeDamage(c.getAttackDmg());
+	c.attack(b.getName());
+	b.takeDamage(c.attackDamage);
 	std::cout << b << c;
 	
-	c.attack("Default");
+	c.attack(b.getName());
 	b.takeDamage(1);
 	std::cout << b << c;
 	
-	c.attack("Default");
+	c.attack(b.getName());
 	b.takeDamage(1);
 	std::cout << b << c;
 	
-	c.attack("Default");
+	c.attack(b.getName());
 	b.takeDamage(1);
 	std::cout << b << c;
 	
