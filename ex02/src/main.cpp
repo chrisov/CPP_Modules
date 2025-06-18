@@ -6,12 +6,12 @@ int	main(void) {
 	ScavTrap	b("Pantelis");
 	FragTrap	c("Kleanthis");
 
-	std::cout << a << b << c;
+	std::cout << std::endl << a << b << c;
 	c.attack(b.getName());
-	b.takeDamage(c.getAttackDmg());
+	b.takeDamage(c.attackDamage);
 	std::cout << a << b << c;
 	a.attack(b.getName());
-	b.takeDamage(a.getAttackDmg());
+	b.takeDamage(a.attackDamage);
 	b.beRepaired(10);
 	b.guardGate();
 	c.highFiveGuys();

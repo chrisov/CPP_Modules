@@ -10,28 +10,29 @@
 #define BLU "\033[34m"
 
 class ClapTrap {
+	protected:
+		std::string		_name;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		
+	public:
+		ClapTrap();
+		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap& other);
+		~ClapTrap();
+		
+		static const unsigned int	maxHitPoints = 10;
+		static const unsigned int	maxEnergyPoints = 10;
+		static const unsigned int	attackDamage = 0;
 
-protected:
-	std::string		_name;
-	unsigned int	_hitPoints;
-	unsigned int	_energyPoints;
-	unsigned int	_attackDamage;
+		friend	std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
 
-public:
-	ClapTrap();
-	ClapTrap(std::string name);
-	ClapTrap(const ClapTrap &other);
-	~ClapTrap();
+		ClapTrap&		operator=(const ClapTrap& other);
 
-	friend	std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
-
-	ClapTrap&		operator=(const ClapTrap& other);
-
-	void 			attack(const std::string &target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	std::string		getName(void) const;
-	unsigned int	getAttackDmg(void) const;
+		void 			attack(const std::string& target);
+		void			takeDamage(unsigned int amount);
+		void			beRepaired(unsigned int amount);
+		std::string		getName(void) const;
 };
 
 #endif

@@ -11,6 +11,10 @@ class FragTrap : public ClapTrap {
 		FragTrap(std::string name);
 		~FragTrap();
 
+		static const unsigned int	maxHitPoints = 100;
+		static const unsigned int	maxEnergyPoints = 100;
+		static const unsigned int	attackDamage = 30;
+
 		FragTrap&	operator=(const FragTrap& other);
 
 		friend std::ostream& operator<<(std::ostream& out, const FragTrap& obj);
