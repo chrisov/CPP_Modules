@@ -23,6 +23,7 @@ ClapTrap::ClapTrap(std::string name) {
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
+	std::cout << "Copy constructor called on the " << YLW << other._name << RST << " instance" << std::endl;
 	*this = other;
 }
 
@@ -35,7 +36,6 @@ ClapTrap::~ClapTrap() {
 ****************************************************/
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
-	std::cout << "Copy constructor called on the " << other._name << " instance" << std::endl;
 	if (this != &other) {
 		this->_name = other._name;
 		this->_hitPoints = other._hitPoints;
@@ -46,13 +46,11 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 }
 
 std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
-	const unsigned int maxHitPoints = 10;
-	const unsigned int maxEnergyPoints = 10;
 	const unsigned int barLength = 20;
 
-	int filledHealth = (obj._hitPoints > 0) ? (obj._hitPoints * barLength) / maxHitPoints : 0;
+	int filledHealth = (obj._hitPoints > 0) ? (obj._hitPoints * barLength) / obj.maxHitPoints : 0;
     int emptyHealth = barLength - filledHealth;
-    int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / maxEnergyPoints : 0;
+    int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / obj.maxEnergyPoints : 0;
     int emptyEnergy = barLength - filledEnergy;
 
 	out << YLW << obj._name << RST << " (Attack dmg: " << obj._attackDamage << ")" << std::endl;
@@ -62,14 +60,14 @@ std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
 		out << GRN << "#" << RST;
 	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << obj._hitPoints << "/" << maxHitPoints << ")" << std::endl;
+	out << " (" << obj._hitPoints << "/" << obj.maxHitPoints << ")" << std::endl;
 
 	out << "Energy points: ";
 	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj._energyPoints << "/" << maxEnergyPoints << ")" << std::endl << std::endl;
+	out << " (" << obj._energyPoints << "/" << obj.maxEnergyPoints << ")" << std::endl << std::endl;
 	return (out);
 }
 
@@ -84,9 +82,7 @@ void	ClapTrap::attack(const std::string& target) {
 		std::cout << this->_name << " is dead.." << std::endl;
 	else {
 		this->_energyPoints--;
-		std::cout << this->_name << " attacks! Super effective!" << std::endl;
-		std::cout << "Energy points: " << this->_energyPoints << std::endl;
-		std::cout << target << " lost " << this->_attackDamage << " hit points.." << std::endl;
+		std::cout << this->_name << " attacks " << YLW << target << RST <<"! It's Super effective!" << std::endl;
 	}
 	std::cout << std::endl;
 }
@@ -102,12 +98,11 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	else if (this->_hitPoints == 0)
 		std::cout << this->_name << " is dead.." << std::endl;
 	else {
-		this->_energyPoints--;
-		this->_hitPoints += amount;
-		std::cout << this->_name << " repairs itself!" << std::endl;
-		std::cout << "Hit points: " << this->_hitPoints << std::endl;
-		std::cout << "Energy points: " << this->_energyPoints << std::endl;
-		std::cout << std::endl;
+		_energyPoints--;
+		_hitPoints += amount;
+		if (_hitPoints > maxHitPoints)
+			_hitPoints = maxHitPoints;
+		std::cout << YLW << _name << RST << " repairs itself (" << GRN << "+" << amount << RST << ")!" << std::endl << std::endl;
 	}
 }
 
