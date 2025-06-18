@@ -12,26 +12,28 @@
 class ClapTrap {
 
 protected:
-	std::string		_name;
-	unsigned int	_hitPoints;
-	unsigned int	_energyPoints;
-	unsigned int	_attackDamage;
-
+	std::string					_name;
+	unsigned int				_hitPoints;
+	unsigned int				_energyPoints;
+	
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap &other);
 	~ClapTrap();
+	
+	static const unsigned int	attackDamage = 20;
+	static const unsigned int	maxHitPoints = 100;
+	static const unsigned int	maxEnergyPoints = 50;
 
 	friend	std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
 
 	ClapTrap&		operator=(const ClapTrap& other);
 
-	void 			attack(const std::string &target);
+	virtual void	attack(const std::string &target);
 	void			takeDamage(unsigned int amount);
 	void			beRepaired(unsigned int amount);
 	std::string		getName(void) const;
-	unsigned int	getAttackDmg(void) const;
 };
 
 #endif

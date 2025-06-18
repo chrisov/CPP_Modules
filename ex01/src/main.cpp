@@ -4,16 +4,17 @@ int	main(void) {
 	ScavTrap	a("Giorgos");
 	ClapTrap	b("Pantelis");
 
-	std::cout << a;
-	std::cout << b;
+	std::cout << std::endl << a << b;
+
 	b.attack(a.getName());
-	a.takeDamage(b.getAttackDmg());
-	std::cout << a;
-	std::cout << b;
-	a.attack(b.getName());
-	b.takeDamage(a.getAttackDmg());
-	std::cout << a;
-	std::cout << b;
-	a.guardGate();
+	a.takeDamage(b.attackDamage);
 	std::cout << a << b;
+	
+	a.attack(b.getName());
+	b.takeDamage(a.attackDamage);
+	std::cout << a << b;
+	
+	a.guardGate();
+	b.beRepaired(5);
+	std::cout << std::endl << a << b;
 }

@@ -9,17 +9,17 @@
 ClapTrap::ClapTrap() {
 	std::cout << YLW << "Default "<< RST << "constructor called" << std::endl;
 	this->_name = "Default";
-	this->_hitPoints = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->_hitPoints = maxHitPoints;
+	this->_energyPoints = maxEnergyPoints;
+	// this->_attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name) {
 	std::cout << "Parameterized constructor " << GRN << "created" << RST << " a ClapTrap named " << YLW << name << RST << std::endl;
 	this->_name = name;
-	this->_hitPoints = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->_hitPoints = maxHitPoints;
+	this->_energyPoints = maxEnergyPoints;
+	// this->_attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
@@ -40,19 +40,17 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other) {
 		this->_name = other._name;
 		this->_hitPoints = other._hitPoints;
 		this->_energyPoints = other._energyPoints;
-		this->_attackDamage = other._attackDamage;
+		// this->_attackDamage = other._attackDamage;
 	}
 	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
-	const unsigned int maxHitPoints = 10;
-	const unsigned int maxEnergyPoints = 10;
 	const unsigned int barLength = 20;
 
-	int filledHealth = (obj._hitPoints > 0) ? (obj._hitPoints * barLength) / maxHitPoints : 0;
+	int filledHealth = (obj._hitPoints > 0) ? (obj._hitPoints * barLength) / obj.maxHitPoints : 0;
     int emptyHealth = barLength - filledHealth;
-    int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / maxEnergyPoints : 0;
+    int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / obj.maxEnergyPoints : 0;
     int emptyEnergy = barLength - filledEnergy;
 
 	out << YLW << obj._name << RST << " (Attack dmg: " << obj._attackDamage << ")" << std::endl;
@@ -62,14 +60,14 @@ std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
 		out << GRN << "#" << RST;
 	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << obj._hitPoints << "/" << maxHitPoints << ")" << std::endl;
+	out << " (" << obj._hitPoints << "/" << obj.maxHitPoints << ")" << std::endl;
 
 	out << "Energy points: ";
 	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj._energyPoints << "/" << maxEnergyPoints << ")" << std::endl << std::endl;
+	out << " (" << obj._energyPoints << "/" << obj.maxEnergyPoints << ")" << std::endl << std::endl;
 	return (out);
 }
 
