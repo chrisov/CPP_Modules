@@ -17,8 +17,6 @@ public:
 	Fixed(const Fixed& other);
 	~Fixed();
 	
-	friend std::ostream&	operator<<(std::ostream& out, const Fixed& other);
-
 	Fixed&					operator=(const Fixed& other);
 	Fixed					operator+(const Fixed	& other);
 	Fixed					operator-(const Fixed& other);
@@ -46,5 +44,7 @@ public:
 	static Fixed&			min(Fixed& a, Fixed& b);
 	static Fixed&			max(Fixed& a, Fixed& b);
 };
+
+std::ostream&	operator<<(std::ostream& out, const Fixed& other);
 
 #endif
