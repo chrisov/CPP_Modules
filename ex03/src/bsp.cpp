@@ -11,8 +11,8 @@ static bool sameSign(Point p1, Point p2, Point a, Point b) {
     float cp1;
     float cp2;
 
-    cp2 = crossProduct(b - a, p2 - a);
     cp1 = crossProduct(b - a, p1 - a);
+    cp2 = crossProduct(b - a, p2 - a);
     return (cp1 * cp2 > 0);
 }
 

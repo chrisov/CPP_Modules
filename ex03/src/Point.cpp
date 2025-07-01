@@ -1,4 +1,5 @@
 #include "../inc/Point.hpp"
+#include "../inc/Fixed.hpp"
 
 //*************************************************
 //					CONSTRUCTORS			  	  *

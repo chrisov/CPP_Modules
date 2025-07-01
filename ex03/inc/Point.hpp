@@ -2,7 +2,7 @@
 # define POINT_HPP
 
 #include <iostream>
-#include "../../ex02/inc/Fixed.hpp"
+#include "Fixed.hpp"
 
 class Point {
 
@@ -17,7 +17,9 @@ class Point {
 		~Point();
 
 		friend std::ostream&	operator<<(std::ostream& out, const Point& other);
+		
 		Point	operator-(const Point& other) const;
+		Point&	operator=(const Point& other) = delete;
 
 		Fixed	getX(void) const;
 		Fixed	getY(void) const;
