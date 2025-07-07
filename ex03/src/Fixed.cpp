@@ -53,19 +53,17 @@ Fixed	Fixed::operator--(int) {
 //					OPERATORS					  *
 //*************************************************
 
-Fixed	Fixed::operator+(const Fixed& other) {
+Fixed	Fixed::operator+(const Fixed& other) const {
 	Fixed	res;
 
-	long long add = static_cast<long long>(_result) * other._result;
-	res._result = static_cast<int>(add >> _fract);
+	res._result = _result + other._result;
 	return (res);
 }
 
-Fixed	Fixed::operator-(const Fixed& other) {
+Fixed	Fixed::operator-(const Fixed& other) const {
 	Fixed	res;
 
-	long long subtr = static_cast<long long>(_result) * other._result;
-	res._result = static_cast<int>(subtr >> _fract);
+	res._result = _result - other._result;
 	return (res);
 }
 
@@ -77,18 +75,17 @@ Fixed	Fixed::operator*(const Fixed& other) const {
 	return (res);
 }
 
-Fixed	Fixed::operator/(const Fixed& other) {
+Fixed	Fixed::operator/(const Fixed& other) const {
 	Fixed res;
 	
-	long long div = static_cast<long long>(_result) / other._result;
-	res._result = static_cast<int>(div >> _fract);
+	long long div = (static_cast<long long>(_result) << _fract) / other._result;
+	res._result = static_cast<int>(div);
 	return (res);
 }
 
-Fixed&	Fixed::operator=(const Fixed& other)
-{
+Fixed&	Fixed::operator=(const Fixed& other) {
 	if (this != &other)
-		this->_result = other._result;
+		_result = other._result;
 	return (*this);
 }
 
@@ -147,15 +144,15 @@ int	Fixed::getRawBits(void) const {
 }
 
 void	Fixed::setRawBits(int const raw) {
-	this->_result = raw;
+	_result = raw;
 }
 
 int	Fixed::toInt(void) const {
-	return(this->_result / static_cast<int>(1 << this->_fract));
+	return(_result / static_cast<int>(1 << _fract));
 }
 
 float	Fixed::toFloat(void) const {
-	return(this->_result / static_cast<float>(1 << this->_fract));
+	return(_result / static_cast<float>(1 << _fract));
 }
 
 const Fixed&	Fixed::min(const Fixed& a, const Fixed& b) {

@@ -1,5 +1,4 @@
-#include "../inc/Point.hpp"
-#include "../inc/Fixed.hpp"
+#include "Point.hpp"
 
 //*************************************************
 //					CONSTRUCTORS			  	  *
@@ -9,7 +8,7 @@ Point::Point() : _x(Fixed(0)), _y(Fixed(0)) {}
 
 Point::Point(const Point& other) : _x(other._x), _y(other._y) {}
 
-Point::Point(const float &x, const float &y) : _x(x), _y(y) {}
+Point::Point(Fixed const &x, Fixed const &y) : _x(x), _y(y) {}
 
 Point::~Point() {}
 
@@ -18,12 +17,12 @@ Point::~Point() {}
 //*************************************************
 
 Point	Point::operator-(const Point& other) const {
-	Point	res = Point(_x.toFloat()- other._x.toFloat() , _y.toFloat() - other._y.toFloat());
+	Point	res = Point(_x - other._x, _y - other._y);
 	return (res);
 }
 
 std::ostream&	operator<<(std::ostream& out, const Point& other) {
-	out << "(" << other._x << ", " << other._y << ") ";
+	out << "(" << other._x << "," << other._y << ")";
 	return (out);
 }
 

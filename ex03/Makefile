@@ -11,7 +11,7 @@ SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Fixed.cpp $(SRCDIR)/bsp.cpp $(SRCDIR)/Point.
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-NAME = fixed
+NAME = bsp
 
 all: $(NAME)
 

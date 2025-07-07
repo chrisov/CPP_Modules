@@ -13,7 +13,7 @@ class Point {
 	public:
 		Point();
 		Point(const Point& other);
-		Point(const float &x, const float &y);
+		Point(Fixed const &x, Fixed const &y);
 		~Point();
 
 		friend std::ostream&	operator<<(std::ostream& out, const Point& other);
