@@ -56,16 +56,14 @@ Fixed	Fixed::operator--(int) {
 Fixed	Fixed::operator+(const Fixed& other) {
 	Fixed	res;
 
-	long long add = static_cast<long long>(_result) * other._result;
-	res._result = static_cast<int>(add >> _fract);
-	return (res);
+	res._result = (_result) + other._result;
+	return (_result + other._result);
 }
 
 Fixed	Fixed::operator-(const Fixed& other) {
 	Fixed	res;
 
-	long long subtr = static_cast<long long>(_result) * other._result;
-	res._result = static_cast<int>(subtr >> _fract);
+	res._result = _result - other._result;
 	return (res);
 }
 
@@ -80,8 +78,8 @@ Fixed	Fixed::operator*(const Fixed& other) const {
 Fixed	Fixed::operator/(const Fixed& other) {
 	Fixed res;
 	
-	long long div = static_cast<long long>(_result) / other._result;
-	res._result = static_cast<int>(div >> _fract);
+	long long div = (static_cast<long long>(_result) << _fract) / other._result;
+	res._result = static_cast<int>(div);
 	return (res);
 }
 
@@ -147,15 +145,15 @@ int	Fixed::getRawBits(void) const {
 }
 
 void	Fixed::setRawBits(int const raw) {
-	this->_result = raw;
+	_result = raw;
 }
 
 int	Fixed::toInt(void) const {
-	return(this->_result / static_cast<int>(1 << this->_fract));
+	return(_result / static_cast<int>(1 << _fract));
 }
 
 float	Fixed::toFloat(void) const {
-	return(this->_result / static_cast<float>(1 << this->_fract));
+	return(_result / static_cast<float>(1 << _fract));
 }
 
 const Fixed&	Fixed::min(const Fixed& a, const Fixed& b) {
