@@ -53,14 +53,14 @@ Fixed	Fixed::operator--(int) {
 //					OPERATORS					  *
 //*************************************************
 
-Fixed	Fixed::operator+(const Fixed& other) {
+Fixed	Fixed::operator+(const Fixed& other) const {
 	Fixed	res;
 
-	res._result = (_result) + other._result;
-	return (_result + other._result);
+	res._result = _result + other._result;
+	return (res);
 }
 
-Fixed	Fixed::operator-(const Fixed& other) {
+Fixed	Fixed::operator-(const Fixed& other) const {
 	Fixed	res;
 
 	res._result = _result - other._result;
@@ -75,7 +75,7 @@ Fixed	Fixed::operator*(const Fixed& other) const {
 	return (res);
 }
 
-Fixed	Fixed::operator/(const Fixed& other) {
+Fixed	Fixed::operator/(const Fixed& other) const {
 	Fixed res;
 	
 	long long div = (static_cast<long long>(_result) << _fract) / other._result;
@@ -83,10 +83,9 @@ Fixed	Fixed::operator/(const Fixed& other) {
 	return (res);
 }
 
-Fixed&	Fixed::operator=(const Fixed& other)
-{
+Fixed&	Fixed::operator=(const Fixed& other) {
 	if (this != &other)
-		this->_result = other._result;
+		_result = other._result;
 	return (*this);
 }
 
