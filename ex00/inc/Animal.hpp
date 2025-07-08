@@ -11,9 +11,10 @@ class Animal {
 	public:
 		Animal();
 		Animal(const Animal& other);
-		~Animal();
+		virtual ~Animal();
 
-		virtual void	makeSound(void);
+		virtual void			makeSound(void) const;
+		virtual std::string		getType(void) const;
 };
 
 #endif

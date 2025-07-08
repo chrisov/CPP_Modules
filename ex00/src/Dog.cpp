@@ -12,6 +12,10 @@ Dog::~Dog() {
 	std::cout << "Dog destructor called!" << std::endl;
 }
 
-void	Dog::makeSound(void) {
+void	Dog::makeSound(void) const {
 	std::cout << "Bark!" << std::endl;
+}
+
+std::string	Dog::getType(void) const {
+	return (type);
 }

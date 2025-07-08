@@ -14,7 +14,8 @@ class Cat : public Animal {
 		Cat(const Cat& other);
 		~Cat();
 
-		void	makeSound(void) override;
+		void		makeSound(void) const override;
+		std::string	getType(void) const override;
 };
 
 #endif

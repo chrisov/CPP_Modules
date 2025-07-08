@@ -13,8 +13,6 @@ OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 NAME = polymorphism
 
-all: $(NAME)
-
 $(NAME): $(OBJDIR) $(OBJS)
 	@echo "\033[33mCompilating '$(NAME)'...\033[0m"
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
@@ -25,6 +23,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
+
+all: $(NAME)
 
 clean:
 	@echo "\033[33mRemoving project build...\033[0m"
