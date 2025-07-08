@@ -11,12 +11,12 @@ class ScavTrap: public ClapTrap {
 		ScavTrap(const ScavTrap& other);
 		~ScavTrap();
 
-		friend std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj);
-		
 		ScavTrap&	operator=(const ScavTrap& other);
-
+		
 		void	guardGate(void);
 		void 	attack(const std::string &target) override;
 };
+	
+std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj);
 
 #endif

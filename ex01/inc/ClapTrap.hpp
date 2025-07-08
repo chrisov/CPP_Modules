@@ -25,15 +25,18 @@ public:
 	static const unsigned int	attackDamage = 20;
 	static const unsigned int	maxHitPoints = 100;
 	static const unsigned int	maxEnergyPoints = 50;
-
-	friend	std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
-
+	
 	ClapTrap&		operator=(const ClapTrap& other);
-
+	
 	virtual void	attack(const std::string &target);
 	void			takeDamage(unsigned int amount);
 	void			beRepaired(unsigned int amount);
 	std::string		getName(void) const;
+	unsigned int	getAttackDmg(void) const;
+	unsigned int	getHitPoints(void) const;
+	unsigned int	getEnergyPoints(void) const;
 };
+
+std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
 
 #endif
