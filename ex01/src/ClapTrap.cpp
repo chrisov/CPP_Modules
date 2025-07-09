@@ -72,7 +72,7 @@ std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj) {
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj.getEnergyPoints() << "/" << obj.getMaxEP() << ")" << std::endl << std::endl;
+	out << " (" << obj.getEnergyPoints() << "/" << obj.getMaxEP() << ")" << std::endl;
 	return (out);
 }
 

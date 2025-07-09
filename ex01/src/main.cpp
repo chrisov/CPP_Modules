@@ -26,5 +26,5 @@ int	main(void) {
 	std::cout << std::endl;
 	std::cout << "v-------------------------------------------v" << std::endl;
 	std::cout << a << std::endl << b;
-	std::cout << "^-------------------------------------------^" << std::endl << std::endl;
+	std::cout << "^-------------------------------------------^" << '\n' << std::endl;
 }
