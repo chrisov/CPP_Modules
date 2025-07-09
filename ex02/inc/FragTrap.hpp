@@ -1,25 +1,22 @@
 #ifndef FRAGTRAP_HPP
 #define FRAGTRAP_HPP
 
-#include "ClapTrap.hpp"
 #include <iostream>
+#include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap {
 	public:
 		FragTrap();
-		FragTrap(const FragTrap& other);
 		FragTrap(std::string name);
+		FragTrap(const FragTrap& other);
 		~FragTrap();
-
-		static const unsigned int	maxHitPoints = 100;
-		static const unsigned int	maxEnergyPoints = 100;
-		static const unsigned int	attackDamage = 30;
 
 		FragTrap&	operator=(const FragTrap& other);
 
-		friend std::ostream& operator<<(std::ostream& out, const FragTrap& obj);
-
+		void	attack(const std::string& target) override;
 		void	highFiveGuys(void);
-};
+	};
+	
+std::ostream&	operator<<(std::ostream& out, const FragTrap& obj);
 
 #endif

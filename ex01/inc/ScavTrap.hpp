@@ -5,6 +5,11 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap: public ClapTrap {
+	private:
+		static constexpr unsigned int	_maxHitPoints = 100;
+		static constexpr unsigned int	_maxEnergyPoints = 50;
+		static constexpr unsigned int	_attackDamage = 20;
+		
 	public:
 		ScavTrap();
 		ScavTrap(std::string name);
@@ -13,10 +18,14 @@ class ScavTrap: public ClapTrap {
 
 		ScavTrap&	operator=(const ScavTrap& other);
 		
-		void	guardGate(void);
-		void 	attack(const std::string &target) override;
+		void			guardGate(void);
+		void 			attack(const std::string &target) override;
+		// unsigned int	getHitPoints(void) const override;
+		unsigned int	getAttackDmg(void) const override;
+		unsigned int	getMaxHP(void) const override;
+		unsigned int	getMaxEP(void) const override;
 };
-	
+
 std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj);
 
 #endif

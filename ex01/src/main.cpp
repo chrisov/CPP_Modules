@@ -1,8 +1,8 @@
 #include "../inc/ScavTrap.hpp"
 
 int	main(void) {
-	ScavTrap	a("Giorgos");
-	ClapTrap	b("Pantelis");
+	ScavTrap	a("ScavGiorgos");
+	ClapTrap	b("ClapPantelis");
 
 	std::cout << '\n';
 	std::cout << "v-------------------------------------------v" << '\n';
@@ -10,13 +10,13 @@ int	main(void) {
 	std::cout << "^-------------------------------------------^" << '\n' << std::endl;
 
 	b.attack(a.getName());
-	a.takeDamage(b.attackDamage);
+	a.takeDamage(b.getAttackDmg());
 	std::cout << "v-------------------------------------------v" << '\n';
 	std::cout << a << '\n' << b;
 	std::cout << "^-------------------------------------------^" << '\n' << std::endl;
 	
 	a.attack(b.getName());
-	b.takeDamage(a.attackDamage);
+	b.takeDamage(a.getAttackDmg());
 	std::cout << "v-------------------------------------------v" << std::endl;
 	std::cout << a << std::endl << b;
 	std::cout << "^-------------------------------------------^" << std::endl << std::endl;

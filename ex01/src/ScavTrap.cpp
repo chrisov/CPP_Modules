@@ -4,17 +4,16 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-ScavTrap::ScavTrap() {
+ScavTrap::ScavTrap() : ClapTrap("Default", _maxHitPoints, _maxEnergyPoints) {
 	std::cout << "Default ScavTrap constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, _maxHitPoints, _maxEnergyPoints) {
 	std::cout << "Parameterized constructor turned " << YLW << name << RST << " into a ScavTrap" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap::ClapTrap(other) {
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 	std::cout << "Copy constructor created another " << YLW << other._name << RST << " ScavTrap instance" << std::endl;
-	*this = other;
 }
 
 ScavTrap::~ScavTrap() {
@@ -37,26 +36,26 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
 std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj) {
 	const unsigned int barLength = 20;
 
-	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.maxHitPoints : 0;
+	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.getMaxHP() : 0;
 	int emptyHealth = barLength - filledHealth;
-	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.maxEnergyPoints : 0;
+	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.getMaxEP() : 0;
 	int emptyEnergy = barLength - filledEnergy;
 
-	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.attackDamage << ")" << '\n';
+	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.getAttackDmg() << ")" << '\n';
 
 	out << "Hit points: ";
 	for (int i = 0; i < filledHealth; ++i)
 		out << GRN << "#" << RST;
 	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << obj.getHitPoints() << "/" << obj.maxHitPoints << ")" << '\n';
+	out << " (" << obj.getHitPoints() << "/" << obj.getMaxHP() << ")" << '\n';
 
 	out << "Energy points: ";
 	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj.getEnergyPoints() << "/" << obj.maxEnergyPoints << ")" << std::endl;
+	out << " (" << obj.getEnergyPoints() << "/" << obj.getMaxEP() << ")" << std::endl;
 	return (out);
 }
 
@@ -77,11 +76,23 @@ void	ScavTrap::attack(const std::string &target) {
 	else {
 		_energyPoints--;
 		std::cout << "ScavTrap " << YLW << _name << RST << " attacks... ";
-		if (attackDamage == 0)
+		if (_attackDamage == 0)
 			std::cout << "It has no effect..." << std::endl;
-		else if (attackDamage <= 30)
+		else if (_attackDamage <= 30)
 			std::cout << "It's not very effective." << std::endl;
 		else 
 			std::cout << "It's super effective!" << std::endl;
 	}
+}
+
+unsigned int	ScavTrap::getMaxHP(void) const {
+	return (_maxHitPoints);
+}
+
+unsigned int	ScavTrap::getMaxEP(void) const {
+	return (_energyPoints);
+}
+
+unsigned int	ScavTrap::getAttackDmg(void) const {
+	return (_attackDamage);
 }

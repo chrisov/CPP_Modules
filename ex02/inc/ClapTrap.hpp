@@ -21,18 +21,20 @@ class ClapTrap {
 		ClapTrap(const ClapTrap& other);
 		~ClapTrap();
 		
-		static const unsigned int	maxHitPoints = 10;
-		static const unsigned int	maxEnergyPoints = 10;
-		static const unsigned int	attackDamage = 0;
-
-		friend	std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
+		static const unsigned int	maxHitPoints = 100;
+		static const unsigned int	maxEnergyPoints = 100;
+		static const unsigned int	attackDamage = 30;
 
 		ClapTrap&		operator=(const ClapTrap& other);
-
-		void 			attack(const std::string& target);
+		
+		virtual void	attack(const std::string& target);
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
 		std::string		getName(void) const;
-};
+		unsigned int	getHitPoints(void) const;
+		unsigned int	getEnergyPoints(void) const;
+	};
+	
+std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
 
 #endif

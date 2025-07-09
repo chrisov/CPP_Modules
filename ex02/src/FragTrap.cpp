@@ -41,26 +41,26 @@ FragTrap&	FragTrap::operator=(const FragTrap& other) {
 std::ostream&	operator<<(std::ostream& out, const FragTrap& obj) {
 	const unsigned int barLength = 20;
 
-	int filledHealth = (obj._hitPoints > 0) ? (obj._hitPoints * barLength) / obj.maxHitPoints : 0;
-    int emptyHealth = barLength - filledHealth;
-    int filledEnergy = (obj._energyPoints > 0) ? (obj._energyPoints * barLength) / obj.maxEnergyPoints : 0;
-    int emptyEnergy = barLength - filledEnergy;
+	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.maxHitPoints : 0;
+	int emptyHealth = barLength - filledHealth;
+	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.maxEnergyPoints : 0;
+	int emptyEnergy = barLength - filledEnergy;
 
-	out << YLW << obj._name << RST << " (Attack dmg: " << obj.attackDamage << ")" << std::endl;
+	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.attackDamage << ")" << std::endl;
 
 	out << "Hit points: ";
 	for (int i = 0; i < filledHealth; ++i)
 		out << GRN << "#" << RST;
 	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << obj._hitPoints << "/" << obj.maxHitPoints << ")" << std::endl;
+	out << " (" << obj.getHitPoints() << "/" << obj.maxHitPoints << ")" << std::endl;
 
 	out << "Energy points: ";
 	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj._energyPoints << "/" << obj.maxEnergyPoints << ")" << std::endl << std::endl;
+	out << " (" << obj.getEnergyPoints() << "/" << obj.maxEnergyPoints << ")" << std::endl << std::endl;
 	return (out);
 }
 
@@ -71,4 +71,16 @@ std::ostream&	operator<<(std::ostream& out, const FragTrap& obj) {
 
 void	FragTrap::highFiveGuys(void) {
 	std::cout << YLW << _name << RST << " request the highest of the fives!" << std::endl;
+}
+
+void	FragTrap::attack(const std::string& target) {
+	(void)target;
+	if (_energyPoints == 0)
+		std::cout << "No more energy points!" << std::endl;
+	else if (_hitPoints == 0)
+		std::cout << "FragTrap " << _name << " is dead.." << std::endl;
+	else {
+		_energyPoints--;
+		std::cout << YLW << _name << RST << " attacks... ";
+	}
 }

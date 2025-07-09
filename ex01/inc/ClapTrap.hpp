@@ -11,30 +11,34 @@
 
 class ClapTrap {
 
-protected:
-	std::string					_name;
-	unsigned int				_hitPoints;
-	unsigned int				_energyPoints;
-	
-public:
-	ClapTrap();
-	ClapTrap(std::string name);
-	ClapTrap(const ClapTrap &other);
-	~ClapTrap();
-	
-	static const unsigned int	attackDamage = 20;
-	static const unsigned int	maxHitPoints = 100;
-	static const unsigned int	maxEnergyPoints = 50;
-	
-	ClapTrap&		operator=(const ClapTrap& other);
-	
-	virtual void	attack(const std::string &target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	std::string		getName(void) const;
-	unsigned int	getAttackDmg(void) const;
-	unsigned int	getHitPoints(void) const;
-	unsigned int	getEnergyPoints(void) const;
+	protected:
+		std::string		_name;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		
+		static constexpr unsigned int	_attackDamage = 0;
+		static constexpr unsigned int	_maxHitPoints = 10;
+		static constexpr unsigned int	_maxEnergyPoints = 10;
+
+	public:
+		ClapTrap();
+		ClapTrap(std::string name);
+		ClapTrap(std::string name, unsigned int HP, unsigned int EP);
+		ClapTrap(const ClapTrap &other);
+		~ClapTrap();
+		
+		
+		ClapTrap&		operator=(const ClapTrap& other);
+		
+		std::string				getName(void) const;
+		void					takeDamage(unsigned int amount);
+		void					beRepaired(unsigned int amount);
+		unsigned int			getHitPoints(void) const;
+		unsigned int			getEnergyPoints(void) const;
+		virtual void			attack(const std::string &target);
+		virtual unsigned int	getAttackDmg(void) const;
+		virtual unsigned int	getMaxHP(void) const;
+		virtual unsigned int	getMaxEP(void) const;
 };
 
 std::ostream&	operator<<(std::ostream& out, const ClapTrap& obj);
