@@ -15,7 +15,7 @@ class ScavTrap: public ClapTrap {
 		ScavTrap();
 		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap& other);
-		~ScavTrap();
+		~ScavTrap() override;
 
 		ScavTrap&	operator=(const ScavTrap& other);
 		
