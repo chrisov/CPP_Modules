@@ -15,7 +15,7 @@ ClapTrap::ClapTrap(std::string name) :
 	_name(name),
 	_hitPoints(_maxHitPoints),
 	_energyPoints(_maxEnergyPoints) {
-		std::cout << "Parameterized	default constructor " << GRN << "created" << RST << " a ClapTrap named " << YLW << name << RST << std::endl;
+		std::cout << "Parameterized default constructor " << GRN << "created" << RST << " a ClapTrap named " << YLW << name << RST << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name, unsigned int HP, unsigned int EP) :
@@ -85,16 +85,11 @@ void	ClapTrap::attack(const std::string& target) {
 	if (_energyPoints == 0)
 		std::cout << "No more energy points!" << std::endl;
 	else if (_hitPoints == 0)
-	std::cout << YLW << _name << RST << " is " << RED << "dead" << RST << "..." << std::endl;
+		std::cout << YLW << _name << RST << " is " << RED << "dead" << RST << "..." << std::endl;
 	else {
 		_energyPoints--;
 		std::cout << "ClapTrap " << YLW << _name << RST << " attacks... ";
-		if (_attackDamage == 0)
-			std::cout << "It has no effect..." << std::endl;
-		else if (_attackDamage <= 30)
-			std::cout << "It's not very effective." << std::endl;
-		else 
-			std::cout << "It's super effective!" << std::endl;
+		std::cout << "It has no effect..." << std::endl;
 	}
 }
 
@@ -102,22 +97,25 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 	if (amount <= _hitPoints)
 		_hitPoints -= amount;
 	else
-		_hitPoints = 0;
-	if (amount > 0)
 		std::cout << YLW << _name << RED << " took some damage" << RST << "!" << std::endl;
+	if (amount <= _hitPoints)
+		_hitPoints -= amount;
+	else
+		_hitPoints = 0;
 	if (_hitPoints == 0)
 		std::cout << YLW << _name << RED << " died" << RST << "..." << std::endl;
-	std::cout << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
 	if (_energyPoints == 0)
 		std::cout << "No more energy points!" << std::endl;
 	else if (_hitPoints == 0)
-		std::cout << YLW << _name << RST << " can't repair itselft, he is " << RED << "dead" << RST << "..." << std::endl;
+		std::cout << YLW << _name << RST << " can't repair itselft, it's " << RED << "dead" << RST << "..." << std::endl;
 	else {
 		_energyPoints--;
 		_hitPoints += amount;
+		if (_hitPoints >= getMaxHP())
+			_hitPoints = getMaxHP();
 		std::cout << YLW << _name << RST << " repairs itself!" << " (" << GRN << "+" << amount << RST << ")";
 		std::cout << std::endl;
 	}

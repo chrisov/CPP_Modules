@@ -16,16 +16,16 @@ class ClapTrap {
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
 		
-		static constexpr unsigned int	_attackDamage = 0;
-		static constexpr unsigned int	_maxHitPoints = 10;
-		static constexpr unsigned int	_maxEnergyPoints = 10;
+		static const unsigned int	_attackDamage = 0;
+		static const unsigned int	_maxHitPoints = 10;
+		static const unsigned int	_maxEnergyPoints = 10;
 
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(std::string name, unsigned int HP, unsigned int EP);
 		ClapTrap(const ClapTrap &other);
-		~ClapTrap();
+		virtual ~ClapTrap();
 		
 		
 		ClapTrap&		operator=(const ClapTrap& other);
