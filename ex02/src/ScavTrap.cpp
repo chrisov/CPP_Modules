@@ -4,25 +4,20 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-ScavTrap::ScavTrap() {
+ScavTrap::ScavTrap() : ClapTrap("Default", _maxHitPoints, _maxEnergyPoints) {
 	std::cout << "Default ScavTrap constructor called" << std::endl;
-	_hitPoints = maxHitPoints;
-	_energyPoints = maxEnergyPoints;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, _maxHitPoints, _maxEnergyPoints) {
 	std::cout << "Parameterized constructor turned " << YLW << name << RST << " into a ScavTrap" << std::endl;
-	_hitPoints = maxHitPoints;
-	_energyPoints = maxEnergyPoints;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 	std::cout << "Copy constructor created another " << YLW << other._name << RST << " ScavTrap instance" << std::endl;
-	*this = other;
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << YLW << getName() << RST << " ScavTrap "<< RED << "destructor " << RST << "called" << std::endl;
+	std::cout << YLW << _name << RST << " ScavTrap "<< RED << "destructor " << RST << "called" << std::endl;
 }
 
 /****************************************************
@@ -41,26 +36,26 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other) {
 std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj) {
 	const unsigned int barLength = 20;
 
-	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.maxHitPoints : 0;
+	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.getMaxHP() : 0;
 	int emptyHealth = barLength - filledHealth;
-	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.maxEnergyPoints : 0;
+	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.getMaxEP() : 0;
 	int emptyEnergy = barLength - filledEnergy;
 
-	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.attackDamage << ")" << std::endl;
+	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.getAttackDmg() << ")" << std::endl;
 
 	out << "Hit points: ";
 	for (int i = 0; i < filledHealth; ++i)
 		out << GRN << "#" << RST;
 	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << obj.getHitPoints() << "/" << obj.maxHitPoints << ")" << std::endl;
+	out << " (" << obj.getHitPoints() << "/" << obj.getMaxHP() << ")" << std::endl;
 
 	out << "Energy points: ";
 	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj.getEnergyPoints() << "/" << obj.maxEnergyPoints << ")" << std::endl << std::endl;
+	out << " (" << obj.getEnergyPoints() << "/" << obj.getMaxEP() << ")" << std::endl;
 	return (out);
 }
 
@@ -69,17 +64,30 @@ std::ostream&	operator<<(std::ostream& out, const ScavTrap& obj) {
 ****************************************************/
 
 void	ScavTrap::guardGate(void) {
-	std::cout << YLW << this->getName() << RST << " is guarding the gate now!" << std::endl;
+	std::cout << YLW << getName() << RST << " is guarding the gate now!" << std::endl;
 }
 
-void	ScavTrap::attack(const std::string& target) {
+void	ScavTrap::attack(const std::string &target) {
 	(void)target;
 	if (_energyPoints == 0)
 		std::cout << "No more energy points!" << std::endl;
 	else if (_hitPoints == 0)
-		std::cout << "ScavTrap " << _name << " is dead.." << std::endl;
+		std::cout << _name << " is dead.." << std::endl;
 	else {
 		_energyPoints--;
-		std::cout << YLW << _name << RST << " attacks... ";
+		std::cout << "ScavTrap " << YLW << _name << RST << " attacks... ";
+		std::cout << "It's not very effective." << std::endl;
 	}
+}
+
+unsigned int	ScavTrap::getMaxHP(void) const {
+	return (_maxHitPoints);
+}
+
+unsigned int	ScavTrap::getMaxEP(void) const {
+	return (_maxEnergyPoints);
+}
+
+unsigned int	ScavTrap::getAttackDmg(void) const {
+	return (_attackDamage);
 }

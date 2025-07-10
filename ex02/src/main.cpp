@@ -2,18 +2,39 @@
 #include "../inc/FragTrap.hpp"
 
 int	main(void) {
-	ClapTrap	a("Giorgos");
-	ScavTrap	b("Pantelis");
-	FragTrap	c("Kleanthis");
+	ClapTrap	a("ClapGiorgos");
+	ScavTrap	b("ScavPantelis");
+	FragTrap	c("FragKleanthis");
 
-	std::cout << std::endl << a << b << c;
+	std::cout << "\n\nv-------------------------------------------v" << '\n';
+	std::cout << a << '\n' << b << '\n' << c;
+	std::cout << "^-------------------------------------------^" << "\n\n" << std::endl;
+
 	c.attack(b.getName());
-	b.takeDamage(c.attackDamage);
-	std::cout << a << b << c;
+	b.takeDamage(c.getAttackDmg());
+	std::cout << "\n\nv-------------------------------------------v" << '\n';
+	std::cout << a << '\n' << b << '\n' << c;
+	std::cout << "^-------------------------------------------^" << "\n\n" << std::endl;
+
 	a.attack(b.getName());
-	b.takeDamage(a.attackDamage);
+	b.takeDamage(a.getAttackDmg());
 	b.beRepaired(10);
 	b.guardGate();
+	std::cout << "\n\nv-------------------------------------------v" << '\n';
+	std::cout << a << '\n' << b << '\n' << c;
+	std::cout << "^-------------------------------------------^" << "\n\n" << std::endl;
+	
+	c.attack(a.getName());
+	a.takeDamage(c.getAttackDmg());
+	std::cout << "\n\nv-------------------------------------------v" << '\n';
+	std::cout << a << '\n' << b << '\n' << c;
+	std::cout << "^-------------------------------------------^" << "\n\n" << std::endl;
+	
 	c.highFiveGuys();
-	std::cout << a << b << c;
+	a.beRepaired(10);
+	b.beRepaired(30);
+	c.beRepaired(10);
+	std::cout << "\n\nv-------------------------------------------v" << '\n';
+	std::cout << a << '\n' << b << '\n' << c;
+	std::cout << "^-------------------------------------------^" << "\n\n" << std::endl;
 }

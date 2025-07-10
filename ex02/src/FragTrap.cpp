@@ -1,24 +1,19 @@
-#include "../inc/FragTrap.hpp"
+#include "FragTrap.hpp"
 
 /****************************************************
 *					CONSTRUCTORS					*
 ****************************************************/
 
-FragTrap::FragTrap() {
+FragTrap::FragTrap() : ClapTrap("Default", _maxHitPoints, _maxEnergyPoints) {
 	std::cout << "Default FragTrap constructor called" << std:: endl;
-	_hitPoints = maxHitPoints;
-	_energyPoints = maxEnergyPoints;
 }
 
-FragTrap::FragTrap(const std::string name) : ClapTrap(name) {
+FragTrap::FragTrap(const std::string name) : ClapTrap(name, _maxHitPoints, _maxEnergyPoints){
 	std::cout << "Parameterized constructor turned " << YLW << name << RST << " into a FragTrap" << std::endl;
-	_hitPoints = maxHitPoints;
-	_energyPoints = maxEnergyPoints;
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
 	std::cout << "Copy constructor created another " << YLW << other._name << RST << " FragTrap instance" << std::endl;
-	*this = other;
 }
 
 FragTrap::~FragTrap() {
@@ -31,9 +26,9 @@ FragTrap::~FragTrap() {
 
 FragTrap&	FragTrap::operator=(const FragTrap& other) {
 	if (this != &other) {
-		this->_name = other._name;
-		this->_hitPoints = other._hitPoints;
-		this->_energyPoints = other._energyPoints;
+		_name = other._name;
+		_hitPoints = other._hitPoints;
+		_energyPoints = other._energyPoints;
 	}
 	return (*this);
 }
@@ -41,26 +36,26 @@ FragTrap&	FragTrap::operator=(const FragTrap& other) {
 std::ostream&	operator<<(std::ostream& out, const FragTrap& obj) {
 	const unsigned int barLength = 20;
 
-	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.maxHitPoints : 0;
+	int filledHealth = (obj.getHitPoints() > 0) ? (obj.getHitPoints() * barLength) / obj.getMaxHP() : 0;
 	int emptyHealth = barLength - filledHealth;
-	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.maxEnergyPoints : 0;
+	int filledEnergy = (obj.getEnergyPoints() > 0) ? (obj.getEnergyPoints() * barLength) / obj.getMaxEP() : 0;
 	int emptyEnergy = barLength - filledEnergy;
 
-	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.attackDamage << ")" << std::endl;
+	out << YLW << obj.getName() << RST << " (Attack dmg: " << obj.getAttackDmg() << ")" << std::endl;
 
 	out << "Hit points: ";
 	for (int i = 0; i < filledHealth; ++i)
 		out << GRN << "#" << RST;
 	for (int i = 0; i < emptyHealth; ++i)
 		out << GRN << "-" << RST;
-	out << " (" << obj.getHitPoints() << "/" << obj.maxHitPoints << ")" << std::endl;
+	out << " (" << obj.getHitPoints() << "/" << obj.getMaxHP() << ")" << std::endl;
 
 	out << "Energy points: ";
 	for (int i = 0; i < filledEnergy; ++i)
 		out << BLU << "#" << RST;
 	for (int i = 0; i < emptyEnergy; ++i)
 		out << BLU << "-" << RST;
-	out << " (" << obj.getEnergyPoints() << "/" << obj.maxEnergyPoints << ")" << std::endl << std::endl;
+	out << " (" << obj.getEnergyPoints() << "/" << obj.getMaxEP() << ")" << std::endl;
 	return (out);
 }
 
@@ -70,7 +65,7 @@ std::ostream&	operator<<(std::ostream& out, const FragTrap& obj) {
 ****************************************************/
 
 void	FragTrap::highFiveGuys(void) {
-	std::cout << YLW << _name << RST << " request the highest of the fives!" << std::endl;
+	std::cout << YLW << _name << RST << " requests the highest of the fives!" << std::endl;
 }
 
 void	FragTrap::attack(const std::string& target) {
@@ -78,9 +73,22 @@ void	FragTrap::attack(const std::string& target) {
 	if (_energyPoints == 0)
 		std::cout << "No more energy points!" << std::endl;
 	else if (_hitPoints == 0)
-		std::cout << "FragTrap " << _name << " is dead.." << std::endl;
+		std::cout << YLW << _name << RST << " is " << RED << "dead" << RST << "..." << std::endl;
 	else {
 		_energyPoints--;
-		std::cout << YLW << _name << RST << " attacks... ";
+		std::cout << "FragTrap " << YLW << _name << RST << " attacks... ";
+		std::cout << "It's super effective!" << std::endl;
 	}
+}
+
+unsigned int	FragTrap::getAttackDmg(void) const {
+	return (_attackDamage);
+}
+
+unsigned int	FragTrap::getMaxHP(void) const {
+	return (_maxHitPoints);
+}
+
+unsigned int	FragTrap::getMaxEP(void) const {
+	return (_maxEnergyPoints);
 }
