@@ -108,11 +108,11 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 
 void	ClapTrap::beRepaired(unsigned int amount) {
 	if (_hitPoints == getMaxHP())
-		std::cout << YLW << _name << RST << "\'s health is already " << GRN << "full" << RST << "!" << std::endl;
-	if (_energyPoints == 0)
+		std::cout << YLW << _name << RST << "'s health is already " << GRN << "full" << RST << "!" << std::endl;
+	else if (_energyPoints == 0)
 		std::cout << "No more energy points!" << std::endl;
 	else if (_hitPoints == 0)
-		std::cout << YLW << _name << RST << " can't repair itselft, he is " << RED << "dead" << RST << "..." << std::endl;
+		std::cout << YLW << _name << RST << " can't repair itselft, it's " << RED << "dead" << RST << "..." << std::endl;
 	else {
 		_energyPoints--;
 		_hitPoints += amount;
