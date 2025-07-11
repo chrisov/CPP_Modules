@@ -16,15 +16,15 @@ class ClapTrap {
 		unsigned int				_hitPoints;
 		unsigned int				_energyPoints;
 		
+		static const unsigned int	_attackDamage = 0;
+		static const unsigned int	_maxHitPoints = 10;
+		static const unsigned int	_maxEnergyPoints = 10;
+
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &other);
 		~ClapTrap();
-		
-		static const unsigned int	attackDamage = 0;
-		static const unsigned int	maxHitPoints = 10;
-		static const unsigned int	maxEnergyPoints = 10;
 		
 		ClapTrap&		operator=(const ClapTrap& other);
 		
@@ -32,6 +32,8 @@ class ClapTrap {
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
 		std::string		getName(void) const;
+		unsigned int	getMaxHP(void) const;
+		unsigned int	getMaxEP(void) const;
 		unsigned int	getAttackDmg(void) const;
 		unsigned int	getHitPoints(void) const;
 		unsigned int	getEnergyPoints(void) const;
