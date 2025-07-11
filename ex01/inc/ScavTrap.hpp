@@ -20,7 +20,6 @@ class ScavTrap: public ClapTrap {
 		
 		void			guardGate(void);
 		void 			attack(const std::string &target) override;
-		// unsigned int	getHitPoints(void) const override;
 		unsigned int	getAttackDmg(void) const override;
 		unsigned int	getMaxHP(void) const override;
 		unsigned int	getMaxEP(void) const override;
