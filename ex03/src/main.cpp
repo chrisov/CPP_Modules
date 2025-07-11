@@ -4,7 +4,7 @@
 #include "DiamondTrap.hpp"
 
 int main(void) {
-	DiamondTrap	a("DiaMpampis");
+	DiamondTrap	a("Dia");
 
 	std::cout << "\n\nv-------------------------------------------v" << '\n';
 	std::cout << a;
