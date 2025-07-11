@@ -9,7 +9,7 @@ FragTrap::FragTrap() : ClapTrap("Default", _maxHitPoints, _maxEnergyPoints) {
 }
 
 FragTrap::FragTrap(const std::string name) : ClapTrap(name, _maxHitPoints, _maxEnergyPoints){
-	std::cout << "Parameterized constructor turned " << YLW << name << RST << " into a FragTrap" << std::endl;
+	std::cout << "Parameterized constructor turned " << YLW << _name << RST << " into a FragTrap" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {

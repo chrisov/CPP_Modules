@@ -1,8 +1,8 @@
 #include "DiamondTrap.hpp"
 
+const unsigned int	DiamondTrap::_maxEnergyPoints = ScavTrap::_maxEnergyPoints;
 const unsigned int	DiamondTrap::_attackDamage = FragTrap::_attackDamage;
 const unsigned int	DiamondTrap::_maxHitPoints = FragTrap::_maxHitPoints;
-const unsigned int	DiamondTrap::_maxEnergyPoints = ScavTrap::_maxEnergyPoints;
 
 /****************************************************
 *					CONSTRUCTORS					*
@@ -10,8 +10,8 @@ const unsigned int	DiamondTrap::_maxEnergyPoints = ScavTrap::_maxEnergyPoints;
 
 DiamondTrap::DiamondTrap() :
 	ClapTrap("Default_clap_name"),
-	ScavTrap(),
 	FragTrap(),
+	ScavTrap(),
 	_name("Default") {
 		std::cout << "Default DiamondTrap constructor called" << std::endl;
 		_hitPoints = getMaxHP();
@@ -20,8 +20,8 @@ DiamondTrap::DiamondTrap() :
 
 DiamondTrap::DiamondTrap(std::string name) :
 	ClapTrap(name + "_clap_name"),
-	ScavTrap(name),
 	FragTrap(name),
+	ScavTrap(name),
 	_name(name) {
 		std::cout << "Parameterized constructor turned " << YLW << _name << RST << " into a DiamondTrap" << std::endl;
 		_hitPoints = getMaxHP();
@@ -102,3 +102,7 @@ unsigned int	DiamondTrap::getMaxHP(void) const {
 unsigned int	DiamondTrap::getMaxEP(void) const {
 	return (_maxEnergyPoints);
 }
+
+unsigned int	DiamondTrap::init(void) {
+	return (FragTrap::_attackDamage);
+}	

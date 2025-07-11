@@ -9,7 +9,7 @@ ScavTrap::ScavTrap() : ClapTrap("Default", _maxHitPoints, _maxEnergyPoints) {
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name, _maxHitPoints, _maxEnergyPoints) {
-	std::cout << "Parameterized constructor turned " << YLW << name << RST << " into a ScavTrap" << std::endl;
+	std::cout << "Parameterized constructor turned " << YLW << _name << RST << " into a ScavTrap" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << YLW << getName() << RST << " ScavTrap "<< RED << "destructor " << RST << "called" << std::endl;
+	std::cout << YLW << _name << RST << " ScavTrap "<< RED << "destructor " << RST << "called" << std::endl;
 }
 
 /****************************************************
