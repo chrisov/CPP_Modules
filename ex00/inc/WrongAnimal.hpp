@@ -1,5 +1,5 @@
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 #include <iostream>
 
@@ -8,15 +8,15 @@
 #define GRN "\033[32m"
 #define YLW "\033[33m"
 
-class Animal {
+class WrongAnimal {
 
 	protected:
 		std::string	type;
 
 	public:
-		Animal();
-		Animal(const Animal& other);
-		virtual ~Animal();
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& other);
+		virtual ~WrongAnimal();
 
 		virtual void			makeSound(void) const;
 		virtual std::string		getType(void) const;

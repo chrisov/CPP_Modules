@@ -1,15 +1,15 @@
 #include "Cat.hpp"
 
 Cat::Cat() : type("Cat") {
-	std::cout << "Cat constructor called!" << std::endl;
+	std::cout << YLW << "Cat " << GRN << "constructor " << RST << "turned Animal into  " << YLW << type << RST << "!" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : type(other.type) {
-	std::cout << "Cat copy constructor called!" << std::endl;
+Cat::Cat(const Cat& other) : Animal(other) {
+	std::cout << YLW << "Cat " << GRN << "copy constructor " << RST << "called!" << std::endl;
 }
 
 Cat::~Cat() {
-	std::cout << "Cat destructor called!" << std::endl;
+	std::cout << YLW << "Cat " << RED << "destructor " << RST << "called!" << std::endl;
 }
 
 void	Cat::makeSound(void) const {
