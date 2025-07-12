@@ -13,7 +13,7 @@ class Dog : public Animal {
 		Dog(const Dog& other);
 		~Dog();
 
-		void	makeSound(void) const override;
+		void		makeSound(void) const override;
 		std::string	getType(void) const override;
 };
 

@@ -13,7 +13,7 @@ SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Animal.cpp \
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-NAME = polymorphism
+NAME = animal
 
 $(NAME): $(OBJDIR) $(OBJS)
 	@echo "\033[33mCompilating '$(NAME)'...\033[0m"
