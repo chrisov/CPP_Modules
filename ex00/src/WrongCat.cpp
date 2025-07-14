@@ -1,11 +1,11 @@
-#include "WrongCat.hpp"
+#include "../inc/WrongCat.hpp"
 
 /****************************************************
 *					CONSTRUCTORS					*
 ****************************************************/
 
-WrongCat::WrongCat() : type("WrongCat") {
-	std::cout << YLW << "WrongCat " << GRN << "constructor " << RST << "turned Animal into  " << YLW << type << RST << "!" << std::endl;
+WrongCat::WrongCat() : WrongAnimal("WrongCat") {
+	std::cout << YLW << "WrongCat " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other) {
@@ -33,8 +33,4 @@ WrongCat& WrongCat::operator=(const WrongCat& other) {
 
 void	WrongCat::makeSound(void) const {
 	std::cout << "WrongMeow!" << std::endl;
-}
-
-std::string	WrongCat::getType(void) const {
-	return (type);
 }

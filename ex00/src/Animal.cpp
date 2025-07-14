@@ -12,6 +12,10 @@ Animal::Animal(const Animal& other) : type(other.type) {
 	std::cout << YLW << "Animal " << GRN << "copy constructor " << RST << "called!" << std::endl;
 }
 
+Animal::Animal(const std::string& newtype) : type(newtype) {
+	std::cout << "Parameterized " << YLW << "Animal " << GRN << "constructor " << RST << "called!" << std::endl;
+}
+
 Animal::~Animal() {
 	std::cout << YLW << "Animal " << RED << "destructor " << RST << "called!" << std::endl;
 }

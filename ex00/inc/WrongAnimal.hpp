@@ -16,12 +16,13 @@ class WrongAnimal {
 	public:
 		WrongAnimal();
 		WrongAnimal(const WrongAnimal& other);
+		WrongAnimal(const std::string& newtype);
 		virtual ~WrongAnimal();
 
 		WrongAnimal&	operator=(const WrongAnimal& other);
 
-		virtual void			makeSound(void) const;
-		virtual std::string		getType(void) const;
+		virtual void	makeSound(void) const;
+		std::string		getType(void) const;
 };
 
 #endif

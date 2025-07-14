@@ -5,9 +5,6 @@
 #include "WrongAnimal.hpp"
 
 class WrongCat : public WrongAnimal {
-	
-	private:
-		std::string	type;
 
 	public:
 		WrongCat();
@@ -16,8 +13,7 @@ class WrongCat : public WrongAnimal {
 
 		WrongCat&	operator=(const WrongCat& other);
 
-		void		makeSound(void) const override;
-		std::string	getType(void) const override;
+		void	makeSound(void) const override;
 };
 
 #endif

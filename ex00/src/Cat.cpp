@@ -1,11 +1,11 @@
-#include "Cat.hpp"
+#include "../inc/Cat.hpp"
 
 /****************************************************
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Cat::Cat() : Animal(), type("Cat") {
-	std::cout << YLW << "Cat " << GRN << "constructor " << RST << "turned Animal into  " << YLW << type << RST << "!" << std::endl;
+Cat::Cat() : Animal("Cat") {
+	std::cout << YLW << "Cat " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl;
 }
 
 Cat::Cat(const Cat& other) : Animal(other) {

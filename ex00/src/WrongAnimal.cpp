@@ -1,15 +1,19 @@
-#include "WrongAnimal.hpp"
+#include "../inc/WrongAnimal.hpp"
 
 /****************************************************
 *					CONSTRUCTORS					*
 ****************************************************/
 
 WrongAnimal::WrongAnimal() : type("WrongAnimal") {
-	std::cout << YLW << "WrongAnimal " << GRN << "constructor " << RST << "turned Animal into  " << YLW << type << RST << "!" << std::endl;
+	std::cout << YLW << "WrongAnimal " << GRN << "constructor " << RST << "called!" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& other) : type(other.type) {
 	std::cout << YLW << "WrongAnimal " << GRN << "copy constructor " << RST << "called!" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(const std::string& newtype) : type(newtype) {
+	std::cout << "Parameterized " << YLW << "WrongAnimal " << GRN << "constructor " << RST << "called!" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {

@@ -1,10 +1,10 @@
-#include "Dog.hpp"
+#include "../inc/Dog.hpp"
 
 /****************************************************
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Dog::Dog() : type("Dog") {
+Dog::Dog() : Animal("Dog") {
 	std::cout << YLW << "Dog " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl; 
 }
 
