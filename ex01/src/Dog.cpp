@@ -4,12 +4,12 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Dog::Dog() : Animal(), type("Dog") {
-	std::cout << YLW << "Dog " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl; 
+Dog::Dog() : Animal("", "Dog") {
+	std::cout << YLW << "Dog " << GRN << "constructor " << RST << "turned Animal into a '" << YLW << type << RST << "' type!" << std::endl; 
 }
 
-Dog::Dog(const std::string idea) : Animal(idea), type("Dog") {
-	std::cout << YLW << "Dog " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl; 
+Dog::Dog(const std::string& newidea) : Animal(newidea, "Dog") {
+	std::cout << YLW << "Dog " << GRN << "constructor " << RST << "turned Animal into a '" << YLW << type << RST << "' type!" << std::endl; 
 }
 
 Dog::Dog(const Dog& other) : Animal(other) {
@@ -27,7 +27,9 @@ Dog::~Dog() {
 Dog&	Dog::operator=(const Dog& other) {
 	if (this != &other) {
 		type = other.type;
-		_brain = other._brain;
+		if (_brain)
+			delete _brain;
+		_brain = new Brain(*other._brain);
 	}
 	return (*this);
 }
@@ -38,8 +40,4 @@ Dog&	Dog::operator=(const Dog& other) {
 
 void	Dog::makeSound(void) const {
 	std::cout << "Bark!" << std::endl;
-}
-
-std::string	Dog::getType(void) const {
-	return (type);
 }

@@ -6,19 +6,15 @@
 
 class Dog : public Animal {
 
-	private:
-		std::string	type;
-
 	public:
 		Dog();
-		Dog(const std::string idea);
+		Dog(const std::string& newidea);
 		Dog(const Dog& other);
 		~Dog();
 
 		Dog&	operator=(const Dog& other);
 
-		void		makeSound(void) const override;
-		std::string	getType(void) const override;
+		void	makeSound(void) const override;
 };
 
 #endif

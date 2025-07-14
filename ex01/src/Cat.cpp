@@ -4,12 +4,12 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Cat::Cat() : type("Cat") {
+Cat::Cat() : Animal("", "Cat") {
 	std::cout << YLW << "Cat " << GRN << "constructor " << RST << "turned Animal into  " << YLW << type << RST << "!" << std::endl;
 }
 
-Cat::Cat(const std::string idea) : Animal(idea), type("Cat") {
-		std::cout << YLW << "Cat " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl;
+Cat::Cat(const std::string& newidea) : Animal(newidea, "Cat") {
+		std::cout << YLW << "Cat " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << " type!" << std::endl;
 }
 
 Cat::Cat(const Cat& other) : Animal(other) {
@@ -27,6 +27,9 @@ Cat::~Cat() {
 Cat&	Cat::operator=(const Cat& other) {
 	if (this != &other) {
 		type = other.type;
+		if (_brain)
+			delete _brain;
+		_brain = new Brain(*other._brain);
 	}
 	return (*this);
 }
@@ -37,8 +40,4 @@ Cat&	Cat::operator=(const Cat& other) {
 
 void	Cat::makeSound(void) const {
 	std::cout << "Meow!" << std::endl;
-}
-
-std::string	Cat::getType(void) const {
-	return (type);
 }

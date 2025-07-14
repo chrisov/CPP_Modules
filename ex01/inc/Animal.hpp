@@ -17,15 +17,15 @@ class Animal {
 
 	public:
 		Animal();
-		Animal(const std::string idea);
 		Animal(const Animal& other);
+		Animal(const std::string& newidea, const std::string& newtype);
 		virtual ~Animal();
 
 		Animal&	operator=(const Animal& other);
 
-		virtual void			makeSound(void) const;
-		virtual std::string		getType(void) const;
-		Brain*					getBrain(void) const;
+		virtual void	makeSound(void) const;
+		std::string		getType(void) const;
+		Brain*			getBrain(void) const;
 };
 
 #endif

@@ -8,12 +8,12 @@ Animal::Animal() : _brain(new Brain()), type("Animal") {
 	std::cout << YLW << "Animal " << GRN << "constructor " << RST << "called!" << std::endl;
 }
 
-Animal::Animal(const std::string idea) : _brain(new Brain(idea)), type("Animal") {
-	std::cout << YLW << "Animal " << GRN << "constructor " << RST << "with specific ideas called!" << std::endl;
-}
-
 Animal::Animal(const Animal& other) : _brain(new Brain(*other._brain)), type(other.type) {
 	std::cout << YLW << "Animal " << GRN << "copy constructor " << RST << "called!" << std::endl;
+}
+
+Animal::Animal(const std::string& newidea, const std::string& newtype) : _brain(new Brain(newidea)), type(newtype) {
+	std::cout << YLW << "Animal " << GRN << "constructor " << RST << "with specific ideas called!" << std::endl;
 }
 
 Animal::~Animal() {
@@ -28,7 +28,9 @@ Animal::~Animal() {
 Animal&	Animal::operator=(const Animal& other) {
 	if (this != &other) {
 		type = other.type;
-		_brain = other._brain;
+		if (_brain)
+			delete _brain;
+		_brain = new Brain(*other._brain);
 	}
 	return (*this);
 }

@@ -14,13 +14,14 @@ class Brain {
 		std::string	ideas[100];
 
 		Brain();
-		Brain(const std::string idea);
+		Brain(const std::string& newidea);
 		Brain(const Brain& other);
 		~Brain();
 
 		Brain&	operator=(const Brain& other);
 
 		void	speakUp(void) const;
+		void	changedMyMind(const std::string newidea);
 };
 
 #endif
