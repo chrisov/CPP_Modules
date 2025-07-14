@@ -1,5 +1,9 @@
 #include "Dog.hpp"
 
+/****************************************************
+*					CONSTRUCTORS					*
+****************************************************/
+
 Dog::Dog() : type("Dog") {
 	std::cout << YLW << "Dog " << GRN << "constructor " << RST << "turned Animal into a " << YLW << type << RST << "!" << std::endl; 
 }
@@ -11,6 +15,21 @@ Dog::Dog(const Dog& other) : Animal(other) {
 Dog::~Dog() {
 	std::cout << YLW << "Dog " << RED << "destructor " << RST << "called!" << std::endl;
 }
+
+/****************************************************
+*					OPERATORS						*
+****************************************************/
+
+Dog&	Dog::operator=(const Dog& other) {
+	if (this != &other) {
+		type = other.type;
+	}
+	return (*this);
+}
+
+/****************************************************
+*					FUNCTIONS						*
+****************************************************/
 
 void	Dog::makeSound(void) const {
 	std::cout << "Bark!" << std::endl;

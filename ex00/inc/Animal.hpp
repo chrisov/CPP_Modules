@@ -18,6 +18,8 @@ class Animal {
 		Animal(const Animal& other);
 		virtual ~Animal();
 
+		Animal&	operator=(const Animal& other);
+
 		virtual void			makeSound(void) const;
 		virtual std::string		getType(void) const;
 };

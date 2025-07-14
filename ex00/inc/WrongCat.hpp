@@ -14,6 +14,8 @@ class WrongCat : public WrongAnimal {
 		WrongCat(const WrongCat& other);
 		~WrongCat();
 
+		WrongCat&	operator=(const WrongCat& other);
+
 		void		makeSound(void) const override;
 		std::string	getType(void) const override;
 };
