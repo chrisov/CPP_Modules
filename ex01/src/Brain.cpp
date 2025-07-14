@@ -46,7 +46,7 @@ Brain&	Brain::operator=(const Brain& other) {
 ****************************************************/
 
 void	Brain::speakUp(void) const {
-	std::cout << "\"I have so many great ideas\" (" << YLW << ideas[99] << RST << ")" << std::endl;
+	std::cout << "\"I have so many great ideas\" ('" << YLW << ideas[99] << RST << "')" << std::endl;
 }
 
 void	Brain::changedMyMind(const std::string newidea) {
