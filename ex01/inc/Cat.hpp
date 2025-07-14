@@ -12,7 +12,10 @@ class Cat : public Animal {
 	public:
 		Cat();
 		Cat(const Cat& other);
+		Cat(const std::string idea);
 		~Cat();
+
+		Cat&	operator=(const Cat& other);
 
 		void		makeSound(void) const override;
 		std::string	getType(void) const override;

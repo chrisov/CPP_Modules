@@ -1,22 +1,26 @@
 #include <iostream>
 
-#include "Animal.hpp"
-#include "Brain.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "../inc/Animal.hpp"
+#include "../inc/Brain.hpp"
+#include "../inc/Cat.hpp"
+#include "../inc/Dog.hpp"
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << "type: " << j->getType() << " " << std::endl;
-	std::cout << "type: " << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
-	delete j;
-	delete i;
-	delete meta;
+	Animal* animals[10];
+
+	for (int i = 0; i < 5 ; i++) {
+		animals[i] = new Dog("Good boi");
+	}
+	for (int i = 5; i < 10;i++) {
+		animals[i] = new Cat("World domination");
+	}
+	for (int i = 0; i < 10; i++) {
+		animals[i]->makeSound();
+		std::cout << YLW << animals[i]->getType() << RST << ": ";
+		animals[i]->getBrain()->speakUp();
+	}
+	for (int i = 0; i < 10; i++)
+		delete animals[i];
 	return 0;
 }

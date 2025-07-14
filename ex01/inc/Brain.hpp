@@ -1,6 +1,11 @@
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 
+#define RST "\033[0m"
+#define RED "\033[31m"
+#define GRN "\033[32m"
+#define YLW "\033[33m"
+
 #include <iostream>
 
 class Brain {
@@ -9,8 +14,13 @@ class Brain {
 		std::string	ideas[100];
 
 		Brain();
+		Brain(const std::string idea);
 		Brain(const Brain& other);
 		~Brain();
+
+		Brain&	operator=(const Brain& other);
+
+		void	speakUp(void) const;
 };
 
 #endif
