@@ -13,12 +13,13 @@ Animal::Animal(const Animal& other) : _brain(new Brain(*other._brain)), type(oth
 }
 
 Animal::Animal(const std::string& newidea, const std::string& newtype) : _brain(new Brain(newidea)), type(newtype) {
-	std::cout << YLW << "Animal " << GRN << "constructor " << RST << "with specific ideas called!" << std::endl;
+	std::cout << "Parameterized " << YLW << "Animal " << GRN << "constructor " << RST << "with specific ideas called!" << std::endl;
 }
 
 Animal::~Animal() {
 	std::cout << YLW << "Animal " << RED << "destructor " << RST << "called!" << std::endl;
-	delete _brain;
+	if (_brain)
+		delete _brain;
 }
 
 /****************************************************
