@@ -7,7 +7,14 @@ MAKEFLAGS += -s
 INCDIR = ./inc
 SRCDIR = ./src
 OBJDIR = ./obj
-SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/AMateria.cpp $(SRCDIR)/Ice.cpp
+SRCS = $(SRCDIR)/main.cpp \
+	$(SRCDIR)/AMateria.cpp \
+	$(SRCDIR)/Ice.cpp \
+	$(SRCDIR)/Character.cpp \
+	$(SRCDIR)/Cure.cpp \
+	$(SRCDIR)/Interfaces/ICharacter.cpp \
+	$(SRCDIR)/Interfaces/IMateriaSource.cpp \
+	$(SRCDIR)/Abstracts/AMateria.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
@@ -18,7 +25,8 @@ $(NAME): $(OBJDIR) $(OBJS)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo "🚀 '\033[33m$(NAME)\033[0m' compiled \033[32msuccessfully\033[0m!"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(dir $@)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 $(OBJDIR):

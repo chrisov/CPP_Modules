@@ -1,28 +1,29 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include <iostream>
+#include "Interfaces/ICharacter.hpp"
+class AMateria;
 
-#include "Colors.hpp"
-
-class ICharacter {
+class Character : public ICharacter {
 	
 	private:
 		std::string	_name;
 		AMateria*	_inv[4];
 
 	public:
-		ICharacter();
-		ICharacter(const ICharacter& other);
-		ICharacter(const std::string& name);
-		virtual ~ICharacter();
+		Character();
+		Character(const Character& other);
+		Character(const std::string& name);
+		~Character();
 
-		ICharacter&	operator=(const ICharacter& other);
-		
-		virtual const std::string&	getName() const = 0;
-		virtual void				equip(AMateria* m) = 0;
-		virtual void				unequip(int idx) = 0;
-		virtual void				use(int idx, ICharacter& target) = 0;
+		Character&	operator=(const Character& other);
+
+		const std::string&	getName(void) const override;
+		void				equip(AMateria* m) override;
+		void				unequip(int idx) override;
+		void				use(int idx, ICharacter& target) override;
+
+
 };
 
 #endif

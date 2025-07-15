@@ -1,8 +1,7 @@
 #ifndef ICE_HPP
 #define ICE_HPP
 
-#include "AMateria.hpp"
-#include "Colors.hpp"
+#include "Abstracts/AMateria.hpp"
 
 class Ice : public AMateria {
 
@@ -14,6 +13,7 @@ class Ice : public AMateria {
 		Ice&	operator=(const Ice& other);
 
 		AMateria*	clone(void) const override;
+		void		use(ICharacter& target) override;
 };
 
 #endif

@@ -4,7 +4,8 @@
 #include <iostream>
 
 #include "Colors.hpp"
-#include "Character.hpp"
+// #include "Interfaces/ICharacter.hpp"
+class ICharacter;
 
 class AMateria
 {
@@ -22,7 +23,7 @@ class AMateria
 
 		const std::string&	getType(void) const;
 		virtual AMateria*	clone(void) const = 0;
-		// virtual void		use(ICharacter& target);
+		virtual void		use(ICharacter& target) = 0;
 };
 
 #endif

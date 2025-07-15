@@ -1,4 +1,4 @@
-#include "../inc/AMateria.hpp"
+#include "../../inc/Abstracts/AMateria.hpp"
 
 /****************************************************
 *					CONSTRUCTORS					*

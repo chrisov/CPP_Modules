@@ -1,8 +1,7 @@
 #ifndef CURE_HPP
 #define CURE_HPP
 
-#include "../inc/AMateria.hpp"
-#include "../inc/Colors.hpp"
+#include "Abstracts/AMateria.hpp"
 
 class Cure : public AMateria {
 
@@ -14,6 +13,7 @@ class Cure : public AMateria {
 		Cure&	operator=(const Cure& other);
 
 		AMateria*	clone(void) const override;
+		void		use(ICharacter& target) override;
 };
 
 #endif

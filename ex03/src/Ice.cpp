@@ -31,6 +31,9 @@ Ice&	Ice::operator=(const Ice& other) {
 ****************************************************/
 
 AMateria*	Ice::clone(void) const {
-	AMateria*	newIce = new Ice();
-	return (newIce);
+	return (new Ice(*this));
+}
+
+void	Ice::use(ICharacter& target) {
+	std::cout << "* shoots an ice bolt at " << color(target.getName(), RED) << " *" << std::endl; 
 }
