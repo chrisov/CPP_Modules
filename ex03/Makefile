@@ -4,23 +4,25 @@ CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17
 MAKEFLAGS += -s
 
-INCDIR = ./inc
-SRCDIR = ./src
-OBJDIR = ./obj
+INCDIR = inc
+SRCDIR = src
+OBJDIR = obj
+
 SRCS = $(SRCDIR)/main.cpp \
-	$(SRCDIR)/AMateria.cpp \
+	$(SRCDIR)/MateriaSource.cpp \
 	$(SRCDIR)/Ice.cpp \
-	$(SRCDIR)/Character.cpp \
 	$(SRCDIR)/Cure.cpp \
+	$(SRCDIR)/Character.cpp \
 	$(SRCDIR)/Interfaces/ICharacter.cpp \
 	$(SRCDIR)/Interfaces/IMateriaSource.cpp \
 	$(SRCDIR)/Abstracts/AMateria.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+# OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 NAME = interface
 
-$(NAME): $(OBJDIR) $(OBJS)
+$(NAME): $(OBJS)
 	@printf "[.]   📦 Compiling '\033[33m$(NAME)\033[0m'...\r"
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo "🚀 '\033[33m$(NAME)\033[0m' compiled \033[32msuccessfully\033[0m!"
@@ -30,12 +32,12 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJDIR)/*.o
+	rm -f $(OBJS)
 	rm -rf $(OBJDIR)
 
 fclean: clean

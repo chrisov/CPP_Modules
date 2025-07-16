@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-const std::string	color(const std::string& text, const std::string& col) {
+inline const std::string	color(const std::string& text, const std::string& col) {
 	return (col + text + RST);
 }
 

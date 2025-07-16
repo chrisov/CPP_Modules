@@ -2,9 +2,9 @@
 #define ICHARACTER_HPP
 
 #include <iostream>
+#include "../Colors.hpp"
 
-#include "Colors.hpp"
-#include "../Abstracts/AMateria.hpp"
+class AMateria;
 
 class ICharacter {
 	
@@ -15,6 +15,8 @@ class ICharacter {
 		virtual void				equip(AMateria* m) = 0;
 		virtual void				unequip(int idx) = 0;
 		virtual void				use(int idx, ICharacter& target) = 0;
+
+		virtual void				getInv(void) = 0;	
 };
 
 #endif

@@ -11,6 +11,8 @@ class IMateriaSource {
 
 		virtual void		learnMateria(AMateria* newMateria) = 0;
 		virtual AMateria*	createMateria(const std::string& type) = 0;
+
+		virtual void		getSource(void) = 0;
 };
 
 #endif

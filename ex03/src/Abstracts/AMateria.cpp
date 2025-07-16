@@ -5,19 +5,19 @@
 ****************************************************/
 
 AMateria::AMateria() : _type("Default") {
-	std::cout << "Default " << color("constructor ", GRN) << "created a " << color(_type, YLW) << " material!" << std::endl;
+	std::cout << "Default " << color("constructor ", GRN) << "created a " << color(_type, YLW) << " Materia!" << std::endl;
 }
 
 AMateria::AMateria(const std::string& type) : _type(type) {
-	std::cout << "Parameterized " << color("constructor ", GRN) << "created a " << color(type, YLW) << " material!" << std::endl;
+	std::cout << "Parameterized Materia " << color("constructor", GRN) << " will call the " << color(type, YLW) << " constructor!" << std::endl;
 }
 
 AMateria::AMateria(const AMateria& other) : _type(other._type) {
-	std::cout << "Copy " << color("constructor ", GRN) << "made a copy of the " << color(_type, YLW) << "!" << std::endl;
+	std::cout << "Materia copy " << color("constructor", GRN) << " will call the " << color(_type, YLW) << " copy constructor!" << std::endl;
 }
 
 AMateria::~AMateria() {
-	std::cout << color(_type, YLW) << " was " << color("destroyed", RED) << "!" << std::endl;
+	std::cout << color("Materia", YLW) << color(" destructor", RED) << " is called!" << std::endl;
 }
 
 /****************************************************

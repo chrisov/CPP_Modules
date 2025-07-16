@@ -23,13 +23,13 @@ Character::Character(const Character& other) : _name(other._name) {
 Character::Character(const std::string& name) : _name(name) {
 	for (int i = 0; i < 4; i++)
 		_inv[i] = nullptr;
-	std::cout << "Parameterized " << color("constructor", GRN) << "created a " << color("character", YLW) << "!" << std::endl;
+	std::cout << "Parameterized " << color("constructor", GRN) << " created a " << color("character", YLW) << "!" << std::endl;
 }
 
 Character::~Character() {
 	for (int i = 0; i < 4; i++) {
 		if (_inv[i])
-			delete _inv[4];
+			delete _inv[i];
 	}
 	std::cout << color(_name, YLW) << " was " << color("destroyed", RED) << "!" << std::endl;
 }
@@ -42,9 +42,11 @@ Character&	Character::operator=(const Character& other) {
 	if (this != &other) {
 		_name = other._name;
 		for (int i = 0; i < 4; i++) {
-			delete _inv[i];
-			if (other._inv[i])
+			if (_inv[i])
+				delete _inv[i];
+			if (other._inv[i]) {
 				_inv[i] = other._inv[i]->clone();
+			}
 			else
 				_inv[i] = nullptr;
 		}
@@ -55,6 +57,16 @@ Character&	Character::operator=(const Character& other) {
 /****************************************************
 *					FUNCTIONS						*
 ****************************************************/
+
+void	Character::getInv(void) {
+	std::cout << std::endl;
+	for (int i = 0; i < 4; i++) {
+		std::cout << "Character's '" << color(getName(), YLW) << "' inv no." << std::to_string(i) << " (" << _inv[i] << "): '";
+		if (_inv[i])
+			std::cout << color(_inv[i]->getType(), YLW);
+		std::cout << "'" << std::endl;
+	}
+}
 
 const std::string&	Character::getName(void) const {
 	return (_name);
@@ -71,9 +83,10 @@ void	Character::equip(AMateria* m) {
 }
 
 void	Character::unequip(int idx) {
-	_inv[idx] == nullptr;
+	_inv[idx] = nullptr;
 }
 
 void	Character::use(int idx, ICharacter& target) {
-	_inv[idx]->use(target);
+	if (_inv[idx])
+		_inv[idx]->use(target);
 }

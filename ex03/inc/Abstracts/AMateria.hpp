@@ -3,9 +3,8 @@
 
 #include <iostream>
 
-#include "Colors.hpp"
-// #include "Interfaces/ICharacter.hpp"
-class ICharacter;
+#include "../Colors.hpp"
+#include "../Interfaces/ICharacter.hpp"
 
 class AMateria
 {

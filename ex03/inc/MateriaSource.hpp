@@ -8,7 +8,7 @@ class AMateria;
 class MateriaSource : public IMateriaSource {
 
 	private:
-		AMateria*	_inv[4];
+		AMateria*	_src[4];
 
 	public:
 		MateriaSource();
@@ -19,6 +19,7 @@ class MateriaSource : public IMateriaSource {
 
 		void		learnMateria(AMateria* newMateria) override;
 		AMateria*	createMateria(const std::string& type) override;
+		void		getSource(void) override;
 };
 
 #endif

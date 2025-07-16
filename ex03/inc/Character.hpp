@@ -2,7 +2,8 @@
 #define CHARACTER_HPP
 
 #include "Interfaces/ICharacter.hpp"
-class AMateria;
+#include "Abstracts/AMateria.hpp"
+
 
 class Character : public ICharacter {
 	
@@ -22,8 +23,7 @@ class Character : public ICharacter {
 		void				equip(AMateria* m) override;
 		void				unequip(int idx) override;
 		void				use(int idx, ICharacter& target) override;
-
-
+		void				getInv(void) override;
 };
 
 #endif
