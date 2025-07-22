@@ -4,8 +4,9 @@
 #include <iostream>
 #include <exception>
 
-#include "Bureaucrat.hpp"
 #include "Colors.hpp"
+
+class Bureaucrat;
 
 class Form {
 

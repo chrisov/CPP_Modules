@@ -1,28 +1,29 @@
 #include "../inc/Bureaucrat.hpp"
+#include "../inc/Form.hpp"
 
 /****************************************************
 *				CONSTRUCTORS					 	*
 ****************************************************/
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
-	std::cout << "Default " << color("Bureaucrat", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+	std::cout << "Bureaucrat '" << color(_name, YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, unsigned int grade) : _name(name) {
 	if (grade > 150)
-		throw GradeTooHighException();
-	else if (grade < 1)
 		throw GradeTooLowException();
+	else if (grade < 1)
+		throw GradeTooHighException();
 	_grade = grade;
-	std::cout << "Parameterized " << color("Bureaucrat", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+	std::cout << "Bureaucrat '" << color(_name, YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade) {
-	std::cout << color("Bureaucrat", YLW) << " copy " << color("constructor", GRN) << " called!" << std::endl;
+	std::cout << "Bureaucrat '" << color(_name, YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << color("Bureaucrat", YLW) << color(" destructor", RED) << " called!" << std::endl;
+	std::cout << "'" << color(_name, YLW) << "' is " << color("destroyed", RED) << "!" << std::endl;
 }
 
 /****************************************************
@@ -67,16 +68,6 @@ void	Bureaucrat::incrementGrade(void) {
 	}
 }
 
-void	Bureaucrat::signForm(Form& form) {
-	try {
-		if ()
-	}
-}
-
-/****************************************************
-*					EXCEPTIONS					 	*
-****************************************************/
-
 void	Bureaucrat::decrementGrade(void) {
 	try {
 		if (_grade == 150) {
@@ -91,10 +82,30 @@ void	Bureaucrat::decrementGrade(void) {
 	}
 }
 
+void	Bureaucrat::signForm(Form& form) {
+	try {
+		if (!form.getIsSigned()) {
+			form.beSigned(*this);
+			std::cout << "'" << color(getName(), YLW) << "' " << color("signed", GRN) << " the '" << color(form.getName(), YLW) << "' form!" << std::endl;
+		}
+		else
+			std::cout << "'" << color(form.getName(), YLW) << "' form is " << color("already", RED) << " signed!" << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cerr << color("Error", RED) << "! " << color(getName(), YLW) << " can't sign the '" << color(form.getName(), YLW) << "' form! " << e.what();
+		GradeTooHighException();
+	}
+}
+
+/****************************************************
+*					EXCEPTIONS					 	*
+****************************************************/
+
+
 const char*	Bureaucrat::GradeTooHighException::what() const noexcept {
-	return ("Grade too high!\n");
+	return ("(Grade too \033[31mhigh\033[0m)");
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const noexcept {
-	return ("Grade too low!\n");
+	return ("(Grade too \033[31mlow\033[0m)");
 }

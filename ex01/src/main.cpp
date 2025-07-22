@@ -2,36 +2,73 @@
 #include "../inc/Form.hpp"
 
 int main(void) {
-	Bureaucrat	*valid_b = nullptr;
-	Form		valid_form("Visa", 50);
-
-	std::cout << "\nv================ VALID CONSTRUCTOR ===============v" << std::endl;
-	try {
-		valid_b = new Bureaucrat("Valid_Peter", 30);
-
-	}
-	catch (const std::exception& e) {
-		std::cerr << "Error creating the Bureaucrat! " << e.what() << std::endl;
-	}
-	std::cout << "^==================================================^\n" << std::endl;
+	{
+		std::cout << "\nv============== INVALID CONSTRUCTORS =============v" << std::endl;
+		Bureaucrat	*supervisor = nullptr;
+		Bureaucrat	*intern = nullptr;
+		Form		*form = nullptr;
 	
-
-	std::cout << "\nv================ VALID CONSTRUCTOR ===============v" << std::endl;
-	try {
-		valid_b = new Bureaucrat("Peter", 30);
-		std::cout << *valid_b << std::endl;
-		valid_b->incrementGrade();
-		valid_b->incrementGrade();
-		valid_b->incrementGrade();
-		valid_b->decrementGrade();
-		std::cout << *valid_b << std::endl;
+		try {
+			supervisor = new Bureaucrat("CEO", 0);
+		}
+		catch (const std::exception& e) {
+			std::cerr << color("Error", RED) << "! " << color("Bureaucrat", YLW) << " is not created! " << e.what() << std::endl;
+		}
+		try {
+			intern = new Bureaucrat("Intern", 151);
+		}
+		catch (const std::exception& e) {
+			std::cerr << color("Error", RED) << "! " << color("Bureaucrat", YLW) << " is not created! " << e.what() << std::endl;
+		}
+		try {
+			form = new Form("Inv_form", 0);
+		}
+		catch (const std::exception& e) {
+			std::cerr << color("Error", RED) << "! " << color("Form", YLW) << " is not created! " << e.what();
+		}
+		try {
+			form = new Form("Inv_form", 200);
+		}
+		catch (const std::exception& e) {
+			std::cerr << color("Error", RED) << "! " << color("Form", YLW) << " is not created! " << e.what();
+		}
+		delete supervisor;
+		delete intern;
+		delete form;
+		std::cout << "^=================================================^\n" << std::endl;
 	}
-	catch(const std::exception& e) {
-		std::cerr << "Error creating parameterized Bureaucrat! " << e.what() << std::endl;
+	{
+		Bureaucrat	*supervisor = nullptr;
+		Bureaucrat	*intern = nullptr;
+		Form		*form = nullptr;
+	
+		std::cout << "\nv=============== VALID CONSTRUCTORS ==============v" << std::endl;
+		try {
+			supervisor = new Bureaucrat("VP_Manolis", 10);
+		}
+		catch (const std::exception& e) {
+			std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
+		}
+		try {
+			form = new Form("Visa", 30);
+		}
+		catch (const std::exception& e) {
+			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
+		}
+		std::cout << "^=================================================^\n" << std::endl;
+		
+		
+		std::cout << "\nv================== SIGNING =================v" << std::endl;
+		intern = new Bureaucrat("INT_Thanasis", 100);
+		intern->signForm(*form);
+		supervisor->signForm(*form);
+		supervisor->signForm(*form);
+		supervisor->signForm(*form);
+		std::cout << "^============================================^\n" << std::endl;
+		
+		delete form;
+		delete supervisor;
+		delete intern;
 	}
-	std::cout << "^==================================================^\n" << std::endl;
 
-
-	delete default_b;
-	delete valid_b;
 }

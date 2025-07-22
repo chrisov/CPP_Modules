@@ -1,24 +1,29 @@
 #include "../inc/Form.hpp"
+#include "../inc/Bureaucrat.hpp"
 
 /****************************************************
 *					CONSTRUCTORS				 	*
 ****************************************************/
 
 Form::Form() : _name("Default"), _gradeToSign(1), _gradeToExecute(1), _isSigned(false) {
-	std::cout << "Default Form constructor called!" << std::endl;
+	std::cout << "Form '" << color(_name, YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
-Form::Form(std::string name, unsigned int sign_grade) : _name(name), _gradeToSign(sign_grade) {
-	std::cout << "Parameterized Form constructor called!" << std::endl;
+Form::Form(std::string name, unsigned int sign_grade) : _name(name), _gradeToSign(sign_grade), _gradeToExecute(1), _isSigned(false) {
+	if (_gradeToSign > 150)
+		throw GradeTooLowException();
+	else if (_gradeToSign < 1)
+		throw GradeTooHighException();
+	std::cout << "Form '" << color(_name, YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 
 Form::Form(const Form& other) : _name(other._name), _gradeToSign(1), _gradeToExecute(1), _isSigned(other._isSigned) {
-	std::cout << "Copy Form constructor called!" << std::endl;
+	std::cout << "Form '" << color(_name, YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 Form::~Form() {
-	std::cout << "Form destructor called!" << std::endl;
+	std::cout << "'" << color(_name, YLW) << "' is " << color("destroyed", RED) << "!" << std::endl;
 }
 
 /****************************************************
@@ -29,10 +34,12 @@ Form&	Form::operator=(const Form& other) {
 	if (this != &other) {
 		_isSigned = other._isSigned;
 	}
+	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& out, const Form& obj) {
 	out << "Form '" << obj.getName() << "', grade to sign: " << obj.getGradeToSign() << "!" << std::endl;
+	return (out);
 }
 
 /****************************************************
@@ -56,20 +63,15 @@ bool	Form::getIsSigned(void) const {
 }
 
 void	Form::beSigned(const Bureaucrat& bur) {
-	try {
-		if (bur.getGrade() >= _gradeToSign)
-			throw std::exception();
-		_isSigned = !_isSigned;
-	}
-	catch (const std::exception& e) {
-		GradeTooHighException();
-	}
+	if (bur.getGrade() >= _gradeToSign)
+		throw GradeTooHighException();
+	_isSigned = true;
 }
 
 const char*	Form::GradeTooHighException::what(void) const noexcept {
-	return ("Grade too high!");
+	return ("(Grade too \033[31mhigh\033[0m)\n");
 }
 
 const char*	Form::GradeTooLowException::what(void) const noexcept {
-	return ("Grade too low!");
+	return ("(Grade too \033[31mlow\033[0m)\n");
 }
