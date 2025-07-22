@@ -31,9 +31,9 @@ clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	@printf "[.]   🧹 Removing \033[33m$(NAME)\033[0m build...\r"
+	@printf "[.]   🧹 Removing '\033[33m$(NAME)\033[0m' build...\r"
 	rm -f $(NAME)
-	printf "[✅]  🧹 Removed \033[33m$(NAME)\033[0m build...  \n"
+	printf "[✅]  🧹 Removed '\033[33m$(NAME)\033[0m' build...  \n"
 
 re: fclean all
 
