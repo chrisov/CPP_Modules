@@ -68,6 +68,10 @@ void	Form::beSigned(const Bureaucrat& bur) {
 	_isSigned = true;
 }
 
+/****************************************************
+*					EXCEPTIONS						*
+****************************************************/
+
 const char*	Form::GradeTooHighException::what(void) const noexcept {
 	return ("(Grade too \033[31mhigh\033[0m)\n");
 }
