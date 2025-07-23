@@ -1,6 +1,7 @@
 #include "../inc/Bureaucrat.hpp"
 #include "../inc/ShrubberyCreationForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
+#include "../inc/PresidentialPardonForm.hpp"
 
 int main(void) {
 	Bureaucrat	*supervisor = nullptr;
@@ -8,7 +9,7 @@ int main(void) {
 	
 	std::cout << "\nv=============== VALID CONSTRUCTORS ==============v" << std::endl;
 	try {
-		supervisor = new Bureaucrat("VP_Manolis", 10);
+		supervisor = new Bureaucrat("VP_Manolis", 5);
 	}
 	catch (const std::exception& e) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
@@ -26,7 +27,7 @@ int main(void) {
 		std::cout << "\nv=================== SHRUBBERY ===================v" << std::endl;
 		AForm	*form = nullptr;
 		try {
-			form = new ShrubberyCreationForm("SCF", "home");
+			form = new ShrubberyCreationForm("home");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -34,8 +35,8 @@ int main(void) {
 		
 		std::cout << "\n" << *form << std::endl;
 		intern->signForm(*form);
-		intern->executeForm(*form);
 		supervisor->signForm(*form);
+		intern->executeForm(*form);
 		supervisor->executeForm(*form);
 		
 		std::cout << std::endl;
@@ -47,7 +48,7 @@ int main(void) {
 		AForm	*form = nullptr;
 
 		try {
-			form = new RobotomyRequestForm("RRF", "Koulis");
+			form = new RobotomyRequestForm("Koulis");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -55,8 +56,8 @@ int main(void) {
 		
 		std::cout << "\n" << *form << std::endl;
 		intern->signForm(*form);
-		intern->executeForm(*form);
 		supervisor->signForm(*form);
+		intern->executeForm(*form);
 		supervisor->executeForm(*form);
 		
 		std::cout << std::endl;
@@ -68,7 +69,7 @@ int main(void) {
 		AForm	*form = nullptr;
 
 		try {
-			form = new RobotomyRequestForm("PPF", "Elon Musk");
+			form = new PresidentialPardonForm("Elon Musk");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -76,8 +77,8 @@ int main(void) {
 		
 		std::cout << "\n" << *form << std::endl;
 		intern->signForm(*form);
-		intern->executeForm(*form);
 		supervisor->signForm(*form);
+		intern->executeForm(*form);
 		supervisor->executeForm(*form);
 		
 		std::cout << std::endl;

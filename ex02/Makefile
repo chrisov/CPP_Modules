@@ -8,7 +8,8 @@ INCDIR = ./inc
 SRCDIR = ./src
 OBJDIR = ./obj
 SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Bureaucrat.cpp $(SRCDIR)/AForm.cpp \
-	$(SRCDIR)/ShrubberyCreationForm.cpp $(SRCDIR)/RobotomyRequestForm.cpp
+	$(SRCDIR)/ShrubberyCreationForm.cpp $(SRCDIR)/RobotomyRequestForm.cpp \
+	$(SRCDIR)/PresidentialPardonForm.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 

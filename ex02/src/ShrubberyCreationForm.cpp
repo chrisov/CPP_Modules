@@ -5,20 +5,20 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm::AForm("Default", _minSignGrade, _minExecGrade), _target("NULL") {
-	std::cout << "Shrubbery '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm::AForm("SCF", _minSignGrade, _minExecGrade), _target("NULL") {
+	std::cout << "Shrubbery form '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name, std::string target) : AForm::AForm(name, _minSignGrade, _minExecGrade), _target(target) {
-	std::cout << "Shrubbery '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm::AForm("SCF", _minSignGrade, _minExecGrade), _target(target) {
+	std::cout << "Shrubbery form '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm::AForm(other), _target(other._target) {
-	std::cout << "Shrubbery '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;
+	std::cout << "Shrubbery form '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	std::cout << "SCF '" << color(getName(), YLW) << "' is " << color("destroyed", RED) << "!" << std::endl;
+	std::cout << "Shrubbery form '" << color(getName(), YLW) << "' is " << color("destroyed", RED) << "!" << std::endl;
 }
 
 /****************************************************

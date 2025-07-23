@@ -5,20 +5,20 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm::AForm("Default", _minSignGrade, _minExecGrade), _target("NULL") {
-	std::cout << "Shrubbery '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
+RobotomyRequestForm::RobotomyRequestForm() : AForm::AForm("RRF", _minSignGrade, _minExecGrade), _target("NULL") {
+	std::cout << "Robotomy form '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string name, std::string target) : AForm::AForm(name, _minSignGrade, _minExecGrade), _target(target) {
-	std::cout << "Shrubbery '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm::AForm("RRF", _minSignGrade, _minExecGrade), _target(target) {
+	std::cout << "Robotomy form '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;	
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm::AForm(other), _target(other._target) {
-	std::cout << "Shrubbery '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;
+	std::cout << "Robotomy form '" << color(getName(), YLW) << "' is " << color("created", GRN) << "!" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-	std::cout << "RRF '" << color(getName(), YLW) << "' is " << color("destroyed", RED) << "!" << std::endl;
+	std::cout << "Robotomy form '" << color(getName(), YLW) << "' is " << color("destroyed", RED) << "!" << std::endl;
 }
 
 /****************************************************

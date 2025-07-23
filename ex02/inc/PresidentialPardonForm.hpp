@@ -1,26 +1,24 @@
-#ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 #include "AForm.hpp"
 
 class Bureaucrat;
 
-class RobotomyRequestForm : public AForm {
+class PresidentialPardonForm : public AForm {
 	private:
 		const std::string			_target;
-		static const unsigned int	_minSignGrade = 72;
-		static const unsigned int	_minExecGrade = 45;
+		static const unsigned int	_minSignGrade = 25;
+		static const unsigned int	_minExecGrade = 5;
 
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(std::string name, std::string target);
-		RobotomyRequestForm(const RobotomyRequestForm& other);
-		~RobotomyRequestForm();
+		PresidentialPardonForm();
+		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(const PresidentialPardonForm& other);
+		~PresidentialPardonForm();
 
-		RobotomyRequestForm&	operator=(const RobotomyRequestForm& other);
+		PresidentialPardonForm&	operator=(const PresidentialPardonForm& other);
 
 		unsigned int	getMinSignGrade(void) const;
 		unsigned int	getMinExecGrade(void) const;
