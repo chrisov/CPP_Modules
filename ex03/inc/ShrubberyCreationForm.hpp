@@ -25,6 +25,7 @@ class ShrubberyCreationForm : public AForm {
 		unsigned int	getMinExecGrade(void) const;
 		std::string		getTarget(void) const;
 		void			execute(const Bureaucrat& executor) const override;
+		static AForm*	newShrubbery(std::string target);
 };
 
 #endif

@@ -64,3 +64,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 		std::cerr << "'" << color(executor.getName(), YLW) << "': " << "'" << color(getName(), YLW) << "' execution " << color("error", RED) << "! " << e.what();
 	}
 }
+
+AForm*	RobotomyRequestForm::newRobotomy(std::string target) {
+	return (new RobotomyRequestForm(target));
+}

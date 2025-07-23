@@ -75,3 +75,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 		std::cerr << "'" << color(executor.getName(), YLW) << "': " << "'" << color(getName(), YLW) << "' execution " << color("error", RED) << "! " << e.what();
 	}
 }
+
+AForm*	ShrubberyCreationForm::newShrubbery(std::string target) {
+	return (new ShrubberyCreationForm(target));
+}

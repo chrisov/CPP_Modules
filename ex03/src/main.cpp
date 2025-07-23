@@ -2,10 +2,12 @@
 #include "../inc/ShrubberyCreationForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
 #include "../inc/PresidentialPardonForm.hpp"
+#include "../inc/Intern.hpp"
 
 int main(void) {
 	Bureaucrat	*supervisor = nullptr;
 	Bureaucrat	*junior = nullptr;
+	Intern		*intern = nullptr;
 	
 	std::cout << "\nv=============== VALID CONSTRUCTORS ==============v" << std::endl;
 	try {
@@ -15,11 +17,12 @@ int main(void) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
 	}
 	try {
-		junior = new Bureaucrat("INT_Thanasis", 149);
+		junior = new Bureaucrat("J_Thanasis", 149);
 	}
 	catch (const std::exception& e) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
 	}
+	intern = new Intern();
 	std::cout << "\n" << *supervisor << "\n" << *junior << std::endl;
 	std::cout << "^=================================================^\n" << std::endl;
 
@@ -27,7 +30,7 @@ int main(void) {
 		std::cout << "\nv=================== SHRUBBERY ===================v" << std::endl;
 		AForm	*form = nullptr;
 		try {
-			form = new ShrubberyCreationForm("home");
+			form = intern->makeForm("ShrubberyCreationForm", "SummerHouse");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -48,7 +51,7 @@ int main(void) {
 		AForm	*form = nullptr;
 
 		try {
-			form = new RobotomyRequestForm("Koulis");
+			form = intern->makeForm("RobotomyRequestForm", "Koulis");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -69,7 +72,7 @@ int main(void) {
 		AForm	*form = nullptr;
 
 		try {
-			form = new PresidentialPardonForm("Elon Musk");
+			form = intern->makeForm("PresidentialPardonForm", "Elon Musk");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -88,4 +91,5 @@ int main(void) {
 
 	delete supervisor;
 	delete junior;
+	delete intern;
 }

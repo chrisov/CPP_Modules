@@ -59,3 +59,7 @@ void	PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 		std::cerr << "'" << color(executor.getName(), YLW) << "': " << "'" << color(getName(), YLW) << "' execution " << color("error", RED) << "! " << e.what();
 	}
 }
+
+AForm*	PresidentialPardonForm::newPresidential(std::string target) {
+	return (new PresidentialPardonForm(target));
+}

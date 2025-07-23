@@ -1,7 +1,7 @@
 #
 #
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17
+CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17 -g -fsanitize=address
 MAKEFLAGS += -s
 
 INCDIR = ./inc
@@ -9,11 +9,11 @@ SRCDIR = ./src
 OBJDIR = ./obj
 SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Bureaucrat.cpp $(SRCDIR)/AForm.cpp \
 	$(SRCDIR)/ShrubberyCreationForm.cpp $(SRCDIR)/RobotomyRequestForm.cpp \
-	$(SRCDIR)/PresidentialPardonForm.cpp
+	$(SRCDIR)/PresidentialPardonForm.cpp $(SRCDIR)/Intern.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-NAME = execute
+NAME = intern
 
 $(NAME): $(OBJDIR) $(OBJS)
 	@printf "[.]   📦 Compiling '\033[33m$(NAME)\033[0m'...\r"
