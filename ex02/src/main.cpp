@@ -16,7 +16,7 @@ int main(void) {
 			std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
 		}
 		try {
-			form = new ShrubberyCreationForm("SCF");
+			form = new ShrubberyCreationForm("SCF", "home");
 		}
 		catch (const std::exception& e) {
 			std::cerr << color("Error", RED) << " creating the " << color("Form", YLW) << "! " << e.what();
@@ -29,8 +29,7 @@ int main(void) {
 		intern->signForm(*form);
 		intern->executeForm(*form);
 		supervisor->signForm(*form);
-		supervisor->signForm(*form);
-		supervisor->signForm(*form);
+		supervisor->executeForm(*form);
 		std::cout << "^============================================^\n" << std::endl;
 		
 		delete form;

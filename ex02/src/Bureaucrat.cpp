@@ -86,11 +86,11 @@ void	Bureaucrat::signForm(AForm& form) {
 	try {
 		if (form.getIsSigned())
 			throw AForm::FormAlreadySigned();
-		std::cout << "'" << color(getName(), YLW) << "' " << color("signed", GRN) << " the '" << color(form.getName(), YLW) << "' form!" << std::endl;
 		form.beSigned(*this);
+		std::cout << "'" << color(getName(), YLW) << "': '" << color(form.getName(), YLW) << "' " << color("signed", GRN) << "!" << std::endl;
 	}
 	catch (const std::exception& e) {
-		std::cerr << color("Error", RED) << "! " << color(getName(), YLW) << " can't sign the '" << color(form.getName(), YLW) << "' form! " << e.what();
+		std::cerr << "'" << color(getName(), YLW) << "': " << "'" << color(form.getName(), YLW) << "' signing " << color("error", RED) << "! " << e.what();
 	}
 }
 

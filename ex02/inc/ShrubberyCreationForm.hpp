@@ -2,18 +2,20 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include <iostream>
+#include <fstream>
 #include "AForm.hpp"
 
 class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm {
 	private:
+		const std::string			_target;
 		static const unsigned int	_minSignGrade = 145;
 		static const unsigned int	_minExecGrade = 137;
 
 	public:
 		ShrubberyCreationForm();
-		ShrubberyCreationForm(std::string name);
+		ShrubberyCreationForm(std::string name, std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
 
@@ -21,6 +23,7 @@ class ShrubberyCreationForm : public AForm {
 
 		unsigned int	getMinSignGrade(void) const;
 		unsigned int	getMinExecGrade(void) const;
+		std::string		getTarget(void) const;
 		void			execute(const Bureaucrat& executor) const override;
 };
 
