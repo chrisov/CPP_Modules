@@ -38,9 +38,9 @@ AForm&	AForm::operator=(const AForm& other) {
 }
 
 std::ostream&	operator<<(std::ostream& out, const AForm& obj) {
-	out << "AForm name:'" << obj.getName();
-	out << "'\nGrade to sign: "<< obj.getGradeToSign();
-	out << "\nGrade to exec: " << obj.getGradeToExecute();
+	out << "AForm name:'" << color(obj.getName(), YLW);
+	out << "'\nGrade to sign: " << color(std::to_string(obj.getGradeToSign()), YLW);
+	out << "\nGrade to exec: " << color(std::to_string(obj.getGradeToExecute()), YLW);
 	out << "\nSigned: " << (obj.getIsSigned() ? color("YES", GRN) : color("NO", RED)) << std::endl;
 	return (out);
 }
@@ -70,10 +70,6 @@ void	AForm::beSigned(const Bureaucrat& bur) {
 		throw GradeTooHighException();
 	_isSigned = true;
 }
-
-// void	AForm::execute(const Bureaucrat& executor) const {
-
-// }
 
 /****************************************************
 *					FUNCTIONS						*
