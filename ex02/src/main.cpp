@@ -5,7 +5,7 @@
 
 int main(void) {
 	Bureaucrat	*supervisor = nullptr;
-	Bureaucrat	*intern = nullptr;
+	Bureaucrat	*junior = nullptr;
 	
 	std::cout << "\nv=============== VALID CONSTRUCTORS ==============v" << std::endl;
 	try {
@@ -15,12 +15,12 @@ int main(void) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
 	}
 	try {
-		intern = new Bureaucrat("INT_Thanasis", 149);
+		junior = new Bureaucrat("INT_Thanasis", 149);
 	}
 	catch (const std::exception& e) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
 	}
-	std::cout << "\n" << *supervisor << "\n" << *intern << std::endl;
+	std::cout << "\n" << *supervisor << "\n" << *junior << std::endl;
 	std::cout << "^=================================================^\n" << std::endl;
 
 	{
@@ -34,9 +34,9 @@ int main(void) {
 		}
 		
 		std::cout << "\n" << *form << std::endl;
-		intern->signForm(*form);
+		junior->signForm(*form);
 		supervisor->signForm(*form);
-		intern->executeForm(*form);
+		junior->executeForm(*form);
 		supervisor->executeForm(*form);
 		
 		std::cout << std::endl;
@@ -55,9 +55,9 @@ int main(void) {
 		}
 		
 		std::cout << "\n" << *form << std::endl;
-		intern->signForm(*form);
+		junior->signForm(*form);
 		supervisor->signForm(*form);
-		intern->executeForm(*form);
+		junior->executeForm(*form);
 		supervisor->executeForm(*form);
 		
 		std::cout << std::endl;
@@ -76,9 +76,9 @@ int main(void) {
 		}
 		
 		std::cout << "\n" << *form << std::endl;
-		intern->signForm(*form);
+		junior->signForm(*form);
 		supervisor->signForm(*form);
-		intern->executeForm(*form);
+		junior->executeForm(*form);
 		supervisor->executeForm(*form);
 		
 		std::cout << std::endl;
@@ -87,5 +87,5 @@ int main(void) {
 	}
 
 	delete supervisor;
-	delete intern;
+	delete junior;
 }
