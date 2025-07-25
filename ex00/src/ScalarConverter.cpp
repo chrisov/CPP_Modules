@@ -11,7 +11,7 @@ void	ScalarConverter::convert(char* param) {
 		num = std::strtod(param, nullptr);
 	else if(type == "float")
 		num = std::strtof(param, nullptr);
-	if ((num > 0 && num < 31) || num == 127)
+	if (num < 0 || (num > 0 && num < 31) || num == 127)
 		std::cout << color("char", YLW) << ": " << color("Non-displayable", RED) << " character!" << std::endl;
 	else
 		std::cout << color("char", YLW) << ": '" << static_cast<char>(num) << "'" << std::endl;
