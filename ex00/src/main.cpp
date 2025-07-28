@@ -2,7 +2,7 @@
 
 int main( void ) {
 	{
-		int a = 2;
+		int a = 3;
 		int b = 3;
 	
 		std::cout << "\nv===================== INT =======================v" << std::endl;
