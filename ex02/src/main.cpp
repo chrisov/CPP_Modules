@@ -15,7 +15,7 @@ int main(void) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
 	}
 	try {
-		junior = new Bureaucrat("INT_Thanasis", 149);
+		junior = new Bureaucrat("J_Thanasis", 149);
 	}
 	catch (const std::exception& e) {
 		std::cerr << color("Error", RED) << " creating the " << color("Bureaucrat", YLW) << "! " << e.what();
