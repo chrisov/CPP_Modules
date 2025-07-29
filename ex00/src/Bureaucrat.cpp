@@ -54,6 +54,7 @@ unsigned int	Bureaucrat::getGrade(void) const {
 }
 
 void	Bureaucrat::incrementGrade(void) {
+	std::cout << "'" << color(getName(), YLW) << "': ";
 	try {
 		if (_grade == 1) {
 			std::cout << "Grade already " << color("max", GRN) << "!" << std::endl;
@@ -68,9 +69,10 @@ void	Bureaucrat::incrementGrade(void) {
 }
 
 void	Bureaucrat::decrementGrade(void) {
+	std::cout << "'" << color(getName(), YLW) << "': ";
 	try {
 		if (_grade == 150) {
-			std::cout << "Grade already " << color("min", RED) << "!" << std::endl;
+			std::cout <<"Grade already " << color("min", RED) << "!" << std::endl;
 			throw std::exception();
 		}
 		std::cout << "Grade " << color("decremented", RED) << "!" << std::endl;
@@ -82,9 +84,9 @@ void	Bureaucrat::decrementGrade(void) {
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const noexcept {
-	return ("Grade too high!\n");
+	return ("Grade too \033[31mhigh\033[0m!\n");
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const noexcept {
-	return ("Grade too low!\n");
+	return ("Grade too \033[31mlow\033[0m!\n");
 }
