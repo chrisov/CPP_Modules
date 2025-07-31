@@ -7,7 +7,7 @@ MAKEFLAGS += -s
 INCDIR = ./inc
 SRCDIR = ./src
 OBJDIR = ./obj
-SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Array.cpp
+SRCS = $(SRCDIR)/main.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 

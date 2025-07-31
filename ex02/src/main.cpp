@@ -56,7 +56,8 @@ int main(int, char**)
 		Array<int> b(10);
 		
 		std::cout << *a << std::endl;
-		// std::cout << b;
+		unsigned int size = b.size();
+		std::cout << size << std::endl;
 		delete a;
 	}
 	return 0;
