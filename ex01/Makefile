@@ -11,7 +11,7 @@ SRCS = $(SRCDIR)/main.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
-NAME = array
+NAME = iter
 
 $(NAME): $(OBJDIR) $(OBJS)
 	@printf "[.]   📦 Compiling '\033[33m$(NAME)\033[0m'...\r"
