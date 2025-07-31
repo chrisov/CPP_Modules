@@ -22,7 +22,9 @@ class Array {
 		T&				operator[](unsigned int idx);
 		static void*	operator new[](std::size_t size);
 
-		unsigned int	size(void) const; 
+		unsigned int	size(void) const;
+		T&				getData(unsigned int idx);
+		const T&		getData(unsigned int idx) const;
 
 		class IndexOutOfBounds : public std::exception {
 			public:

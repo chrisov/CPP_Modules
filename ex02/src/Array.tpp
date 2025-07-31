@@ -15,8 +15,10 @@ Array<T>::Array(unsigned int size) : _data(new T[size]), _size(size) {
 }
 
 template <typename T>
-Array<T>::Array(const Array& other) : _size(other._size){
-	other._data = new Array(_size); 
+Array<T>::Array(const Array& other) : _size(other._size) {
+	_data = new T[_size];
+	for (unsigned int i = 0; i < _size; i++)
+		_data[i] = other._data[i];
 	std::cout << "Copy templated " << color("array ", YLW) << color("constructor", GRN) << " called!" << std::endl;
 }
 
@@ -50,14 +52,19 @@ void*	Array<T>::operator new[](std::size_t size) {
 
 template <typename T>
 T&	Array<T>::operator[](unsigned int idx) {
-	return (this(idx));
+	if (static_cast<unsigned int>(idx) >= _size) {
+		throw IndexOutOfBounds();
+	}
+	return (_data[idx]);
 }
 
 template <typename T>
 std::ostream&	operator<<(std::ostream& out, const Array<T>& obj) {
-	for (unsigned int i = 0; i < obj.size(); i++)
-		out << obj[i] << ' ';
-	std::cout << std::endl;
+	for (unsigned int i = 0; i < obj.size(); i++) {
+		out << "'" << obj.getData(i) << "'\t";
+		if((i + 1) % 5 == 0)
+			std::cout << '\n';
+	}
 	return (out);
 }
 
@@ -70,11 +77,21 @@ unsigned int	Array<T>::size(void) const {
 	return (_size);
 }
 
+template <typename T>
+const T&	Array<T>::getData(unsigned int idx) const {
+	return (_data[idx]);
+}
+
+template <typename T>
+T&	Array<T>::getData(unsigned int idx) {
+	return (_data[idx]);
+}
+
 /****************************************************
 *					EXCEPTIONS						*
 ****************************************************/
 
 template <typename T>
 const char*	Array<T>::IndexOutOfBounds::what(void) const noexcept {
-	return ("Index out of bounds!\n");
+	return ("\033[33mIndex \033[31mout\033[0m of bounds!");
 }
