@@ -39,10 +39,9 @@ int main(void) {
 		cont.addNumber(17);
 		cont.addNumber(9);
 		cont.addNumber(11);
-		std::cout << color("\n\tCONTAINER\n", YLW);
 		int shortest = cont.shortestSpan();
 		int longest = cont.longestSpan();
-		std::cout << cont << std::endl;
+		std::cout << color("\n\tCONTAINER\n", YLW) << cont << std::endl;;
 		std::cout << color("Shortest span", MGD) << ": " << color(std::to_string(shortest), YLW) << std::endl;
 		std::cout << color("Longest span", CYA) << ": " << color(std::to_string(longest), YLW) << std::endl;
 		std::cout << std::endl;
@@ -54,10 +53,8 @@ int main(void) {
 	{
 		Span cont = Span(100);
 		cont.randomFill();
-		std::cout << color("\n\tCONTAINER\n", YLW);
 		int shortest = cont.shortestSpan();
 		int longest = cont.longestSpan();
-		std::cout << cont << std::endl;
 		std::cout << color("Shortest span", MGD) << ": " << shortest << std::endl;
 		std::cout << color("Longest span", CYA) << ": " << longest << std::endl;
 		std::cout << std::endl;

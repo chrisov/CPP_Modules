@@ -25,14 +25,14 @@ class Span {
 
 		Span&	operator=(const Span& other);
 
-		std::vector<int>&		getCont(void);
-		const std::vector<int>&	getCont(void) const;
+		std::vector<int>&			getCont(void);
+		const std::vector<int>&		getCont(void) const;
 		const std::pair<int, int>	getShortest(void) const;
 		const std::pair<int, int>	getLongest(void) const;
-		void					addNumber(int num);
-		int						shortestSpan(void);
-		int						longestSpan(void);
-		void					randomFill(void);
+		void						addNumber(int num);
+		int							shortestSpan(void);
+		int							longestSpan(void);
+		void						randomFill(void);
 
 		class ContainerAlreadyFullException : std::exception {
 			public:
