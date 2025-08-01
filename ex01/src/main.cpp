@@ -12,7 +12,7 @@ int main(void) {
 			std::cout << cont << std::endl;
 		}
 		catch (const Span::ContainerAlreadyFullException& e) {
-			std::cerr << color("Error", RED) << "! " << e.what() << std::endl;
+			std::cerr << color("\nError", RED) << "! " << e.what() << std::endl;
 		}
 		try {
 			std::cout << "Shortest span: " << color(std::to_string(cont.shortestSpan()), YLW) << std::endl;
