@@ -7,12 +7,15 @@
 #include <random>
 #include <iomanip>
 #include <algorithm>
+#include <utility>
+#include "Colors.hpp"
 
 class Span {
 	
 	private:
-		unsigned int		_N;
 		std::vector<int>	_cont;
+		std::pair<int, int>	_shortest;
+		std::pair<int, int>	_longest;
 
 	public:
 		Span();
@@ -22,12 +25,13 @@ class Span {
 
 		Span&	operator=(const Span& other);
 
-		unsigned int			getN(void) const;
 		std::vector<int>&		getCont(void);
 		const std::vector<int>&	getCont(void) const;
+		const std::pair<int, int>	getShortest(void) const;
+		const std::pair<int, int>	getLongest(void) const;
 		void					addNumber(int num);
-		int						shortestSpan(void) const;
-		int						longestSpan(void) const;
+		int						shortestSpan(void);
+		int						longestSpan(void);
 		void					randomFill(void);
 
 		class ContainerAlreadyFullException : std::exception {

@@ -4,22 +4,22 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Span::Span() : _N(1) {
+Span::Span() : _shortest(0, 0), _longest(0, 0) {
 	_cont.reserve(1);
-	std::cout << "Default span constructor called!" << std::endl;
+	std::cout << "Default " << color("span", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
-Span::Span(unsigned int num) : _N(num) {
-	_cont.reserve(_N);
-	std::cout << "Parameterized span constructor called!" << std::endl;
+Span::Span(unsigned int num) : _shortest(0, 0), _longest(0, 0) {
+	_cont.reserve(num);
+	std::cout << "Parameterized " << color("span", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
-Span::Span(const Span& other) : _N(other._N), _cont(other._cont) {
-	std::cout << "Copy span constructor called!" << std::endl; 
+Span::Span(const Span& other) : _cont(other._cont), _shortest(0, 0), _longest(INT_MAX, INT_MAX) {
+	std::cout << "Copy " << color("span", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
 Span::~Span(){
-	std::cout << "Default destructor called!" << std::endl;
+	std::cout << color("Span", YLW) << color(" destructor", RED) << " called!" << std::endl;
 }
 
 /****************************************************
@@ -28,21 +28,27 @@ Span::~Span(){
 
 Span&	Span::operator=(const Span& other) {
 	if (this != &other) {
-		_N = other._N;
 		_cont = other._cont;
+		_shortest = other._shortest;
+		_longest = other._longest;
 	}
 	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& out, const Span& obj) {
-	int	count = 0;
+	unsigned int	count = 0;
 	for (auto i : obj.getCont()) {
-		out << std::setw(10) << std::left << i;
+		if (i == obj.getShortest().first || i == obj.getShortest().second)
+			out << std::setw(8) << std::left << color(std::to_string(i), MGD);
+		else if (i == obj.getLongest().first || i == obj.getLongest().second)
+			out << std::setw(8) << std::left << color(std::to_string(i), CYA);
+		else
+			out << std::setw(7) << std::left << i;
 		++count;
-		if (count % 8 == 0)
+		if (count % 5 == 0)
 			out << '\n';
 		else
-			std::cout << '\t'; 
+			std::cout << "\t\t"; 
 	}
 	return (out);
 }
@@ -57,10 +63,6 @@ void	Span::addNumber(int num) {
 	_cont.push_back(num);
 }
 
-unsigned int	Span::getN(void) const {
-	return (_N);
-}
-
 std::vector<int>&	Span::getCont(void) {
 	return (_cont);
 }
@@ -69,7 +71,15 @@ const std::vector<int>&	Span::getCont(void) const {
 	return (_cont);
 }
 
-int	Span::shortestSpan(void) const {
+const std::pair<int, int>	Span::getShortest(void) const{
+	return (_shortest);
+}
+
+const std::pair<int, int>	Span::getLongest(void) const {
+	return (_longest);
+}
+
+int	Span::shortestSpan(void) {
 	if (_cont.size() < 2)
 		throw InvalidContainerSpanException();
 	int	res = INT_MAX;
@@ -78,19 +88,22 @@ int	Span::shortestSpan(void) const {
 	auto it = temp.begin();
 	auto next = std::next(it);
 	while (next != temp.end()) {
-		if (*next - *it < res)
+		if (*next - *it < res) {
 			res = *next - *it;
+			_shortest = std::make_pair(*it, *next);
+		}
 		it++;
 		next++;
 	}
 	return (res);
 }
 
-int	Span::longestSpan(void) const {
+int	Span::longestSpan(void) {
 	if (_cont.size() < 2)
 		throw InvalidContainerSpanException();
 	std::vector<int> temp = _cont;
 	std::sort(temp.begin(), temp.end());
+	_longest = std::make_pair(*temp.begin(), *temp.rbegin());
 	return (*temp.rbegin() - *temp.begin());
 }
 
@@ -106,9 +119,9 @@ void	Span::randomFill(void) {
 ****************************************************/
 
 const char*	Span::ContainerAlreadyFullException::what(void) const noexcept {
-	return ("Container is already full!");
+	return ("Container is already \033[31mfull\033[0m!");
 }
 
 const char*	Span::InvalidContainerSpanException::what(void) const noexcept {
-	return ("Invalid container for span!");
+	return ("\033[31mIvalid\033[0m container for span measurement!");
 }
