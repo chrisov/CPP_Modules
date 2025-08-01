@@ -3,7 +3,12 @@
 
 #include <iostream>
 #include <exception>
+
 #include <vector>
+#include <array>
+#include <deque>
+#include <list>
+#include <forward_list>
 
 class ElementNotFound : std::exception {
 	public:
