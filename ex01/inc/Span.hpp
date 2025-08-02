@@ -4,6 +4,7 @@
 #include <iostream>
 #include <exception>
 #include <vector>
+#include <unordered_set>
 #include <random>
 #include <iomanip>
 #include <algorithm>

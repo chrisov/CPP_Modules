@@ -108,10 +108,16 @@ int	Span::longestSpan(void) {
 }
 
 void	Span::randomFill(void) {
-	std::srand(std::time(nullptr));
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dist(1, 1e+07);
+	std::unordered_set<int> uniqueNumbers;
+	size_t targetSize = _cont.capacity();
 
-	for (size_t i = 0; i < _cont.capacity(); i++)
-		_cont.push_back(std::rand() % (int)10e+6 + 1);
+	while (uniqueNumbers.size() < targetSize) {
+		uniqueNumbers.insert(dist(gen));
+	}
+	_cont.assign(uniqueNumbers.begin(), uniqueNumbers.end());
 }
 
 /****************************************************

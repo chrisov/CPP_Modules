@@ -42,8 +42,8 @@ int main(void) {
 		int shortest = cont.shortestSpan();
 		int longest = cont.longestSpan();
 		std::cout << color("\n\tCONTAINER\n", YLW) << cont << std::endl;;
-		std::cout << color("Shortest span", MGD) << ": " << color(std::to_string(shortest), YLW) << std::endl;
-		std::cout << color("Longest span", CYA) << ": " << color(std::to_string(longest), YLW) << std::endl;
+		std::cout << color("Shortest span", MGD) << ": " << shortest << std::endl;
+		std::cout << color("Longest span", CYA) << ": " << longest << std::endl;
 		std::cout << std::endl;
 	}
 	std::cout << "^============================================^\n" << std::endl;
@@ -55,8 +55,24 @@ int main(void) {
 		cont.randomFill();
 		int shortest = cont.shortestSpan();
 		int longest = cont.longestSpan();
+		std::cout << color("\n\tCONTAINER\n", YLW) << cont << std::endl;;
 		std::cout << color("Shortest span", MGD) << ": " << shortest << std::endl;
 		std::cout << color("Longest span", CYA) << ": " << longest << std::endl;
+		std::cout << std::endl;
+	}
+	std::cout << "^============================================^\n" << std::endl;
+	
+	
+	std::cout << "\nv=============== BIG EXAMPLE ================v" << std::endl;
+	{
+		Span cont = Span(20000);
+		cont.randomFill();
+		int shortest = cont.shortestSpan();
+		int longest = cont.longestSpan();
+		std::cout << color("Shortest span", MGD) << ": " << shortest;
+		std::cout << " (" << cont.getShortest().first << ", " << cont.getShortest().second << ")" << std::endl;
+		std::cout << color("Longest span", CYA) << ": " << longest;
+		std::cout << " (" << cont.getLongest().first << ", " << cont.getLongest().second << ")" << std::endl;
 		std::cout << std::endl;
 	}
 	std::cout << "^============================================^\n" << std::endl;
