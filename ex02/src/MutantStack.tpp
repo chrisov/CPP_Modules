@@ -24,33 +24,32 @@ MutantStack<T>::~MutantStack() {
 
 template <typename T>
 MutantStack<T>&	MutantStack<T>::operator=(const MutantStack& other) {
-	if (this != &other) {
+	if (this != &other)
 		this = &other;
-	}
 	return (*this);
 }
 
-// template <typename T>
-// std::ostream&	operator<<(std::ostream& out, const MutantStack<T>& obj) {
-// 	for (auto i : obj.c)
-// 		out << *i << '\n';
-// 	return (out);
-// }
+template <typename T>
+std::ostream&	operator<<(std::ostream& out, const MutantStack<T>& obj) {
+	for (const auto& elem : obj.getC())
+		out << "'" << elem << "'\n";
+	return (out);
+}
 
 /****************************************************
 *					ITERATORS						*
 ****************************************************/
 
-// template <typename T>
-// typename MutantStack<T>::iterator MutantStack<T>::begin() {
-// 	return (c.begin());
-// }
+template <typename T>
+typename std::deque<T>::iterator	MutantStack<T>::begin() {
+	return (this->c.begin());
+}
 
 /****************************************************
 *					FUNCTIONS						*
 ****************************************************/
 
-// template <typename T>
-// void	MutantStack<T>::push(T elem) {
-// 	return (c.push_back());
-// }
+template <typename T>
+std::deque<T>	MutantStack<T>::getC(void) const {
+	return (this->c);
+}
