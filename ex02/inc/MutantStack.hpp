@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <stack>
+#include "Colors.hpp"
 
 template <typename T>
 class MutantStack : public std::stack<T> {
 
 	public:
-	
-		// using iterator = typename std::deque<T>::iterator;
+		using iterator = typename std::deque<T>::iterator;
+		using const_iterator = typename std::deque<T>::iterator;
 
 		MutantStack();
 		MutantStack(const MutantStack& other);
@@ -18,10 +19,11 @@ class MutantStack : public std::stack<T> {
 		MutantStack&	operator=(const MutantStack& other);
 
 		std::deque<T>	getC(void) const;
-		typename std::deque<T>::iterator		begin();
-		// iterator		end();
-		// const_iterator	begin() const;
-		// const_iterator	end() const;
+
+		iterator		begin();
+		iterator		end();
+		const_iterator	begin() const;
+		const_iterator	end() const;
 };
 
 template <typename T>

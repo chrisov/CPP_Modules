@@ -5,17 +5,17 @@
 
 template <typename T>
 MutantStack<T>::MutantStack() : std::stack<T>() {
-	std::cout << "Default constructor called!" << std::endl;
+	std::cout << "Default " << color("MutantStack", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
 template <typename T>
 MutantStack<T>::MutantStack(const MutantStack& other) : std::stack<T>(other) {
-	std::cout << "Copy constructor called!" << std::endl;
+	std::cout << "Copy " << color("MutantStack", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
 template <typename T>
 MutantStack<T>::~MutantStack() {
-	std::cout << "Default destructor called!" << std::endl;
+	std::cout << color("MutantStack", YLW) << color(" destructor", RED) << " called!" << std::endl;
 }
 
 /****************************************************
@@ -41,8 +41,23 @@ std::ostream&	operator<<(std::ostream& out, const MutantStack<T>& obj) {
 ****************************************************/
 
 template <typename T>
-typename std::deque<T>::iterator	MutantStack<T>::begin() {
+typename MutantStack<T>::iterator	MutantStack<T>::begin() {
 	return (this->c.begin());
+}
+
+template <typename T>
+typename MutantStack<T>::iterator	MutantStack<T>::end() {
+	return (this->c.end());
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::begin() const {
+	return (this->c.begin());
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::end() const {
+	return (this->c.end());
 }
 
 /****************************************************
