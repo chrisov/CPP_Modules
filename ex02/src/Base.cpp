@@ -53,15 +53,15 @@ void	identify(Base* p) {
 void identify(Base& obj) {
 	std::cout << "Object is of type: ";
 	try {
-		dynamic_cast<A&>(obj);
+		static_cast<void>(dynamic_cast<A&>(obj));
 		std::cout << color("A", YLW) << std::endl;
 	} catch (const std::bad_cast&) {
 		try {
-			dynamic_cast<B&>(obj);
+			static_cast<void>(dynamic_cast<B&>(obj));
 			std::cout << color("B", YLW) << std::endl;
 		} catch (const std::bad_cast&) {
 			try {
-				dynamic_cast<C&>(obj);
+				static_cast<void>(dynamic_cast<C&>(obj));
 				std::cout << color("C", YLW) << std::endl;
 			} catch (const std::bad_cast&) {
 				std::cout << color("Unkown", RED) << std::endl;
