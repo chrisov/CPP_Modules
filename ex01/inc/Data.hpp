@@ -8,7 +8,11 @@
 class Data {
 
 	public:
-		enum class Type { INT, FLOAT, DOUBLE };
+		enum class Type {
+			INT,
+			FLOAT,
+			DOUBLE
+		};
 
 		Data();
 		Data(const Data& other);
