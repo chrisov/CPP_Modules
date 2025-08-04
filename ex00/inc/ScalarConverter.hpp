@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 #include "Colors.hpp"
 
 class ScalarConverter {
@@ -15,9 +16,9 @@ class ScalarConverter {
 		ScalarConverter&	operator=(const ScalarConverter& other) = delete;
 	
 	public:
-		static void	convert(char *param);
+		static void	convert(const char *param);
 };
 
-std::string	getType(char *str);
+std::string	getType(const char *str);
 
 #endif
