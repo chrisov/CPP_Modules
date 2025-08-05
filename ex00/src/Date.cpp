@@ -5,11 +5,11 @@
 ****************************************************/
 
 Date::Date() : _year(0), _month(0), _day(0) {
-	std::cout << "Default " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+	// std::cout << "Default " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
 Date::Date(const Date& other) : _year(other._year), _month(other._month), _day(other._day) {
-	std::cout << "Copy " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+	// std::cout << "Copy " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
 Date::Date(int year, int month, int day) : _year(year), _month(month), _day(day) {
@@ -17,7 +17,7 @@ Date::Date(int year, int month, int day) : _year(year), _month(month), _day(day)
 }
 
 Date::~Date() {
-	std::cout << color("Date", YLW) << color(" destructor", RED) << " called!" << std::endl;
+	// std::cout << color("Date", YLW) << color(" destructor", RED) << " called!" << std::endl;
 }
 
 /****************************************************
@@ -34,18 +34,14 @@ Date&	Date::operator=(const Date& other) {
 }
 
 bool	Date::operator<(const Date& other) const {
-	if (_year < other._year) {
+	if (_year < other._year)
         return (true);
-    }
-    if (_year > other._year) {
+    if (_year > other._year)
         return (false);
-    }
-    if (_month < other._month) {
+    if (_month < other._month)
         return (true);
-    }
-    if (_month > other._month) {
+    if (_month > other._month)
         return (false);
-    }
     return (_day < other._day);
 }
 
@@ -70,6 +66,7 @@ void Date::setDate(char *date) {
 		throw DayOutOfRangeException();
 	if (_day < 1 || _day > 31)
 		throw DayOutOfRangeException();
+	Parse::freeCharArray(matrix);
 }
 
 int	Date::getYear(void) const {

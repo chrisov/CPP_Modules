@@ -24,3 +24,14 @@ char** Parse::split(const std::string& str, char delim) {
 	return (result);
 }
 
+void	Parse::freeCharArray(char** arr) {
+	size_t	size = 0;
+
+	if (!arr)
+		return ;
+	while (arr[size])
+		size++;
+	for (size_t i = 0; i < size; i++)
+		delete[] arr[i];
+	delete[] arr;
+}

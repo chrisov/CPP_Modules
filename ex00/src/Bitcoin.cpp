@@ -1,5 +1,7 @@
 #include "../inc/Bitcoin.hpp"
 
+std::map<Date, double> Bitcoin::_db;
+
 /****************************************************
 *					CONSTRUCTORS					*
 ****************************************************/
@@ -29,14 +31,15 @@ Bitcoin&	Bitcoin::operator=(const Bitcoin& other) {
 }
 
 std::ostream&	operator<<(std::ostream& out, const std::map<Date, double>& obj) {
-	unsigned int	count = 1;
+	unsigned int	count = 0;
 	out << '{';
-	for (auto it = obj.begin(); it != obj.end(); ++it) {
-		out << '{' << it->first << ", " << it->second << '}';
-		if ((count + 1) % 5 == 0)
+	for (auto const& [key, value] : obj) {
+		out << '{' << key << ", " << value << '}';
+		count++;
+		if (count % 3 == 0 && count < obj.size())
 			out << '\n';
-		else if (std::next(it) != obj.end())
-			out << ", ";
+		else if (count < obj.size())
+			out << ",\t";
 	}
 	return (out);
 }
@@ -47,43 +50,33 @@ std::ostream&	operator<<(std::ostream& out, const std::map<Date, double>& obj) {
 
 bool	Bitcoin::initDb(void) {
 	std::ifstream db("data.csv");
-	if (db.is_open()) {
-		Bitcoin::parseDb(db);
+	std::string	line;
+	char**		matrix;
+	Date		date;
+
+	if (db.is_open()) {	
+		getline(db, line);
+		while (getline(db, line)) {
+			matrix = Parse::split(line, ',');
+			try {
+				date.setDate(matrix[0]);
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Parsing Failed: " << e.what() << std::endl;
+				return (delete matrix, false);
+			}
+			_db[date] = std::strtod(matrix[1], nullptr);
+			Parse::freeCharArray(matrix);
+		}
 		db.close();
 		return (true);
 	}
 	return (false);
 }
 
-void	Bitcoin::parseDb(std::ifstream& f) {
-	std::string	line;
-	char**		matrix;
-	Date		date;
-	double		value;
-
-	while (getline(f, line)) {
-		matrix = Parse::split(line, ',');
-		try {
-			date.setDate(matrix[0]);
-		}
-		catch (const std::exception& e) {
-			std::cerr << "Parsing Failed: " << e.what() << std::endl;
-			continue ;
-		}
-		value = std::strtod(matrix[1], nullptr);
-		try {
-			if (value < 0 || value > 1000)
-				throw ValueOutOfRange();
-		}
-		catch (const std::exception& e) {
-			std::cerr << "Parsing Failed: " << e.what() << std::endl;
-			continue ;
-		}
-		_db[date] = atoi(matrix[1]);
-		delete matrix;
-	}
+std::map<Date, double>&	Bitcoin::getDb(void) {
+	return (_db);
 }
-
 /****************************************************
 *					EXCEPTIONS						*
 ****************************************************/

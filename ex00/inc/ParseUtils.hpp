@@ -16,6 +16,7 @@ class Parse {
 
 	public:
 		static	char**	split(const std::string& str, char delim);
+		static	void	freeCharArray(char **arr);
 		static int		getClosest(char* date);
 
 };

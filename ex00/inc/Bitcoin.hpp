@@ -25,9 +25,8 @@ class Bitcoin {
 		Bitcoin&	operator=(const Bitcoin& other);
 
 		static bool	initDb(void);
-		static void	parseDb(std::ifstream& f);
+		static std::map<Date, double>&	getDb(void);
 
-		std::map<Date, double>&	getMap(void) const;
 		Date&					getDate(void) const;
 		int						getValue(void) const;
 

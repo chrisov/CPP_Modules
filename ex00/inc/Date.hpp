@@ -26,7 +26,6 @@ class Date : public std::exception{
 		int		getYear(void) const;
 		int		getMonth(void) const;
 		int		getDay(void) const;
-		// Date&	getDate(void) const;
 		
 		class DayOutOfRangeException : std::exception {
 			public:
