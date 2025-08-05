@@ -28,14 +28,29 @@ class Date : public std::exception{
 		int		getMonth(void) const;
 		int		getDay(void) const;
 		
-		class DayOutOfRangeException : std::exception {
+		class DateException : public std::exception {
+			private:
+				std::string	_msg;
+			
 			public:
+				DateException() = delete;
+				DateException(const std::string& msg);
+				DateException(const DateException& other) = delete;
+				~DateException();
+
+				DateException& operator=(const DateException& other) = delete;
+
 				const char*	what(void) const noexcept override;
 		};
-
-		class MonthOutOfRangeException : std::exception {
+		
+		class DayOutOfRangeException : public DateException {
 			public:
-				const char*	what(void) const noexcept override;
+				DayOutOfRangeException() : DateException("Day out of range!") {}
+		};
+
+		class MonthOutOfRangeException : public DateException {
+			public:
+				MonthOutOfRangeException() : DateException("Month out of range!") {}
 		};
 };
 

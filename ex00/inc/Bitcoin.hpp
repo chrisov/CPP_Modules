@@ -12,13 +12,13 @@ class Bitcoin {
 
 	private:
 		Date	_date;
-		double	_value;
+		float	_value;
 		
-		static std::map<Date, double>	_db;
+		static std::map<Date, float>	_db;
 
 	public:
 		Bitcoin();
-		Bitcoin(Date date, double value);
+		Bitcoin(Date date, float value);
 		Bitcoin(const Bitcoin& other);
 		~Bitcoin();
 
@@ -26,25 +26,42 @@ class Bitcoin {
 
 		static bool						initDb(void);
 		static void						parseInfile(std::ifstream& f);
-		static std::map<Date, double>&	getDb(void);
+		static std::map<Date, float>&	getDb(void);
 
 		void	searchDb(void) const;
 		Date	getDate(void) const;
-		double	getValue(void) const;
+		float	getValue(void) const;
 		void	setDate(Date date);
-		void	setValue(double val);
+		void	setValue(float val);
 
-		class NegativeValueException : std::exception {
+		
+		class BTCException : std::exception {
+			private:
+				std::string	_msg;
+
 			public:
+				BTCException() = delete;
+				BTCException(const std::string& msg);
+				BTCException(const BTCException& other) = delete;
+				~BTCException();
+
+				BTCException&	operator=(const BTCException& other) = delete;
+
 				const char*	what(void) const noexcept override;
 		};
-
-		class ExtremelyLargeValueException : std::exception {
+		
+		//rest of the constructor? canonical
+		class NegativeValueException : public BTCException {
 			public:
-				const char*	what(void) const noexcept override;
+				NegativeValueException() : BTCException("Not a positive value!") {}
+		};
+
+		class ExtremelyLargeValueException : public BTCException {
+			public:
+				ExtremelyLargeValueException() : BTCException("Too large of a value!") {}
 		};
 };
 
-std::ostream&	operator<<(std::ostream& out, const std::map<Date, double>& obj);
+std::ostream&	operator<<(std::ostream& out, const std::map<Date, float>& obj);
 
 #endif

@@ -68,16 +68,24 @@ std::ostream&	operator<<(std::ostream& out, const Date& obj) {
 
 void Date::setDate(char *date) {
 	char **matrix = Parse::split(date, '-');
+	if (!matrix)
+		return ;
 
-	_year = atoi(matrix[0]);
-	_month = atoi(matrix[1]);
-	if (_month < 1 || _month > 12)
-		throw MonthOutOfRangeException();
-	_day = atoi(matrix[2]);
-	if (_month == 2 && (_day < 1 || _day > 29))
-		throw DayOutOfRangeException();
-	if (_day < 1 || _day > 31)
-		throw DayOutOfRangeException();
+	try {
+		_year = atoi(matrix[0]);
+		_month = atoi(matrix[1]);
+		if (_month < 1 || _month > 12)
+			throw MonthOutOfRangeException();
+		_day = atoi(matrix[2]);
+		if (_month == 2 && (_day < 1 || _day > 29))
+			throw DayOutOfRangeException();
+		if (_day < 1 || _day > 31)
+			throw DayOutOfRangeException();
+	}
+	catch (...) {
+		Parse::freeCharArray(matrix);
+		throw ;
+	}
 	Parse::freeCharArray(matrix);
 }
 
@@ -97,10 +105,11 @@ int	Date::getDay(void) const {
 *					EXCEPTIONS						*
 ****************************************************/
 
-const char*	Date::DayOutOfRangeException::what(void) const noexcept {
-	return ("Day out of range!");
+Date::DateException::DateException(const std::string& msg) : _msg(msg) {}
+
+Date::DateException::~DateException() {}
+
+const char*	Date::DateException::what(void) const noexcept {
+	return (_msg.c_str());
 }
 
-const char*	Date::MonthOutOfRangeException::what(void) const noexcept {
-	return ("Month out of range!");
-}
