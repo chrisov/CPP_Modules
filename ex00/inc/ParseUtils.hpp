@@ -2,7 +2,7 @@
 #define PARSEUTILS_HPP
 
 #include <iostream>
-#include <cstring>
+#include <fstream>
 #include <vector>
 
 class Parse {
@@ -15,9 +15,9 @@ class Parse {
 		Parse&	operator=(const Parse& other) = delete;
 
 	public:
-		static	char**	split(const std::string& str, char delim);
-		static	void	freeCharArray(char **arr);
-		static int		getClosest(char* date);
+		static char**	split(const std::string& str, char delim);
+		static void		freeCharArray(char **arr);
+		static void		parseInfile(std::ifstream& f);
 
 };
 

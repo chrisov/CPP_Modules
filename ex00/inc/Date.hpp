@@ -21,6 +21,7 @@ class Date : public std::exception{
 
 		Date&	operator=(const Date& obj);
 		bool	operator<(const Date& other) const;
+		bool	operator>(const Date& other) const;
 
 		void	setDate(char *date);
 		int		getYear(void) const;

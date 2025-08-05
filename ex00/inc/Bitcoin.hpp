@@ -12,13 +12,13 @@ class Bitcoin {
 
 	private:
 		Date	_date;
-		int		_value;
+		double	_value;
 		
 		static std::map<Date, double>	_db;
 
 	public:
-		Bitcoin() = delete;
-		Bitcoin(Date date, int value);
+		Bitcoin();
+		Bitcoin(Date date, double value);
 		Bitcoin(const Bitcoin& other);
 		~Bitcoin();
 
@@ -27,10 +27,18 @@ class Bitcoin {
 		static bool	initDb(void);
 		static std::map<Date, double>&	getDb(void);
 
-		Date&					getDate(void) const;
-		int						getValue(void) const;
+		void	searchDb(void) const;
+		Date	getDate(void) const;
+		double	getValue(void) const;
+		void	setDate(Date date);
+		void	setValue(double val);
 
-		class ValueOutOfRange : std::exception {
+		class NegativeValueException : std::exception {
+			public:
+				const char*	what(void) const noexcept override;
+		};
+
+		class ExtremelyLargeValueException : std::exception {
 			public:
 				const char*	what(void) const noexcept override;
 		};

@@ -35,14 +35,26 @@ Date&	Date::operator=(const Date& other) {
 
 bool	Date::operator<(const Date& other) const {
 	if (_year < other._year)
-        return (true);
-    if (_year > other._year)
-        return (false);
-    if (_month < other._month)
-        return (true);
-    if (_month > other._month)
-        return (false);
-    return (_day < other._day);
+		return (true);
+	if (_year > other._year)
+		return (false);
+	if (_month < other._month)
+		return (true);
+	if (_month > other._month)
+		return (false);
+	return (_day < other._day);
+}
+
+bool	Date::operator>(const Date& other) const {
+	if (_year > other._year)
+		return (true);
+	if (_year < other._year)
+		return (false);
+	if (_month > other._month)
+		return (true);
+	if (_month < other._month)
+		return (false);
+	return (_day > other._day);
 }
 
 std::ostream&	operator<<(std::ostream& out, const Date& obj) {
