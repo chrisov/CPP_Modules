@@ -64,6 +64,54 @@ bool	Bitcoin::initDb(void) {
 	return (false);
 }
 
+void	Bitcoin::parseInfile(std::ifstream& f) {
+	std::string line;
+	char**		matrix;
+	Bitcoin		btc;
+	Date		infile_date;
+	double		infile_value;
+
+	getline(f, line);
+	while (getline(f, line)) {
+		matrix = Parse::split(line, '|');
+		try {
+			infile_date.setDate(matrix[0]);
+		}
+		catch (const Date::MonthOutOfRangeException& e) {
+			std::cerr << color("Error", RED) << ": " << e.what();
+			std::cerr << " => " << infile_date.getYear() << '-';
+			std::cerr << color(std::to_string(infile_date.getMonth()), RED) << '-';
+			std::cerr << infile_date.getDay() << std::endl; 
+			continue ;
+		}
+		catch (const Date::DayOutOfRangeException& e) {
+			std::cerr << color("Error", RED) << ": " << e.what();
+			std::cerr << " => " << infile_date.getYear() << '-';
+			std::cerr << infile_date.getMonth() << std::endl; 
+			std::cerr << color(std::to_string(infile_date.getDay()), RED) << '-';
+			continue ;
+		}
+		btc.setDate(infile_date);
+		try {
+			infile_value = std::strtod(matrix[1], nullptr);
+			if (infile_value < 0)
+				throw Bitcoin::NegativeValueException();
+			if (infile_value > 1000)
+				throw Bitcoin::ExtremelyLargeValueException();
+		}
+		catch (const Bitcoin::NegativeValueException& e) {
+			std::cerr << color("Error", RED) << ": " << e.what() << std::endl;
+			continue ;
+		}
+		catch (const Bitcoin::ExtremelyLargeValueException& e) {
+			std::cerr << color("Error", RED) << ": " << e.what() << std::endl;
+			continue ;
+		}
+		btc.setValue(infile_value);
+		btc.searchDb();
+	}
+}
+
 void	Bitcoin::searchDb(void) const {
 	auto it = _db.upper_bound(_date);
 

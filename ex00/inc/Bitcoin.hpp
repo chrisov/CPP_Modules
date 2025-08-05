@@ -24,7 +24,8 @@ class Bitcoin {
 
 		Bitcoin&	operator=(const Bitcoin& other);
 
-		static bool	initDb(void);
+		static bool						initDb(void);
+		static void						parseInfile(std::ifstream& f);
 		static std::map<Date, double>&	getDb(void);
 
 		void	searchDb(void) const;

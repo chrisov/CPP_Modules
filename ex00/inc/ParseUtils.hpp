@@ -2,7 +2,6 @@
 #define PARSEUTILS_HPP
 
 #include <iostream>
-#include <fstream>
 #include <vector>
 
 class Parse {
@@ -17,8 +16,6 @@ class Parse {
 	public:
 		static char**	split(const std::string& str, char delim);
 		static void		freeCharArray(char **arr);
-		static void		parseInfile(std::ifstream& f);
-
 };
 
 #endif
