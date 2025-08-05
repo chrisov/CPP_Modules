@@ -13,7 +13,7 @@ Date::Date(const Date& other) : _year(other._year), _month(other._month), _day(o
 }
 
 Date::Date(int year, int month, int day) : _year(year), _month(month), _day(day) {
-	std::cout << "Parameterized " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+	// std::cout << "Parameterized " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
 Date::~Date() {

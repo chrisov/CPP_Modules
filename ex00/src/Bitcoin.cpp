@@ -6,13 +6,19 @@ std::map<Date, double> Bitcoin::_db;
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Bitcoin::Bitcoin() : _date(), _value(0) {}
+Bitcoin::Bitcoin() : _date(), _value(0) {
+	std::cout << "Default " << color("Bitcoin", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+}
 
-Bitcoin::Bitcoin(Date date, double value) : _date(date), _value(value) {}
+Bitcoin::Bitcoin(Date date, double value) : _date(date), _value(value) {
+	std::cout << "Copy " << color("Bitcoin", YLW) << color(" constructor", GRN) << " called!" << std::endl;
+}
 
 Bitcoin::Bitcoin(const Bitcoin& other) : _date(other._date), _value(other._value) {}
 
-Bitcoin::~Bitcoin() {}
+Bitcoin::~Bitcoin() {
+		std::cout << color("Bitcoin", YLW) << color(" destructor", RED) << " called!" << std::endl;
+}
 
 /****************************************************
 *					OPERATORS						*
@@ -54,8 +60,10 @@ bool	Bitcoin::initDb(void) {
 		getline(db, line);
 		while (getline(db, line)) {
 			matrix = Parse::split(line, ',');
+			if (!matrix)
+				return (false);
 			date.setDate(matrix[0]);
-			_db[date] = std::strtod(matrix[1], nullptr);
+			_db.emplace(date, std::strtod(matrix[1], nullptr));
 			Parse::freeCharArray(matrix);
 		}
 		db.close();
