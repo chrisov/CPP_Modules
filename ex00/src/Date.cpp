@@ -4,21 +4,13 @@
 *					CONSTRUCTORS					*
 ****************************************************/
 
-Date::Date() : _year(0), _month(0), _day(0) {
-	// std::cout << "Default " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
-}
+Date::Date() : _year(0), _month(0), _day(0) {}
 
-Date::Date(const Date& other) : _year(other._year), _month(other._month), _day(other._day) {
-	// std::cout << "Copy " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
-}
+Date::Date(const Date& other) : _year(other._year), _month(other._month), _day(other._day) {}
 
-Date::Date(int year, int month, int day) : _year(year), _month(month), _day(day) {
-	// std::cout << "Parameterized " << color("Date", YLW) << color(" constructor", GRN) << " called!" << std::endl;
-}
+Date::Date(int year, int month, int day) : _year(year), _month(month), _day(day) {}
 
-Date::~Date() {
-	// std::cout << color("Date", YLW) << color(" destructor", RED) << " called!" << std::endl;
-}
+Date::~Date() {}
 
 /****************************************************
 *					OPERATORS						*
