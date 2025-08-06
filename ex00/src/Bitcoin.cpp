@@ -85,11 +85,8 @@ void	Bitcoin::parseInfile(std::ifstream& f) {
 		try {
 			infile_date.setDate(matrix[0]);
 		}
-		catch (const Date::DateException& e) {
-			std::cerr << color("Error", RED) << ": " << e.what() << std::endl;
-			// std::cerr << " => " << infile_date.getYear() << '-';
-			// std::cerr << color(std::to_string(infile_date.getMonth()), RED) << '-';
-			// std::cerr << infile_date.getDay() << std::endl;
+		catch (const DateException& e) {
+			std::cerr << color("Error", RED) << ": " << e.what() << " => " << infile_date << std::endl;
 			Parse::freeCharArray(matrix);
 			continue ;
 		}
@@ -97,11 +94,11 @@ void	Bitcoin::parseInfile(std::ifstream& f) {
 		try {
 			infile_value = std::strtof(matrix[1], nullptr);
 			if (infile_value < 0)
-				throw Bitcoin::NegativeValueException();
+				throw NegativeValueException();
 			if (infile_value > 1000)
-				throw Bitcoin::ExtremelyLargeValueException();
+				throw ExtremelyLargeValueException();
 		}
-		catch (const Bitcoin::BTCException& e) {
+		catch (const BTCException& e) {
 			std::cerr << color("Error", RED) << ": " << e.what() << std::endl;
 			Parse::freeCharArray(matrix);
 			continue ;
@@ -149,16 +146,3 @@ void	Bitcoin::setDate(Date date) {
 void	Bitcoin::setValue(float val) {
 	_value = val;
 }
-
-/****************************************************
-*					EXCEPTIONS						*
-****************************************************/
-
-Bitcoin::BTCException::BTCException(const std::string& msg) : _msg(msg) {}
-
-Bitcoin::BTCException::~BTCException() {}
-
-const char*	Bitcoin::BTCException::what(void) const noexcept {
-	return (_msg.c_str());
-}
-

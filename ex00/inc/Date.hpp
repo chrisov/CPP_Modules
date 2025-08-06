@@ -5,6 +5,7 @@
 #include <exception>
 #include "Colors.hpp"
 #include "ParseUtils.hpp"
+#include "Exceptions.hpp"
 
 class Date : public std::exception{
 	
@@ -27,31 +28,7 @@ class Date : public std::exception{
 		int		getYear(void) const;
 		int		getMonth(void) const;
 		int		getDay(void) const;
-		
-		class DateException : public std::exception {
-			private:
-				std::string	_msg;
-			
-			public:
-				DateException() = delete;
-				DateException(const std::string& msg);
-				DateException(const DateException& other) = delete;
-				~DateException();
 
-				DateException& operator=(const DateException& other) = delete;
-
-				const char*	what(void) const noexcept override;
-		};
-		
-		class DayOutOfRangeException : public DateException {
-			public:
-				DayOutOfRangeException() : DateException("Day out of range!") {}
-		};
-
-		class MonthOutOfRangeException : public DateException {
-			public:
-				MonthOutOfRangeException() : DateException("Month out of range!") {}
-		};
 };
 
 std::ostream&	operator<<(std::ostream& out, const Date& obj);

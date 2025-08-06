@@ -100,16 +100,3 @@ int	Date::getMonth(void) const {
 int	Date::getDay(void) const {
 	return (_day);
 }
-
-/****************************************************
-*					EXCEPTIONS						*
-****************************************************/
-
-Date::DateException::DateException(const std::string& msg) : _msg(msg) {}
-
-Date::DateException::~DateException() {}
-
-const char*	Date::DateException::what(void) const noexcept {
-	return (_msg.c_str());
-}
-

@@ -8,7 +8,7 @@ INCDIR = ./inc
 SRCDIR = ./src
 OBJDIR = ./obj
 SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Bitcoin.cpp $(SRCDIR)/Date.cpp \
-	$(SRCDIR)/ParseUtils.cpp
+	$(SRCDIR)/ParseUtils.cpp $(SRCDIR)/Exceptions.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
