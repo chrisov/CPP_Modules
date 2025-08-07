@@ -24,7 +24,7 @@ Array<T>::Array(const Array& other) : _size(other._size) {
 
 template <typename T>
 Array<T>::~Array() {
-	delete _data;
+	delete[] _data;
 	std::cout << "Template " << color("array ", YLW) << color("destructor", RED) << " called!" << std::endl;
 }
 

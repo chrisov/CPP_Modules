@@ -1,8 +1,8 @@
 #include "../inc/Array.hpp"
-#define MAX_VAL 20
+#define ARR_SIZE 20
 
 static void	printArray(int* arr) {
-	for (unsigned int i = 0; i < MAX_VAL; i++) {
+	for (unsigned int i = 0; i < ARR_SIZE; i++) {
 		std::cout << "'" << arr[i] << "'\t";
 		if((i + 1) % 5 == 0)
 			std::cout << '\n';
@@ -12,10 +12,10 @@ static void	printArray(int* arr) {
 int main(int, char**)
 {
 	std::cout << "\nv================== CONSTRUCTORS ===================v" << std::endl;
-	Array<int> numbers(MAX_VAL);
-	int* mirror = new int[MAX_VAL];
+	Array<int> numbers(ARR_SIZE);
+	int* mirror = new int[ARR_SIZE];
 	srand(time(NULL));
-	for (int i = 0; i < MAX_VAL; i++)
+	for (int i = 0; i < ARR_SIZE; i++)
 	{
 		const int value = rand();
 		numbers[i] = value;
@@ -24,7 +24,7 @@ int main(int, char**)
 	std::cout << "\n\t" << color("NUMBERS", YLW) << ":\n" <<  numbers << std::endl;
 	std::cout << "\n\t" << color("MIRROR", YLW) << ":" << std::endl;
 	printArray(mirror);
-	for (int i = 0; i < MAX_VAL; i++)
+	for (int i = 0; i < ARR_SIZE; i++)
 	{
 		if (mirror[i] != numbers[i])
 		{
@@ -61,10 +61,10 @@ int main(int, char**)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	std::cout << "Modifying " << color("numbers", YLW) << "[MAX_VAL]: ";
+	std::cout << "Modifying " << color("numbers", YLW) << "[ARR_SIZE]: ";
 	try
 	{
-		numbers[MAX_VAL] = 0;
+		numbers[ARR_SIZE] = 0;
 	}
 	catch(const std::exception& e)
 	{
@@ -74,7 +74,7 @@ int main(int, char**)
 
 
 	std::cout << "\nv================== MODIFICATIONS ==================v" << std::endl;
-	for (int i = 0; i < MAX_VAL; i++)
+	for (int i = 0; i < ARR_SIZE; i++)
 	{
 		numbers[i] = rand();
 	}

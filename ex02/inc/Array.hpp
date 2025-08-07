@@ -18,9 +18,9 @@ class Array {
 		Array(const Array& other);
 		~Array();
 
-		Array&			operator=(const Array& other);
-		T&				operator[](unsigned int idx);
-		static void*	operator new[](std::size_t size);
+		Array&	operator=(const Array& other);
+		T&		operator[](unsigned int idx);
+		void*	operator new[](std::size_t size);
 
 		unsigned int	size(void) const;
 		T&				getData(unsigned int idx);
