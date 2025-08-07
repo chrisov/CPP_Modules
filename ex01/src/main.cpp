@@ -28,44 +28,6 @@ void print( T& x )
 }
 
 /****************************************************
-*						OTHER						*
-****************************************************/
-
-void	printArray(void* arr, std::string type, std::string del) {
-	if (type == "int") {
-		int*	res = (int*)arr;	
-		for (int i = 0; i < 10; i++)
-			std::cout << res[i] << del;
-	}
-	else if (type == "char") {
-		char*	res = (char*)arr;	
-		for (int i = 0; i < 10; i++)
-			std::cout << res[i] << del;
-	}
-	else if (type == "float") {
-		float*	res = (float*)arr;	
-		for (int i = 0; i < 10; i++) {
-			std::cout << std::fixed << std::setprecision(1);
-			std::cout << res[i] << del;
-			std::cout << std::fixed << std::setprecision(1);
-		}
-	}
-	std::cout << std::endl;
-}
-
-void	floatIncrement(float &number) {
-	number += 0.2;
-}
-
-void	intIncrement(int &number) {
-	number += 10;
-}
-
-void	charIncrement(char &number) {
-	number += 10;
-}
-
-/****************************************************
 *						MAIN						*
 ****************************************************/
 
@@ -86,11 +48,11 @@ int main(void) {
 		std::cout << " ";
 		printArray(arr, "int", "  ");
 
-		::iter(arr, 10, intIncrement);
-		printArray(arr, "int", " ");
+		::iter(arr, 10, elemIncrement<int>);
+		printArray(arr, "int", "  ");
 
-		::iter(arr, 10, intIncrement);
-		printArray(arr, "int", " ");
+		::iter(arr, 10, elemIncrement<int>);
+		printArray(arr, "int", "  ");
 		std::cout << "^============================================^\n" << std::endl;
 	}
 	{
@@ -98,13 +60,13 @@ int main(void) {
 		float	arr[10];
 		for (int i = 0; i < 10; i++)
 			arr[i] = (float)i;
-		printArray(arr, "float", " ");
+		printArray(arr, "float", "  ");
 
-		::iter(arr, 10, floatIncrement);
-		printArray(arr, "float", " ");
+		::iter(arr, 10, elemIncrement<float>);
+		printArray(arr, "float", "  ");
 
-		::iter(arr, 10, floatIncrement);
-		printArray(arr, "float", " ");
+		::iter(arr, 10, elemIncrement<float>);
+		printArray(arr, "float", "  ");
 		std::cout << "^============================================^\n" << std::endl;
 	}
 	{
@@ -112,13 +74,13 @@ int main(void) {
 		char	arr[10];
 		for (int i = 0; i < 10; i++)
 			arr[i] = i + 'A';
-		printArray(arr, "char", " ");
+		printArray(arr, "char", "  ");
 		
-		::iter(arr, 10, charIncrement);
-		printArray(arr, "char", " ");
+		::iter(arr, 10, elemIncrement<char>);
+		printArray(arr, "char", "  ");
 		
-		::iter(arr, 10, charIncrement);
-		printArray(arr, "char", " ");
+		::iter(arr, 10, elemIncrement<char>);
+		printArray(arr, "char", "  ");
 		std::cout << "^============================================^\n" << std::endl;
 	}
 }
