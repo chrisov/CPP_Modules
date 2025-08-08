@@ -10,14 +10,23 @@
 #include <list>
 #include <forward_list>
 
-class ElementNotFound : std::exception {
+class ElementNotFoundException : std::exception {
 	public:
+		ElementNotFoundException();
+		ElementNotFoundException(const ElementNotFoundException& other) = delete;
+		~ElementNotFoundException();
+
+		ElementNotFoundException&	operator=(const ElementNotFoundException& other) = delete;
+
 		const char*	what(void) const noexcept override;	
 };
 
 template <typename T>
-void	easyfind(T& cont, int val);
+void	easyFind(T& cont, int val);
 
-#include "../src/easyfind.tpp"
+template <typename T>
+void	printArray(T arr);
+
+#include "../src/EasyFind.tpp"
 
 #endif
