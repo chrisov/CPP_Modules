@@ -5,18 +5,9 @@
 #include <stack>
 #include "Utils.hpp"
 
-#define NOVALUE 100
-
-typedef struct	oper_s {
-	union {
-		char	oprtr;
-		int		oprnd;
-	};
-}	oper_t;
-
 class RPN {
 	private:
-		std::stack<oper_t>	_oper;
+		std::stack<int>	_oper;
 
 	public:
 		RPN();
@@ -25,8 +16,8 @@ class RPN {
 
 		RPN& operator=(const RPN& other);
 
-		std::stack<oper_t>	getOper(void) const;
-		void				parseParam(std::string str);
+		std::stack<int>	getOper(void) const;
+		void			parseNExecute(std::string str);
 };
 
 std::ostream&	operator<<(std::ostream& out, const RPN& obj);

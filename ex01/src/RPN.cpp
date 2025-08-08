@@ -28,16 +28,17 @@ RPN&	RPN::operator=(const RPN& other) {
 }
 
 std::ostream&	operator<<(std::ostream& out, const RPN& obj) {
-	std::stack<oper_t> temp = obj.getOper();
+	std::stack<int> temp = obj.getOper();
+	std::stack<int> pmet;
 
 	while (!temp.empty()) {
-		// out << (temp.top().oprtr == '\0' ? temp.top().oprnd : temp.top().oprtr) << '\n';
-		if (temp.top().oprtr != '\0')
-			out << temp.top().oprtr;
-		else
-			out << temp.top().oprnd;
-		out << " ";
+		pmet.push(temp.top());
 		temp.pop();
+	}
+	while (!pmet.empty()) {
+			out << pmet.top();
+		out << " ";
+		pmet.pop();
 	}
 	return (out);
 }
@@ -45,26 +46,53 @@ std::ostream&	operator<<(std::ostream& out, const RPN& obj) {
 *					FUNCTIONS						*
 ****************************************************/
 
-std::stack<oper_t>	RPN::getOper(void) const {
+std::stack<int>	RPN::getOper(void) const {
 	return (_oper);
 }
 
-void	RPN::parseParam(std::string str) {
+static void	executeOperator(std::stack<int>& s, char op) {
+	int num1;
+	int num2;
+
+	num1 = s.top();
+	s.pop();
+	num2 = s.top();
+	s.pop();
+	switch (op) {
+		case '+':
+			s.push(num1 + num2);
+			break ;
+		case '-':
+			s.push(num2 - num1);
+			break ;
+		case '*':
+			s.push(num1 * num2);
+			break ;
+		case '/':
+			s.push(num2 / num1);
+			break ;
+		default:
+			std::cerr << "Operator not found!" << std::endl;
+	}
+}
+
+void	RPN::parseNExecute(std::string str) {
 	char**	matrix = Utils::split(str, ' ');
-	oper_t	oper;
+	int		val;
 	
 	int		i = -1;
 	while (matrix[++i]) {
 		try {
-			oper.oprnd = std::stoi(matrix[i]);
-			// oper.oprtr = '\0';
+			val = std::stoi(matrix[i]);
+			_oper.push(val);
 		}
 		catch (const std::invalid_argument& e) {
-			// oper.oprnd = NOVALUE;
-			oper.oprtr = *matrix[i];
+			if (i == 0 || i == 1) {
+				std::cerr << "Error!" << std::endl;
+				break ;
+			}
+			executeOperator(_oper, *matrix[i]);
 		}
-		_oper.push(oper);
-		// std::cout << "oper: " << oper.oprtr << ", val: " << oper.oprnd << std::endl;
 	}
 	Utils::freeCharArray(matrix);
 }
