@@ -20,13 +20,12 @@ class Span {
 
 	public:
 		Span();
-		Span(unsigned int num);
+		Span(unsigned int N);
 		Span(const Span& other);
 		~Span();
 
 		Span&	operator=(const Span& other);
 
-		std::vector<int>&			getCont(void);
 		const std::vector<int>&		getCont(void) const;
 		const std::pair<int, int>	getShortest(void) const;
 		const std::pair<int, int>	getLongest(void) const;
@@ -35,12 +34,12 @@ class Span {
 		int							longestSpan(void);
 		void						randomFill(void);
 
-		class ContainerAlreadyFullException : std::exception {
+		class ContainerAlreadyFullException : public std::exception {
 			public:
 				const char*	what(void) const noexcept override;
 		};
 
-		class InvalidContainerSpanException : std::exception {
+		class InvalidContainerSpanException : public std::exception {
 			public:
 				const char*	what(void) const noexcept override;
 		};

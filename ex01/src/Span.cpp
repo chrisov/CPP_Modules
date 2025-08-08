@@ -9,8 +9,8 @@ Span::Span() : _shortest(0, 0), _longest(0, 0) {
 	std::cout << "Default " << color("span", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
-Span::Span(unsigned int num) : _shortest(0, 0), _longest(0, 0) {
-	_cont.reserve(num);
+Span::Span(unsigned int N) : _shortest(0, 0), _longest(0, 0) {
+	_cont.reserve(N);
 	std::cout << "Parameterized " << color("span", YLW) << color(" constructor", GRN) << " called!" << std::endl;
 }
 
@@ -61,10 +61,6 @@ void	Span::addNumber(int num) {
 	if (_cont.size() == _cont.capacity())
 		throw ContainerAlreadyFullException();
 	_cont.push_back(num);
-}
-
-std::vector<int>&	Span::getCont(void) {
-	return (_cont);
 }
 
 const std::vector<int>&	Span::getCont(void) const {
