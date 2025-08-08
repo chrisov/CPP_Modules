@@ -18,7 +18,7 @@ const char* ElementNotFoundException::what(void) const noexcept {
 ****************************************************/
 
 template <typename T>
-void	easyFind(T& cont, int val) {
+void	easyFind(T cont, int val) {
 	auto res = std::find(cont.begin(), cont.end(), val);
 	if (res != cont.end()) {
 		std::size_t idx = std::distance(cont.begin(), res);

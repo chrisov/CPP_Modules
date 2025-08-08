@@ -22,7 +22,7 @@ class ElementNotFoundException : std::exception {
 };
 
 template <typename T>
-void	easyFind(T& cont, int val);
+void	easyFind(T cont, int val);
 
 template <typename T>
 void	printArray(T arr);
