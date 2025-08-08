@@ -10,7 +10,7 @@ class MutantStack : public std::stack<T> {
 
 	public:
 		using iterator = typename std::deque<T>::iterator;
-		using const_iterator = typename std::deque<T>::iterator;
+		using const_iterator = typename std::deque<T>::const_iterator;
 
 		MutantStack();
 		MutantStack(const MutantStack& other);

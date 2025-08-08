@@ -26,6 +26,7 @@ int main()
 
 		++it;
 		--it;
+		
 		while (it != ite) {
 			std::cout << "it: " << *it << std::endl;
 			++it;
@@ -58,6 +59,7 @@ int main()
 
 		++it;
 		--it;
+	
 		while (it != ite) {
 			std::cout << "it: " << *it << std::endl;
 			++it;
