@@ -18,6 +18,7 @@ class RPN {
 
 		std::stack<int>	getOper(void) const;
 		void			parseNExecute(std::string str);
+		void			emptyStack(void);
 };
 
 std::ostream&	operator<<(std::ostream& out, const RPN& obj);

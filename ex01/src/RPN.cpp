@@ -96,3 +96,8 @@ void	RPN::parseNExecute(std::string str) {
 	}
 	Utils::freeCharArray(matrix);
 }
+
+void	RPN::emptyStack(void) {
+	while(!_oper.empty())
+		_oper.pop();
+}

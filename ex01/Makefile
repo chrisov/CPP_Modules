@@ -1,7 +1,7 @@
 #
 #
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17 -fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17
 MAKEFLAGS += -s
 
 INCDIR = ./inc

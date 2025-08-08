@@ -9,6 +9,7 @@
 #define CYA "\033[36m"
 
 #include <iostream>
+#include <cstring>
 
 class Utils {
 	
@@ -23,7 +24,7 @@ class Utils {
 		static const std::string	color(const std::string& text, const std::string& col);
 		static char**				split(const std::string& str, char delim);
 		static void					freeCharArray(char **arr);
-		static bool					paramCheck(char *str);
+		static bool					paramCheck(const char *str);
 };
 
 #endif

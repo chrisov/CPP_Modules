@@ -45,7 +45,7 @@ void	Utils::freeCharArray(char** arr) {
 	delete[] arr;
 }
 
-bool	Utils::paramCheck(char *str) {
+bool	Utils::paramCheck(const char *str) {
 	int i = 0;
 	while (str[i]) {
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '+' && str[i] != '-'
