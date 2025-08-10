@@ -36,7 +36,7 @@ template <typename cont>
 PmergeMe<cont>::PmergeMe(const PmergeMe& other) :
 	_cont(other._cont),
 	_time(other._time) {
-	std::cout << "Default " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
+	std::cout << "Copy " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
 }
 
 template <typename cont>
