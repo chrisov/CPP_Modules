@@ -38,4 +38,13 @@ class DuplicateNumberException : public PmergeMeException {
 		DuplicateNumberException& operator=(const DuplicateNumberException& other) = delete;
 };
 
+class UnitaryArrayException : public PmergeMeException {
+	public:
+		UnitaryArrayException();
+		UnitaryArrayException(const UnitaryArrayException& other) = delete;
+		~UnitaryArrayException();
+
+		UnitaryArrayException& operator=(const UnitaryArrayException& other) = delete;
+};
+
 #endif

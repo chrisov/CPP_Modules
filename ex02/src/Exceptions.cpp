@@ -24,6 +24,14 @@ NegativeNumberException::~NegativeNumberException() {};
 *					DUPLICATENUMBER					*
 ****************************************************/
 
-DuplicateNumberException::DuplicateNumberException() : PmergeMeException("Not a unique number!") {};
+DuplicateNumberException::DuplicateNumberException() : PmergeMeException("Duplicate number!") {};
 
 DuplicateNumberException::~DuplicateNumberException() {};
+
+/****************************************************
+*					UNITARYARRAY					*
+****************************************************/
+
+UnitaryArrayException::UnitaryArrayException() : PmergeMeException("Array too small!") {}
+
+UnitaryArrayException::~UnitaryArrayException() {}

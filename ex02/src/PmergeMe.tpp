@@ -1,3 +1,4 @@
+
 template <typename cont>
 class PmergeMe {
 
@@ -8,13 +9,13 @@ class PmergeMe {
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe& other);
-		PmergeMe(const char *arr);
+		PmergeMe(const char *arr[], int size);
 		~PmergeMe();
 
 		PmergeMe& operator=(const PmergeMe& other);
 		
-		static cont	parseArray(const char *str);
-		static bool	duplicateParam(cont& con, int val);
+		static cont	parseArray(const char *arr[], int size);
+		static bool	isDuplicateParam(cont& con, int val);
 
 		const cont&	getCont(void) const;
 		double		getTime(void) const;
@@ -39,8 +40,8 @@ PmergeMe<cont>::PmergeMe(const PmergeMe& other) :
 }
 
 template <typename cont>
-PmergeMe<cont>::PmergeMe(const char *str) :
-	_cont(PmergeMe<cont>::parseArray(str)),
+PmergeMe<cont>::PmergeMe(const char *arr[], int size) :
+	_cont(PmergeMe<cont>::parseArray(arr, size)),
 	_time(0) {
 	std::cout << "Parameterized " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
 }
@@ -67,15 +68,16 @@ template <typename cont>
 std::ostream&	operator<<(std::ostream& out, const PmergeMe<cont>& obj) {
 	int count = 0;
 	const cont& container = obj.getCont();
+
 	for (auto it = container.begin(); it != container.end(); ++it) {
-		out << *it;
+		out << std::setw(7) << *it;
 		count++;
-		if (count % 5 == 0)
-			out << "\n";
+		if (count % 7 == 0)
+			out << "\n\t";
 		else if (std::next(it) != container.end())
 			out << " ";
 	}
-	return out;
+	return (out);
 }
 
 /****************************************************
@@ -83,7 +85,7 @@ std::ostream&	operator<<(std::ostream& out, const PmergeMe<cont>& obj) {
 ****************************************************/
 
 template <typename cont>
-bool	PmergeMe<cont>::duplicateParam(cont& con, int val) {
+bool	PmergeMe<cont>::isDuplicateParam(cont& con, int val) {
 	for (const auto& i : con)
 		if (i == val)
 			return (true);
@@ -91,24 +93,28 @@ bool	PmergeMe<cont>::duplicateParam(cont& con, int val) {
 }
 
 template <typename cont>
-cont	PmergeMe<cont>::parseArray(const char *str) {
-	char	**arr = utils::split(str, ' ');
-	int		arrSize = utils::arraySize(arr);
+cont	PmergeMe<cont>::parseArray(const char *arr[], int size) {
 	cont	res;
-
-	for (int i = 0; i < arrSize; i++) {
-		int val = std::stoi(arr[i]);
-		if (val < 0) {
-			utils::freeCharArray(arr);
-			throw NegativeNumberException();
+	
+	for (int i = 0; i < size; i++) {
+		char	**matrix = utils::split(arr[i], ' ');
+		int		arrSize = utils::arraySize(matrix);
+		for (int i = 0; i < arrSize; i++) {
+			int val = std::stoi(matrix[i]);
+			if (val < 0) {
+				utils::freeCharArray(matrix);
+				throw NegativeNumberException();
+			}
+			if (isDuplicateParam(res, val)) {
+				utils::freeCharArray(matrix);
+				throw DuplicateNumberException();
+			}
+			res.push_back(val);
 		}
-		if (duplicateParam(res, val)) {
-			utils::freeCharArray(arr);
-			throw DuplicateNumberException();
-		}
-		res.push_back(val);
+		utils::freeCharArray(matrix);
 	}
-	utils::freeCharArray(arr);
+	if (res.size() == 1)
+		throw UnitaryArrayException();
 	return (res);
 }
 
