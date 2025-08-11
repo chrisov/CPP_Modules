@@ -17,7 +17,7 @@ $(NAME): $(OBJDIR) $(OBJS)
 	@printf "[.]   📦 Compiling '\033[33m$(NAME)\033[0m'...\r"
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo "🚀 '\033[33m$(NAME)\033[0m' compiled \033[32msuccessfully\033[0m!"
-	@echo "\ne.g.: ./PmergeMe \`jot -r 30 1 100 | tr '\\\n' ' '\`\n"
+	@echo "\ne.g.: ./PmergeMe \`jot -r 30 1 1000 | tr '\\\n' ' '\`\n"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CPP) $(CPPFLAGS) -c $< -o $@

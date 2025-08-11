@@ -13,8 +13,7 @@ int main(int argc, const char *argv[]) {
 	try {
 		PMM = new PmergeMe<std::vector<int>>(argv, argc - 1);
 		FordJohnson<std::vector<int>>	FJ;
-		PMM->getCont() = FJ.sorting(*PMM);
-		// std::cout << utils::color("\nAfter", YLW) << ":  " << *PMM << std::endl;
+		PMM->setCont(FJ.sorting(*PMM));
 		delete PMM;
 	}
 	catch (const PmergeMeException& e) {

@@ -16,6 +16,20 @@ namespace utils {
     void				freeCharArray(char **arr);
 	int					arraySize(char **arr);
 	void				printCharArray(const char *arr[], int size);
+
+	template <typename cont>
+	void				printCont(cont con) {
+		if (con.begin() == con.end())
+			std::cout << "\"null\"";
+		else {
+			for (auto it = con.begin(); it != con.end(); ++it) {
+				std::cout << *it;
+				if (std::next(it) != con.end())
+					std::cout << ' ';
+			}
+		}
+		std::cout <<'\n' << std::endl;
+	}
 }
 
 #endif
