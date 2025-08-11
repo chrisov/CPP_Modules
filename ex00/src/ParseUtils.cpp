@@ -1,26 +1,31 @@
 #include "../inc/ParseUtils.hpp"
 
-char** Parse::split(const std::string& str, char delim) {
-	std::vector<char*> tokens;
-	size_t start = 0;
-	size_t end;
-
-	while ((end = str.find(delim, start)) != std::string::npos) {
-		std::string token = str.substr(start, end - start);
-		char* cstr = new char[token.length() + 1];
-		strcpy(cstr, token.c_str());
-		tokens.push_back(cstr);
-		start = end + 1;
+char** Parse::split(const std::string& s, char delim) {
+	if (s.empty()) {
+		char** result = new char*[1];
+		result[0] = nullptr;
+		return result;
 	}
-	std::string token = str.substr(start);
-	char* cstr = new char[token.length() + 1];
-	strcpy(cstr, token.c_str());
-	tokens.push_back(cstr);
-	char** result = new char*[tokens.size() + 1];
-	for (size_t i = 0; i < tokens.size(); ++i) {
-		result[i] = tokens[i];
+	int num_tokens = 1;
+	for (char c : s) {
+		if (c == delim) {
+			num_tokens++;
+		}
 	}
-	result[tokens.size()] = nullptr;
+	char** result = new char*[num_tokens + 1];
+	int current_token_idx = 0;
+	size_t current_token_start = 0;
+	for (size_t i = 0; i <= s.length(); ++i) {
+		if (i == s.length() || s[i] == delim) {
+			size_t token_len = i - current_token_start;
+			result[current_token_idx] = new char[token_len + 1];
+			std::memcpy(result[current_token_idx], s.c_str() + current_token_start, token_len);
+			result[current_token_idx][token_len] = '\0';
+			current_token_idx++;
+			current_token_start = i + 1;
+		}
+	}
+	result[num_tokens] = nullptr;
 	return (result);
 }
 

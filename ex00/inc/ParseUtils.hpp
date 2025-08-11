@@ -2,7 +2,6 @@
 #define PARSEUTILS_HPP
 
 #include <iostream>
-#include <vector>
 #include <cstring>
 
 class Parse {
