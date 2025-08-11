@@ -15,6 +15,7 @@ namespace utils {
 	char**				split(const std::string& str, char delim);
     void				freeCharArray(char **arr);
 	int					arraySize(char **arr);
+	void				printCharArray(const char *arr[], int size);
 }
 
 #endif

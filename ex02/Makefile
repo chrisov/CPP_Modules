@@ -1,13 +1,13 @@
 #
 #
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17
+CPPFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -std=c++17 -g -Wfatal-errors
 MAKEFLAGS += -s
 
 INCDIR = ./inc
 SRCDIR = ./src
 OBJDIR = ./obj
-SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Utils.cpp $(SRCDIR)/Exceptions.cpp 
+SRCS = $(SRCDIR)/main.cpp $(SRCDIR)/Utils.cpp $(SRCDIR)/Exceptions.cpp
 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
@@ -17,7 +17,7 @@ $(NAME): $(OBJDIR) $(OBJS)
 	@printf "[.]   📦 Compiling '\033[33m$(NAME)\033[0m'...\r"
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo "🚀 '\033[33m$(NAME)\033[0m' compiled \033[32msuccessfully\033[0m!"
-	@echo "\ne.g.: ./PmergeMe \`shuf -i 1-100000 -n 3000 | tr \"\\\n\" \" \"\`\n"
+	@echo "\ne.g.: ./PmergeMe \`jot -r 30 1 100 | tr '\\\n' ' '\`\n"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CPP) $(CPPFLAGS) -c $< -o $@

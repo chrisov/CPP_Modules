@@ -18,6 +18,7 @@ class PmergeMe {
 		static bool	isDuplicateParam(cont& con, int val);
 
 		const cont&	getCont(void) const;
+		void		setCont(cont con);
 		double		getTime(void) const;
 };
 
@@ -116,6 +117,11 @@ cont	PmergeMe<cont>::parseArray(const char *arr[], int size) {
 	if (res.size() == 1)
 		throw UnitaryArrayException();
 	return (res);
+}
+
+template <typename cont>
+void	PmergeMe<cont>::setCont(cont con) {
+	_cont = con;
 }
 
 template <typename cont>
