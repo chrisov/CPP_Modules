@@ -18,13 +18,18 @@ namespace utils {
 	void				printCharArray(const char *arr[], int size);
 
 	template <typename cont>
-	void				printCont(cont con) {
+	void	printCont(cont con) {
+		int	count = 0;
+
 		if (con.begin() == con.end())
 			std::cout << "\"null\"";
 		else {
 			for (auto it = con.begin(); it != con.end(); ++it) {
-				std::cout << *it;
-				if (std::next(it) != con.end())
+				std::cout << std::setw(7) << *it;
+				count++;
+				if (count % 10 == 0)
+					std::cout << "\n\t";
+				else if (std::next(it) != con.end())
 					std::cout << ' ';
 			}
 		}

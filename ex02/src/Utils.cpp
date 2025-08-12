@@ -58,7 +58,7 @@ void	utils::printCharArray(const char *arr[], int size) {
 		for (int j = 0; j < msize; j++) {
 			count++;
 			std::cout << std::setw(7) << matrix[j];
-			if (count % 7 == 0)
+			if (count % 10 == 0)
 				std::cout << "\n\t";
 			else if (matrix[j + 1])
 				std::cout << ' ';
