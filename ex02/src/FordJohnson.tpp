@@ -3,8 +3,8 @@ template <typename cont>
 class FordJohnson {
 
 	private:
-		cont*	_a;
-		cont*	_b;
+		cont**	_a;
+		cont**	_b;
 
 	public:
 		FordJohnson();
@@ -13,7 +13,10 @@ class FordJohnson {
 
 		FordJohnson<cont>&	operator=(const FordJohnson<cont>& other);
 
-		cont		sorting(PmergeMe<cont>& obj);
+		cont	sorting(PmergeMe<cont>& obj);
+		void	swapping(PmergeMe<cont>& obj, size_t block_size);
+		void	insertion(PmergeMe<cont>& obj, size_t block_size = 1);
+		void	setArrayCont(cont& con, size_t block_size);
 };
 
 /****************************************************
@@ -40,7 +43,7 @@ FordJohnson<cont>::~FordJohnson() {
 		delete _a;
 	if (_b)
 		delete _b;
-	std::cout << "Default destructor called!" << std::endl;
+	std::cout << utils::color("Ford-Johnson", YLW) << utils::color(" destructor", RED) << " called!" << std::endl;
 }
 
 /****************************************************
@@ -50,12 +53,14 @@ FordJohnson<cont>::~FordJohnson() {
 template <typename cont>
 FordJohnson<cont>&	FordJohnson<cont>::operator=(const FordJohnson<cont>& other) {
 	if (this != &other) {
-		if (_a)
+		if (_a) {
 			delete _a;
 			_a = new cont(other._a);
-		if (_b)
+		}
+		if (_b) {
 			delete _b;
 			_b = new cont(other._b);
+		}
 	}
 	return (*this);
 }
@@ -65,72 +70,131 @@ FordJohnson<cont>&	FordJohnson<cont>::operator=(const FordJohnson<cont>& other) 
 ****************************************************/
 
 template <typename cont>
-static void	swapping(cont& con, size_t block_size = 1) {
-    if (block_size >= con.size() / 2)
-        return ;
-    std::cout << "\nSwapping with a block size of " << block_size << ":\n";
-for (size_t i = 0; i + 2 * block_size <= con.size(); i += 2 * block_size) {
+void	FordJohnson<cont>::insertion(PmergeMe<cont>& obj, size_t block_size) {
+	cont	main;
+	cont	pend;
+	cont	unused;
+
+	std::cout << "\nInsertion with a block size of " << block_size << ":\n\t";
+	std::cout << obj << std::endl;
+	setArrayCont(obj.getCont(), block_size);
+	cont **temp = _a;
+	bool first_time = true;
+	std::cout << "a = ";
+	while (*temp) {
+		if (!first_time)
+			std::cout << ", ";
+		std::cout << "[";
+		utils::printCont(**temp);
+		std::cout << "]";
+		first_time = false;
+		temp++;
+	}
+	temp = _b;
+	first_time = true;
+	std::cout << "\nb = ";
+	while (*temp) {
+		if (!first_time)
+			std::cout << ", ";
+		std::cout << "[";
+		utils::printCont(**temp);
+		std::cout << "]";
+		first_time = false;
+		temp++;
+	}
+	std::cout << std::endl;
+}
+
+template <typename cont>
+void	FordJohnson<cont>::swapping(PmergeMe<cont>& obj, size_t block_size) {
+	cont& con = obj.getCont();
+	
+	if (block_size >= con.size() / 2)
+	return ;
+	// std::cout << "\nSwapping with a block size of " << block_size << ":\n\t";
+	for (size_t i = 0; i + 2 * block_size <= con.size(); i += 2 * block_size) {
 		auto first_block_start = std::next(con.begin(), i);
 		auto first_block_end = std::next(first_block_start, block_size);
 		auto second_block_start = first_block_end;
 		auto second_block_end = std::next(second_block_start, block_size);
 
-		
-		if (*std::prev(first_block_end) > *std::prev(second_block_end)) {
-			// auto it = first_block_start;
-			// auto end = first_block_end;
-			// std::cout << "Before f: [";
-			// while (it != end) {
-			// 	std::cout << *it;
-			// 	if (std::next(it) != end)
-			// 		std::cout << ", ";
-			// 	it++;
-			// }
-			// std::cout << "], [";
-			// it = second_block_start;
-			// end = second_block_end;
-			// while (it != end) {
-			// 	std::cout << *it;
-			// 	if (std::next(it) != end)
-			// 		std::cout << ", ";
-			// 	it++;
-			// }
-			// std::cout << "]" << std::endl;
-
+		if (*std::prev(first_block_end) > *std::prev(second_block_end))
 			std::swap_ranges(first_block_start, first_block_end, second_block_start);
-			
-			// it = first_block_start;
-			// end = first_block_end;
-			// std::cout << "After f: [";
-			// while (it != end) {
-			// 	std::cout << *it;
-			// 	if (std::next(it) != end)
-			// 		std::cout << ", ";
-			// 	it++;
-			// }
-			// std::cout << "], [";
-			// it = second_block_start;
-			// end = second_block_end;
-			// while (it != end) {
-			// 	std::cout << *it;
-			// 	if (std::next(it) != end)
-			// 		std::cout << ", ";
-			// 	it++;
-			// }
-			std::cout << "]\n" << std::endl;
-		}
     }
-	std::cout << '\t';
-	utils::printCont(con);
-    swapping(con, block_size * 2);
+	// utils::printCont(obj.getCont());
+    swapping(obj, 2 * block_size);
+	insertion(obj, block_size);
 }
 
 template <typename cont>
 cont	FordJohnson<cont>::sorting(PmergeMe<cont>& obj) {
-	cont	main;
-	cont	pend;
-	cont	unused;
-
-	swapping(obj.getCont());
-	return (main);
+	std::cout << utils::color("\nBefore", YLW) << ": ";
+	std::cout << obj << std::endl;
+	swapping(obj, 1);
+	return (obj.getCont());
 }
+
+template <typename cont>
+void	FordJohnson<cont>::setArrayCont(cont& con, size_t block_size) {
+	size_t num_of_blocks = con.size() / block_size;
+	int count_a = 0;
+	int count_b = 0;
+	
+	_b = new cont*[num_of_blocks / 2 + 1];
+	_a = new cont*[num_of_blocks - num_of_blocks / 2 + 1];
+	std::cout << std::endl;
+	for (size_t i = 0; i < con.size(); i += block_size) {
+		auto start = std::next(con.begin(), i);
+		auto end = std::next(con.begin(), std::min(i + block_size, con.size()));
+		if ((i / block_size) % 2 != 0 && (size_t)std::distance(start, end) == block_size) {
+			_b[count_b] = new cont(start, end);
+			count_b++;
+		}
+		else if ((size_t)std::distance(start, end) == block_size) {
+			_a[count_a] = new cont(start, end);
+			count_a++;
+		}
+	}
+	_b[count_b] = nullptr;
+	_a[count_a] = nullptr;
+}
+
+	// auto it = first_block_start;
+	// auto end = first_block_end;
+	// std::cout << "Before f: [";
+	// while (it != end) {
+	// 	std::cout << *it;
+	// 	if (std::next(it) != end)
+	// 		std::cout << ", ";
+	// 	it++;
+	// }
+	// std::cout << "], [";
+	// it = second_block_start;
+	// end = second_block_end;
+	// while (it != end) {
+	// 	std::cout << *it;
+	// 	if (std::next(it) != end)
+	// 		std::cout << ", ";
+	// 	it++;
+	// }
+	// std::cout << "]" << std::endl;
+
+	// it = first_block_start;
+	// end = first_block_end;
+	// std::cout << "After f: [";
+	// while (it != end) {
+	// 	std::cout << *it;
+	// 	if (std::next(it) != end)
+	// 		std::cout << ", ";
+	// 	it++;
+	// }
+	// std::cout << "], [";
+	// it = second_block_start;
+	// end = second_block_end;
+	// while (it != end) {
+	// 	std::cout << *it;
+	// 	if (std::next(it) != end)
+	// 		std::cout << ", ";
+	// 	it++;
+	// }
+	// std::cout << "]\n" << std::endl;

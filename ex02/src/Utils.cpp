@@ -50,20 +50,3 @@ int	utils::arraySize(char **arr) {
 	return (i);
 }
 
-void	utils::printCharArray(const char *arr[], int size) {
-	int count = 0;
-	for (int i = 0; i < size; i++) {
-		char **matrix = utils::split(arr[i], ' ');
-		int msize = utils::arraySize(matrix);
-		for (int j = 0; j < msize; j++) {
-			count++;
-			std::cout << std::setw(7) << matrix[j];
-			if (count % 10 == 0)
-				std::cout << "\n\t";
-			else if (matrix[j + 1])
-				std::cout << ' ';
-		}
-		utils::freeCharArray(matrix);
-	}
-	std::cout << std::endl;
-}

@@ -3,15 +3,12 @@
 #include "../inc/FordJohnson.hpp"
 
 int main(int argc, const char *argv[]) {
-	PmergeMe<std::vector<int>>		*PMM;
+	PmergeMe<std::vector<int>>	*PMM;
 
-	std::cout << utils::color("\nBefore", YLW) << ": ";
-	utils::printCharArray(++argv, argc - 1);
-	std::cout << std::endl;
 	if (argc == 1)
 		return (std::cerr << utils::color("Error", RED) << ": No parameters passed!" << std::endl, 1);
 	try {
-		PMM = new PmergeMe<std::vector<int>>(argv, argc - 1);
+		PMM = new PmergeMe<std::vector<int>>(++argv, argc - 1);
 		FordJohnson<std::vector<int>>	FJ;
 		PMM->setCont(FJ.sorting(*PMM));
 		delete PMM;

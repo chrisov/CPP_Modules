@@ -15,7 +15,6 @@ namespace utils {
 	char**				split(const std::string& str, char delim);
     void				freeCharArray(char **arr);
 	int					arraySize(char **arr);
-	void				printCharArray(const char *arr[], int size);
 
 	template <typename cont>
 	void	printCont(cont con) {
@@ -25,15 +24,14 @@ namespace utils {
 			std::cout << "\"null\"";
 		else {
 			for (auto it = con.begin(); it != con.end(); ++it) {
-				std::cout << std::setw(7) << *it;
+				std::cout << *it;
 				count++;
 				if (count % 10 == 0)
-					std::cout << "\n\t";
+					std::cout << '\n';
 				else if (std::next(it) != con.end())
-					std::cout << ' ';
+					std::cout << std::setw(7);
 			}
 		}
-		std::cout <<'\n' << std::endl;
 	}
 }
 

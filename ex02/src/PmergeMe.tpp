@@ -17,9 +17,10 @@ class PmergeMe {
 		static cont	parseArray(const char *arr[], int size);
 		static bool	isDuplicateParam(cont& con, int val);
 
-		cont&		getCont(void);
-		void		setCont(cont con);
-		double		getTime(void) const;
+		const cont&		getCont(void) const;
+		cont&			getCont(void);
+		void			setCont(cont con);
+		double			getTime(void) const;
 };
 
 /****************************************************
@@ -67,16 +68,17 @@ PmergeMe<cont>&	PmergeMe<cont>::operator=(const PmergeMe& other) {
 
 template <typename cont>
 std::ostream&	operator<<(std::ostream& out, const PmergeMe<cont>& obj) {
-	int count = 0;
+	int			count = 0;
 	const cont& container = obj.getCont();
 
 	for (auto it = container.begin(); it != container.end(); ++it) {
 		out << std::setw(7) << *it;
 		count++;
-		if (count % 10 == 0)
-			out << "\n\t";
-		else if (std::next(it) != container.end())
-			out << " ";
+		if (count % 10 == 0) {
+			out << "\n";
+			if (std::next(it) != container.end())
+				std::cout << '\t';
+		}
 	}
 	return (out);
 }
@@ -122,6 +124,11 @@ cont	PmergeMe<cont>::parseArray(const char *arr[], int size) {
 template <typename cont>
 void	PmergeMe<cont>::setCont(cont con) {
 	_cont = con;
+}
+
+template <typename cont>
+const cont&	PmergeMe<cont>::getCont(void) const {
+	return (_cont);
 }
 
 template <typename cont>
