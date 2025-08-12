@@ -3,7 +3,7 @@ template <typename cont>
 class PmergeMe {
 
 	private:
-		cont	_cont;
+		cont	*_con;
 		double	_time;
 
 	public:
@@ -29,27 +29,31 @@ class PmergeMe {
 
 template <typename cont>
 PmergeMe<cont>::PmergeMe() : 
-	_cont(),
+	_con(nullptr),
 	_time(0) {
 	std::cout << "Default " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
 }
 
 template <typename cont>
 PmergeMe<cont>::PmergeMe(const PmergeMe& other) :
-	_cont(other._cont),
 	_time(other._time) {
+	if (_con != nullptr)
+		delete _con;
+	_con = other.cont;
 	std::cout << "Copy " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
 }
 
 template <typename cont>
 PmergeMe<cont>::PmergeMe(const char *arr[], int size) :
-	_cont(PmergeMe<cont>::parseArray(arr, size)),
+	_con(new cont(PmergeMe<cont>::parseArray(arr, size))),
 	_time(0) {
 	std::cout << "Parameterized " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
 }
 
 template <typename cont>
 PmergeMe<cont>::~PmergeMe() {
+	// if (_con != nullptr)
+	// 	delete _con;
 	std::cout << utils::color("PmergeMe ", YLW) << utils::color("destructor", RED) << " called!" << std::endl;
 }
 
@@ -60,7 +64,9 @@ PmergeMe<cont>::~PmergeMe() {
 template <typename cont>
 PmergeMe<cont>&	PmergeMe<cont>::operator=(const PmergeMe& other) {
 	if (this != &other) {
-		_cont = other._cont;
+		// if (_con)
+		// 	delete _con;
+		_con = other._con;
 		_time = other._time;
 	}
 	return (*this);
@@ -123,17 +129,17 @@ cont	PmergeMe<cont>::parseArray(const char *arr[], int size) {
 
 template <typename cont>
 void	PmergeMe<cont>::setCont(cont con) {
-	_cont = con;
+	_con = &con;
 }
 
 template <typename cont>
 const cont&	PmergeMe<cont>::getCont(void) const {
-	return (_cont);
+	return (*_con);
 }
 
 template <typename cont>
 cont&	PmergeMe<cont>::getCont(void) {
-	return (_cont);
+	return (*_con);
 }
 
 template <typename cont>
