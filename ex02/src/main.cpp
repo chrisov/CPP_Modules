@@ -10,11 +10,12 @@ int main(int argc, const char *argv[]) {
 		return (std::cerr << utils::color("Error", RED) << ": No parameters passed!" << std::endl, 1);
 	try {
 		PMM = new PmergeMe<std::vector<int>>(++argv, argc - 1);
-		PMM->setCont(FJ.sorting(*PMM));
-		delete PMM;
+		std::vector<int> sorted_arr = FJ.sorting(*PMM);
+		PMM->setCont(sorted_arr);
 	}
 	catch (const PmergeMeException& e) {
 		std::cerr << utils::color("Error", RED) << "! " << e.what() << std::endl;
 	}
+	delete PMM;
 	return (0);
 }

@@ -36,10 +36,8 @@ PmergeMe<cont>::PmergeMe() :
 
 template <typename cont>
 PmergeMe<cont>::PmergeMe(const PmergeMe& other) :
+	_con(new cont(*other._con)),
 	_time(other._time) {
-	if (_con != nullptr)
-		delete _con;
-	_con = other.cont;
 	std::cout << "Copy " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
 }
 
@@ -52,8 +50,8 @@ PmergeMe<cont>::PmergeMe(const char *arr[], int size) :
 
 template <typename cont>
 PmergeMe<cont>::~PmergeMe() {
-	// if (_con != nullptr)
-	// 	delete _con;
+	if (_con != nullptr)
+		delete _con;
 	std::cout << utils::color("PmergeMe ", YLW) << utils::color("destructor", RED) << " called!" << std::endl;
 }
 
@@ -64,9 +62,9 @@ PmergeMe<cont>::~PmergeMe() {
 template <typename cont>
 PmergeMe<cont>&	PmergeMe<cont>::operator=(const PmergeMe& other) {
 	if (this != &other) {
-		// if (_con)
-		// 	delete _con;
-		_con = other._con;
+		if (_con != nullptr)
+			delete _con;
+		_con = new cont(*other._con);
 		_time = other._time;
 	}
 	return (*this);
@@ -108,8 +106,8 @@ cont	PmergeMe<cont>::parseArray(const char *arr[], int size) {
 	for (int i = 0; i < size; i++) {
 		char	**matrix = utils::split(arr[i], ' ');
 		int		arrSize = utils::arraySize(matrix);
-		for (int i = 0; i < arrSize; i++) {
-			int val = std::stoi(matrix[i]);
+		for (int j = 0; j < arrSize; j++) {
+			int val = std::stoi(matrix[j]);
 			if (val < 0) {
 				utils::freeCharArray(matrix);
 				throw NegativeNumberException();
@@ -129,7 +127,9 @@ cont	PmergeMe<cont>::parseArray(const char *arr[], int size) {
 
 template <typename cont>
 void	PmergeMe<cont>::setCont(cont con) {
-	_con = &con;
+	if (_con != nullptr)
+		delete _con;
+	_con = new cont(con);
 }
 
 template <typename cont>
