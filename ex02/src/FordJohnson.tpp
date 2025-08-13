@@ -17,6 +17,7 @@ class FordJohnson {
 		cont	sorting(PmergeMe<cont>& obj);
 		void	swapping(PmergeMe<cont>& obj, size_t block_size);
 		void	insertion(PmergeMe<cont>& obj, size_t block_size = 1);
+		void	Jacobsthal(cont& main, cont**& pend);
 		void	setArrayCont(cont& con, size_t block_size);
 		void	clearCont(void);
 };
@@ -96,6 +97,64 @@ FordJohnson<cont>&	FordJohnson<cont>::operator=(const FordJohnson<cont>& other) 
 ****************************************************/
 
 template <typename cont>
+void	FordJohnson<cont>::Jacobsthal(cont& main, cont**& pend) {
+	size_t	pend_size = 0;
+	size_t	J_up = 3;
+	size_t	J_down = 1;
+
+	if (pend == nullptr)
+		return ;
+	while (pend[pend_size] != nullptr)
+		pend_size++;
+	// std::cout << pend_size << std::endl;
+	// std::cin.get();
+	int i = 5;
+	while (J_down < pend_size) {
+		std::cout << "insert ";
+		for (size_t j = J_up; j > J_down; j--) {
+			if (pend[j - 2] != nullptr) {
+				std::cout << "b_" << j << " (pend[" << j - 2 << "])";
+				if (j - 1 != J_down)
+				std::cout << ", ";
+				else
+				std::cout << std::endl;
+			}
+		}
+		J_down = (pow(2, i) - pow(-1, i)) / 3;
+		J_up = (pow(2, i + 1) - pow(-1, i + 1)) / 3;
+		i++;
+	}
+	(void) main;
+}
+
+template <typename cont>
+static void	setPend(cont**& b, cont**& pend) {
+	pend = nullptr;
+	if (b == nullptr)
+		return ;
+	size_t size = 0;
+	while (b[size] != nullptr)
+		size++;
+	if (size <= 1)
+		return ;
+	pend = new cont*[size];
+	for (size_t i = 0; i < size - 1; ++i)
+		pend[i] = new cont(*b[i + 1]);
+	pend[size - 1] = nullptr;
+}
+
+
+template <typename cont>
+static void	setMain(cont**& a, cont& b, cont& main) {
+	cont**	temp = a;
+	main.insert(main.end(), b.begin(), b.end());
+	while (*temp != nullptr) {
+		main.insert(main.end(), (*temp)->begin(), (*temp)->end());
+		temp++;
+	}
+}
+
+template <typename cont>
 void	FordJohnson<cont>::setArrayCont(cont& con, size_t block_size) {
 	size_t num_of_blocks = con.size() / block_size;
 	int count_a = 0;
@@ -122,58 +181,70 @@ void	FordJohnson<cont>::setArrayCont(cont& con, size_t block_size) {
 	}
 	_b[count_b] = nullptr;
 	_a[count_a] = nullptr;
-	for (int j = 0; _a[j] != nullptr; j++) {
-		std::cout << "_a[" << j << "]: [";
-		utils::printCont(*_a[j]);
-		std::cout << ']' << std::endl;
-	}
-	for (int j = 0; _b[j] != nullptr; j++) {
-		std::cout << "_b[" << j << "]: [";
-		utils::printCont(*_b[j]);
-		std::cout << ']' << std::endl;
-	}
-	std::cout << "unused: ";
-	if (_unused)
-		utils::printCont(*_unused);
-	std::cout << std::endl;
 }
 
 template <typename cont>
 void	FordJohnson<cont>::insertion(PmergeMe<cont>& obj, size_t block_size) {
 	cont	main;
-	cont	pend;
-	cont	unused;
+	cont**	pend;
 
-	std::cout << "\nInsertion with a block size of " << block_size << ":\n\t";
+	std::cout << utils::color("\nInsertion with a block size of ", YLW) << block_size << ":\n\t";
 	std::cout << obj << std::endl;
+	clearCont();
 	setArrayCont(obj.getCont(), block_size);
-	// cont **temp = _a;
-	// bool first_time = true;
-	// std::cout << "a = ";
-	// while (*temp) {
-	// 	if (!first_time)
-	// 		std::cout << ", ";
-	// 	std::cout << "[";
-	// 	utils::printCont(**temp);
-	// 	std::cout << "]";
-	// 	first_time = false;
-	// 	temp++;
-	// }
-	// temp = _b;
-	// first_time = true;
-	// std::cout << "\nb = ";
-	// while (*temp) {
-	// 	if (!first_time)
-	// 		std::cout << ", ";
-	// 	std::cout << "[";
-	// 	utils::printCont(**temp);
-	// 	std::cout << "]";
-	// 	first_time = false;
-	// 	temp++;
-	// }
-	// std::cout << "\nunused: ";
-	// utils::printCont(*_unused);
-	// std::cout << std::endl;
+	setMain(_a, *_b[0], main);
+	setPend(_b, pend);
+	
+
+	std::cout << "_a: [";
+	for (int j = 0; _a[j] != nullptr; j++) {
+		std::cout << '[';
+		utils::printCont(*_a[j]);
+		std::cout << ']';
+		if (_a[j + 1] != nullptr)
+			std::cout << ", ";
+		else
+			std::cout << ']' << std::endl;
+	}
+	std::cout << "_b: [";
+	for (int j = 0; _b[j] != nullptr; j++) {
+		std::cout << '[';
+		utils::printCont(*_b[j]);
+		std::cout << ']';
+		if (_b[j + 1] != nullptr)
+			std::cout << ", ";
+		else
+			std::cout << ']' << std::endl;
+	}
+
+
+	std::cout << "\nmain:\t";
+	utils::printCont(main);
+	std::cout << std::endl;
+	
+
+	std::cout << "pend:\t[";
+	if (pend != nullptr) {
+		for (int j = 0; pend[j] != nullptr; j++) {
+			std::cout << '[';
+			utils::printCont(*pend[j]);
+			std::cout << ']';
+			if (pend[j + 1] != nullptr)
+				std::cout << ", ";
+			else
+				std::cout << ']' << std::endl;
+		}	
+	}
+	else
+		std::cout << "]" << std::endl; 
+	std::cout << "unused: ";
+	if (_unused)
+		utils::printCont(*_unused);
+	else
+		std::cout << "'null'";
+	std::cout << std::endl;
+
+	Jacobsthal(main, pend);
 }
 
 template <typename cont>
@@ -194,7 +265,6 @@ void	FordJohnson<cont>::swapping(PmergeMe<cont>& obj, size_t block_size) {
     }
 	// utils::printCont(obj.getCont());
     swapping(obj, 2 * block_size);
-	clearCont();
 	insertion(obj, block_size);
 }
 

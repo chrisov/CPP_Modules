@@ -21,13 +21,13 @@ namespace utils {
 		int	count = 0;
 
 		if (con.begin() == con.end())
-			std::cout << "\"null\"";
+			std::cout << "'null'";
 		else {
 			for (auto it = con.begin(); it != con.end(); ++it) {
 				std::cout << *it;
 				count++;
 				if (count % 10 == 0)
-					std::cout << '\n';
+					std::cout << "\n\t";
 				else if (std::next(it) != con.end())
 					std::cout << std::setw(7);
 			}
