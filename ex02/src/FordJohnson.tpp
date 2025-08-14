@@ -99,32 +99,32 @@ FordJohnson<cont>&	FordJohnson<cont>::operator=(const FordJohnson<cont>& other) 
 template <typename cont>
 void	FordJohnson<cont>::Jacobsthal(cont& main, cont**& pend) {
 	size_t	pend_size = 0;
-	size_t	J_up = 3;
-	size_t	J_down = 1;
+	size_t	J_prev = 1;
+	size_t	J_curr = 3;
+	size_t	J_next;
 
 	if (pend == nullptr)
 		return ;
 	while (pend[pend_size] != nullptr)
 		pend_size++;
-	// std::cout << pend_size << std::endl;
-	// std::cin.get();
-	int i = 5;
-	while (J_down < pend_size) {
-		std::cout << "insert ";
-		for (size_t j = J_up; j > J_down; j--) {
-			if (pend[j - 2] != nullptr) {
-				std::cout << "b_" << j << " (pend[" << j - 2 << "])";
-				if (j - 1 != J_down)
-				std::cout << ", ";
-				else
-				std::cout << std::endl;
+	for (; J_prev <= pend_size;) {
+		std::cout << "Insert in the following order: ";
+		for (size_t j = J_curr; j > J_prev; j--) {
+			if (j - 2 < pend_size) {
+				std::cout << '[';
+				utils::printCont(*pend[j - 2]);
+				std::cout << ']';
+				if (j - 1 != J_prev)
+					std::cout << ", ";
 			}
 		}
-		J_down = (pow(2, i) - pow(-1, i)) / 3;
-		J_up = (pow(2, i + 1) - pow(-1, i + 1)) / 3;
-		i++;
-	}
+		std::cout << std::endl;
+        
+		J_next = J_curr + 2 * J_prev;
+        J_prev = J_curr;
+        J_curr = J_next;
 	(void) main;
+	}
 }
 
 template <typename cont>
@@ -243,7 +243,8 @@ void	FordJohnson<cont>::insertion(PmergeMe<cont>& obj, size_t block_size) {
 	else
 		std::cout << "'null'";
 	std::cout << std::endl;
-
+	
+	std::cout << std::endl;
 	Jacobsthal(main, pend);
 }
 

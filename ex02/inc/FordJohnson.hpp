@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <math.h>
 
 #include "Utils.hpp"
 #include "PmergeMe.hpp"
