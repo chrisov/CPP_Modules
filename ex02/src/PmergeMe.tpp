@@ -30,29 +30,22 @@ class PmergeMe {
 template <typename cont>
 PmergeMe<cont>::PmergeMe() : 
 	_con(nullptr),
-	_time(0) {
-	std::cout << "Default " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
-}
+	_time(0) {}
 
 template <typename cont>
 PmergeMe<cont>::PmergeMe(const PmergeMe& other) :
 	_con(new cont(*other._con)),
-	_time(other._time) {
-	std::cout << "Copy " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
-}
+	_time(other._time) {}
 
 template <typename cont>
 PmergeMe<cont>::PmergeMe(const char *arr[], int size) :
 	_con(new cont(PmergeMe<cont>::parseArray(arr, size))),
-	_time(0) {
-	std::cout << "Parameterized " << utils::color("PmergeMe", YLW) << utils::color(" constructor", GRN) << " called!" << std::endl;
-}
+	_time(0) {}
 
 template <typename cont>
 PmergeMe<cont>::~PmergeMe() {
 	if (_con != nullptr)
 		delete _con;
-	std::cout << utils::color("PmergeMe ", YLW) << utils::color("destructor", RED) << " called!" << std::endl;
 }
 
 /****************************************************

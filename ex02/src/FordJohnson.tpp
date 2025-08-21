@@ -6,6 +6,7 @@ class FordJohnson {
 		cont**	_a;
 		cont**	_b;
 		cont*	_unused;
+		int		_comparisons;
 
 	public:
 		FordJohnson();
@@ -20,6 +21,7 @@ class FordJohnson {
 		void	Jacobsthal(cont& main, cont**& pend, size_t block_size);
 		void	setArrayCont(cont& con, size_t block_size);
 		void	clearCont(void);
+		int		getComparisons(void) const;
 };
 
 /****************************************************
@@ -30,9 +32,8 @@ template <typename cont>
 FordJohnson<cont>::FordJohnson() :
 	_a(nullptr),
 	_b(nullptr),
-	_unused(nullptr) {
-	std::cout << "Default Ford-Johnson constructor called!" << std::endl;
-}
+	_unused(nullptr),
+	_comparisons(0) {}
 
 template <typename cont>
 FordJohnson<cont>::FordJohnson(const FordJohnson<cont>& other) :
@@ -57,7 +58,7 @@ FordJohnson<cont>::FordJohnson(const FordJohnson<cont>& other) :
 	}
 	if (other._unused != nullptr)
 		_unused = new cont(*other._unused);
-	std::cout << "Copy Ford-Johnson constructor called!" << std::endl;
+	_comparisons = other._comparisons;
 }
 
 template <typename cont>
@@ -74,7 +75,6 @@ FordJohnson<cont>::~FordJohnson() {
 	}
 	if (_unused != nullptr)
 		delete _unused;
-	std::cout << utils::color("Ford-Johnson", YLW) << utils::color(" destructor", RED) << " called!" << std::endl;
 }
 
 /****************************************************
@@ -88,6 +88,7 @@ FordJohnson<cont>&	FordJohnson<cont>::operator=(const FordJohnson<cont>& other) 
         std::swap(_a, tmp._a);
         std::swap(_b, tmp._b);
         std::swap(_unused, tmp._unused);
+        std::swap(_comparisons, tmp._comparisons);
     }
 	return (*this);
 }
@@ -166,14 +167,27 @@ void	FordJohnson<cont>::Jacobsthal(cont& main, cont**& pend, size_t block_size) 
 				size_t upper_bound_idx = upperBoundIdx(main, _a, j);
 				size_t i = block_size - 1;
 				int max_pend = *std::max_element(pend[j - 2]->begin(), pend[j - 2]->end());
+				
+				// std::cout << "\ninsert: ";
+				// utils::printCont(*pend[j - 2]);
+				// std::cout << std::endl;
+				// std::cout << "bounds: [main[" << i << "], main[" << upper_bound_idx <<"] = [" << main[i] << ", " << main[upper_bound_idx] << "]" << std::endl;
+				
 				while (i < upper_bound_idx) {
+					_comparisons++;
 					if (main[i] > max_pend)
 						break ;
 					i += block_size;
 				}
-				main.insert(main.begin() + i + 1 - block_size, pend[j - 2]->begin(), pend[j - 2]->end());
-				// std::cout << "\ninsert: ";
-				// utils::printCont(*pend[j - 2]);
+				// std::cout << "i: " << i << std::endl;
+				// std::cout << "size: " << main.size() << std::endl;
+				// std::cout << "comparisons + " << (i - block_size + 1) / block_size << std::endl;
+				// std::cout << "_comparisons + " << (i - block_size + 1) / block_size << " = " << _comparisons << std::endl;
+				if (i == main.size() - 1 && max_pend > main[i])
+					main.insert(main.begin() + i + 1, pend[j - 2]->begin(), pend[j - 2]->end());
+				else
+					main.insert(main.begin() + i + 1 - block_size, pend[j - 2]->begin(), pend[j - 2]->end());
+
 				// std::cout << "\n\t ";
 				// utils::printCont(main);
 				// std::cout << std::endl;
@@ -186,7 +200,7 @@ void	FordJohnson<cont>::Jacobsthal(cont& main, cont**& pend, size_t block_size) 
 }
 
 /**
- * @brief Set the a's and the b's as the min and max of each pair of elements.
+ * @brief Set the a's and the b's as the min and max of each pair of blocks.
  */
 template <typename cont>
 void	FordJohnson<cont>::setArrayCont(cont& con, size_t block_size) {
@@ -196,7 +210,6 @@ void	FordJohnson<cont>::setArrayCont(cont& con, size_t block_size) {
 	
 	_a = new cont*[num_of_blocks / 2 + 1];
 	_b = new cont*[num_of_blocks - num_of_blocks / 2 + 1];
-	std::cout << std::endl;
 	for (size_t i = 0; i < con.size(); i += block_size) {
 		auto start = std::next(con.begin(), i);
 		auto end = std::next(con.begin(), std::min(i + block_size, con.size()));
@@ -225,8 +238,7 @@ void	FordJohnson<cont>::insertion(PmergeMe<cont>& obj, size_t block_size) {
 	cont	main;
 	cont**	pend;
 
-	std::cout << utils::color("\nInsertion with a block size of ", YLW) << block_size << ":\n\t";
-	std::cout << obj << std::endl;
+	// std::cout << utils::color("\nInsertion with a block size of ", YLW) << block_size << ":\n\t" << obj << std::endl;
 	clearCont();
 	setArrayCont(obj.getCont(), block_size);
 	setMain(_a, *_b[0], main);
@@ -317,30 +329,32 @@ void	FordJohnson<cont>::swapping(PmergeMe<cont>& obj, size_t block_size) {
 
 template <typename cont>
 cont	FordJohnson<cont>::sorting(PmergeMe<cont>& obj) {
-	std::cout << utils::color("\nBefore", YLW) << ": ";
-	std::cout << obj << std::endl;
 	swapping(obj, 1);
-	std::cout << utils::color("\nAfter", YLW) << ": ";
-	std::cout << obj << std::endl;
 	return (obj.getCont());
 }
 
 template <typename cont>
 void	FordJohnson<cont>::clearCont(void) {
-    if (_a) {
-        for (size_t i = 0; _a[i] != nullptr; ++i)
-            delete _a[i];
-        delete[] _a;
-        _a = nullptr;
-    }
-    if (_b) {
-        for (size_t i = 0; _b[i] != nullptr; ++i)
-            delete _b[i];
-        delete[] _b;
-        _b = nullptr;
-    }
-    if (_unused != nullptr) {
-        delete _unused;
-        _unused = nullptr;
-    }
+	if (_a) {
+		for (size_t i = 0; _a[i] != nullptr; ++i)
+			delete _a[i];
+		delete[] _a;
+		_a = nullptr;
+	}
+	if (_b) {
+
+		for (size_t i = 0; _b[i] != nullptr; ++i)
+			delete _b[i];
+		delete[] _b;
+		_b = nullptr;
+	}
+	if (_unused != nullptr) {
+		delete _unused;
+		_unused = nullptr;
+	}
+}
+
+template <typename cont>
+int	FordJohnson<cont>::getComparisons(void) const {
+	return (_comparisons);
 }

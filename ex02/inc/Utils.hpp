@@ -33,6 +33,16 @@ namespace utils {
 			}
 		}
 	}
+
+	template <typename cont>
+	void	freeArrayCont(cont**& con) {
+		if (con) {
+			for (size_t i = 0; con[i] != nullptr; ++i)
+				delete con[i];
+			delete[] con;
+			con = nullptr;
+		}
+	}
 }
 
 #endif
