@@ -1,4 +1,4 @@
-	#include "Contact.hpp"
+#include "../inc/Contact.hpp"
 
 Contact::Contact() :
 	_firstname(""),

@@ -17,7 +17,7 @@ class Contact {
 		std::string	_secret;
 
 	public:
-		Contact ();
+		Contact();
 
 		void		set_field(const std::string case_input);
 		std::string	get_field(const std::string case_input);
