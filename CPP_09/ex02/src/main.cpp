@@ -6,7 +6,7 @@ int main(int argc, const char *argv[]) {
 	
 	if (argc == 1)
 		return (std::cerr << utils::color("Error", RED) << ": No parameters passed!" << std::endl, 1);
-	// std::cout << "\nv=================== VECTOR ===================v" << std::endl;
+	std::cout << "\nv=================== VECTOR ===================v" << std::endl;
 	try {
 		FordJohnson<std::vector<int>>	FJ;
 		PmergeMe<std::vector<int>> *PMM = new PmergeMe<std::vector<int>>(++argv, argc - 1);
@@ -19,11 +19,9 @@ int main(int argc, const char *argv[]) {
 		PMM->setCont(sorted_arr);
 		std::cout << utils::color("\nAfter", YLW) << ": " << *PMM << std::endl;
 		std::cout << "Number of comparisons: " << FJ.getComparisons() << std::endl;
-		(void) start;
-		(void) end;
-		// std::cout << "Time: " << std::chrono::duration<double>(end - start).count() * 1000 << "ms" << std::endl;
+		std::cout << "Time: " << std::chrono::duration<double>(end - start).count() * 1000 << "ms" << std::endl;
 		delete PMM;
-		// std::cout << "^==============================================^\n" << std::endl;
+		std::cout << "^==============================================^\n" << std::endl;
 	}
 	catch (const PmergeMeException& e) {
 		std::cerr << utils::color("Error", RED) << "! " << e.what() << std::endl;
