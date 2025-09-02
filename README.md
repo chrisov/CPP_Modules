@@ -1,3 +1,5 @@
+<a name="top"></a>
+
 <div align="center">
   <img src="https://www.dieter-schwarz-stiftung.de/files/Projects/Project%20logos/Logo_42HN-min.jpg" alt="Logo"/>
 </div>
@@ -5,13 +7,24 @@
 <br>
 <div align="center">
 
-### 🛠 C++ (Programming Language)
+### 🛠 C++ (Object Oriented Programming)
 
 </div>
 
 <br>
 
-<a name="top"></a>
+- [CPP 00](#cpp-00): Intro to C++
+- [CPP 01](#cpp-01): Classes and instances
+- [CPP 02](#cpp-02): Operators overload
+- [CPP 03](#cpp-03): Inheritance
+- [CPP 04](#cpp-04): Polymorphism & Interfaces
+- [CPP 05](#cpp-05): Abstract Classes & Exceptions
+- [CPP 06](#cpp-06): Casting
+- [CPP 07](#cpp-07): Templates
+- [CPP 08](#cpp-08): Containers & Algorithms
+- [CPP 09](#cpp-09): Final Application
+
+<br>
 
 # CPP 00
 
@@ -23,6 +36,13 @@ Simple string capitalizing program. It capitalizes the string passed as paramete
 |-----------------------------------|--------------------------------------------|
 | `$ ./megaphone`                   | `$ * LOUD AND UNBEARABLE FEEDBACK NOISE *` |
 | `$ ./megaphone "ssshh, be quiet!` | `$ SSSHH, BE QUIET!`                       |
+
+<br>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
 <br>
 
 ## ex01: Phonebook application
@@ -40,11 +60,18 @@ The application is structured into two main classes:
 
 <br>
 
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
 ## ex02: Bank Account Management System
 
 This program implements an **already developed** simple bank account management system, it provides functionality to manage multiple accounts, track deposits and withdrawals, and display account information.<br>
 
 The purpose of the exercise is to create the body of several functions that are defined in the class per the subject, in order for the program's output to match the log file provided.
+
 <br>
 
 <p style="text-align: right;">
@@ -66,7 +93,7 @@ This exercise implements a simple zombie simulation. It demonstrates the ability
 <br>
 
 <div align="right">
-  <a href="#cpp-00">⬆️ Return to top</a>
+  <a href="#top">⬆️ Return to top</a>
 </div>
 
 <br>
@@ -77,9 +104,21 @@ This exercise implements a zombie horde simulation. It demonstrates the ability 
 
 <br>
 
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
 ## ex02: Pointers vs References
 
 This exercise's purpose is to make a clear difference of the functionality between a pointer and a reference in C++.
+
+<br>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
 
 <br>
 
@@ -101,6 +140,12 @@ The weapon is passed to the object at the time of construction.
 **HumanB Class**:<br>
 Represents a human that can optionally have a weapon.
 The weapon can be assigned or changed dynamically after the human is created. The human can attack *only* if they have a weapon.
+
+<br>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
 
 <br>
 
@@ -145,6 +190,12 @@ At the end, we just say goodbye instead of hi.
 
 <br>
 
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
 ## ex05: Harl's Complaints
 
 This exercise implements a simple program that simulates a character named "Harl" expressing complaints at different levels of severity.
@@ -157,14 +208,37 @@ The `Harl` class encapsulates the behavior of the character "Harl".
      - `ERROR`: A critical error that requires immediate attention.
    - Each complaint level is implemented as a private method in the `Harl` class.
 
+<br>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
 ## ex06: Harl's Complaints Filter
 
 Similar to [Harl's Complaints](#ex05-harls-complaints), this exercise simulates a program that outputs all message up to the provided level of severity. So, if the *WARNING* is provided, it will output the *DEBUG* message, the *INFO* message and the *WARNING* message.
 
 <br>
 
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+
 # CPP 02
 
 ## ex00: Fixed numbers
 
 This exercise demonstrates the creation of a Fixed numbers class, 
+
+<br>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
