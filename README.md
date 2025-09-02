@@ -13,9 +13,9 @@
 
 <br>
 
-- [CPP 00](#cpp-00): Intro to C++
-- [CPP 01](#cpp-01): Classes and instances
-- [CPP 02](#cpp-02): Operators overload
+- [CPP 00](#cpp-00-intro-to-c++): Intro to C++
+- [CPP 01](#cpp-01-classes-&-instances): Classes & instances
+- [CPP 02](#cpp-02): Operators' overload
 - [CPP 03](#cpp-03): Inheritance
 - [CPP 04](#cpp-04): Polymorphism & Interfaces
 - [CPP 05](#cpp-05): Abstract Classes & Exceptions
@@ -26,7 +26,7 @@
 
 <br>
 
-# CPP 00
+# CPP 00: Intro to C++
 
 ## ex00: Megaphone
 
@@ -80,7 +80,7 @@ The purpose of the exercise is to create the body of several functions that are 
 
 <br>
 
-# CPP 01
+# CPP 01: Classes & Instances
 
 ## ex00: Single Zombie Creation
 
@@ -229,7 +229,7 @@ Similar to [Harl's Complaints](#ex05-harls-complaints), this exercise simulates 
 <br>
 
 
-# CPP 02
+# CPP 02: Operators' overload
 
 ## ex00: Fixed numbers
 
