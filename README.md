@@ -15,23 +15,34 @@
 
 ## ex00: Megaphone
 
-Simple string capitalizing program.
+Simple string capitalizing program. It capitalizes the string passed as parameter to the program. If no parameter is provided, it outputs a default message. Examples:
 
-## ex01: Phonebook Application
+| Example                           | Output                                   |
+|-----------------------------------|------------------------------------------|
+| `$ ./megaphone`                   | `* LOUD AND UNBEARABLE FEEDBACK NOISE *` |
+| `$ ./megaphone "ssshh, be quiet!` | `$ SSSHH, BE QUIET!`                     |
+<br>
 
-This exercise implements a simple phonebook application in C++ that allows users to store and retrieve contact information. The application is structured into two main classes:
+## ex01: Phonebook application
 
-Contact Class:<br>
+This exercise implements a simple phonebook application in C++, that allows users to store and retrieve contact information. The phonebook has a maximum capacity of 8 contacts. After reaching its full capacity, it then rewrites the oldest contact.<br>
+The application is structured into two main classes:
+
+**Contact Class**:<br>
 	Represents a single contact in the phonebook.
 	Stores details such as first name, last name, nickname, phone number, and a dark secret.
 
-Phonebook Class:<br>
-	Manages a collection of Contact objects.
+**Phonebook Class**:<br>
+	Manages a collection of max 8 Contact objects.
 	Provides functionality to add new contacts and search for existing ones.
+
+<br>
 
 ## ex02: Bank Account Management System
 
-This exercise implements a simple bank account management system, it provides functionality to manage multiple accounts, track deposits and withdrawals, and display account information.
+This program implements an **already developed** simple bank account management system, it provides functionality to manage multiple accounts, track deposits and withdrawals, and display account information.<br>
+
+The purpose of the exercise is to create the body of several functions that are defined in the class per the subject, in order for the program's output to match the log file provided.
 
 <br>
 
@@ -39,36 +50,108 @@ This exercise implements a simple bank account management system, it provides fu
 
 ## ex00: Single Zombie Creation
 
-This exercise implements a simple zombie simulation in C++. It demonstrates the creation and management of zombie objects, showcasing object-oriented programming principles such as encapsulation and dynamic memory allocation.
+This exercise implements a simple zombie simulation. It demonstrates the ability to create zombie objects, both from the stack and the heap memory.
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/58181ac91f9ebac2bb0820fd8ebcfa6533c7c5af/image.png" alt="alt text" width="400"/>
+</div>
+
+<br>
 
 ## ex01: Zombie Horde Simulation
 
-This exercise implements a zombie horde simulation in C++. It demonstrates the creation of multiple zombie objects dynamically and their management using object-oriented programming principles.
+This exercise implements a zombie horde simulation. It demonstrates the ability of creating multiple zombie objects, as defined in [Single Zombie](#ex00-single-zombie-creation) exercise, dynamically.
+
+<br>
 
 ## ex02: Pointers vs References
 
 This exercise's purpose is to make a clear difference of the functionality between a pointer and a reference in C++.
 
+<br>
+
+
 ## ex03: Weapon and Human Interaction Simulation
 
-This exercise implements a simulation of humans interacting with weapons in C++. It demonstrates object-oriented programming principles such as encapsulation, composition, and dynamic behavior through the use of classes and objects.
+This exercise implements a simulation of humans interacting with weapons. It demonstrates the ability of composing objects of two different classed together.
 
-Weapon Class:<br>
-Represents a weapon with a type (e.g., "club", "sword").
+**Weapon Class**:<br>
+Represents a weapon of a specific type (e.g., "club", "sword").
 Provides functionality to get and set the weapon's type dynamically.
-
-HumanA Class:<br>
-Represents a human that always has a weapon.
-The weapon is passed to the human at the time of construction.
-The human can attack using the weapon, and the attack message includes the weapon's type.
-
-HumanB Class:<br>
-Represents a human that can optionally have a weapon.
-The weapon can be assigned or changed dynamically after the human is created. The human can attack only if they have a weapon.
-
-Dynamic Behavior:<br>
 The weapon's type can be changed dynamically, and the change is reflected in the attack messages of both HumanA and HumanB.
 
-Encapsulation and Composition:<br>
-The project demonstrates encapsulation by keeping class members private and exposing functionality through public methods.
-Composition is used to associate humans with weapons.
+
+**HumanA Class**:<br>
+Represents a human that always has a weapon.
+The weapon is passed to the object at the time of construction.
+
+**HumanB Class**:<br>
+Represents a human that can optionally have a weapon.
+The weapon can be assigned or changed dynamically after the human is created. The human can attack *only* if they have a weapon.
+
+<br>
+
+## ex04: Sed is for Losers
+
+This exercise implements a simple text replacing program, where it searches a .txt file for all occurences of a specified string, replaces them with another one and saves the result into a .txt.replace file:
+
+```bash
+$ ./sed text.txt search_string replace_string
+```
+
+| Arguments      | Description             |
+|----------------|-------------------------|
+| text.txt       | input file to search in |
+| search_string  | string to search for    |
+| replace_string | replacement string      |
+
+Example:
+
+```bash
+$ cat text.txt
+Hello there! Welcome to this simple text file.
+This is just a test to see if your program can find certain words.
+Sometimes, people say hello in different ways.
+For example, "hello" can be written as hi, hey, or even hola!
+However, not every sentence will contain the word hello.
+Make sure your program can detect hello no matter where it appears.
+At the end, we just say goodbye instead of hello.
+```
+
+```bash
+$ ./sed text.txt hello hi
+$ cat text.txt.replace
+Hello there! Welcome to this simple text file.
+This is just a test to see if your program can find certain words.
+Sometimes, people say hi in different ways.
+For example, "hi" can be written as hi, hey, or even hola!
+However, not every sentence will contain the word hi.
+Make sure your program can detect hi no matter where it appears.
+At the end, we just say goodbye instead of hi.
+```
+
+<br>
+
+## ex05: Harl's Complaints
+
+This exercise implements a simple program that simulates a character named "Harl" expressing complaints at different levels of severity.
+
+The `Harl` class encapsulates the behavior of the character "Harl".
+   - It contains four complaint levels:
+     - `DEBUG`: Detailed debugging information.
+     - `INFO`: General information about the program's state.
+     - `WARNING`: A warning about potential issues.
+     - `ERROR`: A critical error that requires immediate attention.
+   - Each complaint level is implemented as a private method in the `Harl` class.
+
+## ex06: Harl's Complaints Filter
+
+Similar to [Harl's Complaints](#ex05-harls-complaints), this exercise simulates a program that outputs all message up to the provided level of severity. So, if the *WARNING* is provided, it will output the *DEBUG* message, the *INFO* message and the *WARNING* message.
+
+<br>
+
+# CPP 02
+
+## ex00: Fixed numbers
+
+This exercise demonstrates the creation of a Fixed numbers class, 
