@@ -13,8 +13,8 @@
 
 <br>
 
-- [CPP 00](#cpp-00-intro-to-c++): Intro to C++
-- [CPP 01](#cpp-01-classes-&-instances): Classes & instances
+- [CPP 00](#cpp-00-intro-to-c): Intro to C++
+- [CPP 01](#cpp-01-classes-instances): Classes & instances
 - [CPP 02](#cpp-02): Operators' overload
 - [CPP 03](#cpp-03): Inheritance
 - [CPP 04](#cpp-04): Polymorphism & Interfaces
