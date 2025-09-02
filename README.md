@@ -17,10 +17,10 @@
 
 Simple string capitalizing program. It capitalizes the string passed as parameter to the program. If no parameter is provided, it outputs a default message. Examples:
 
-| Example                           | Output                                   |
-|-----------------------------------|------------------------------------------|
-| `$ ./megaphone`                   | `* LOUD AND UNBEARABLE FEEDBACK NOISE *` |
-| `$ ./megaphone "ssshh, be quiet!` | `$ SSSHH, BE QUIET!`                     |
+| Example                           | Output                                     |
+|-----------------------------------|--------------------------------------------|
+| `$ ./megaphone`                   | `$ * LOUD AND UNBEARABLE FEEDBACK NOISE *` |
+| `$ ./megaphone "ssshh, be quiet!` | `$ SSSHH, BE QUIET!`                       |
 <br>
 
 ## ex01: Phonebook application
