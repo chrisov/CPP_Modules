@@ -11,6 +11,8 @@
 
 <br>
 
+<a name="top"></a>
+
 # CPP 00
 
 ## ex00: Megaphone
@@ -43,6 +45,11 @@ The application is structured into two main classes:
 This program implements an **already developed** simple bank account management system, it provides functionality to manage multiple accounts, track deposits and withdrawals, and display account information.<br>
 
 The purpose of the exercise is to create the body of several functions that are defined in the class per the subject, in order for the program's output to match the log file provided.
+<br>
+
+<p style="text-align: right;">
+  <a href="#top">⬆️ Return to top</a>
+</p>
 
 <br>
 
@@ -54,6 +61,12 @@ This exercise implements a simple zombie simulation. It demonstrates the ability
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/58181ac91f9ebac2bb0820fd8ebcfa6533c7c5af/image.png" alt="alt text" width="400"/>
+</div>
+
+<br>
+
+<div align="right">
+  <a href="#cpp-00">⬆️ Return to top</a>
 </div>
 
 <br>
