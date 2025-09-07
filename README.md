@@ -278,6 +278,8 @@ Every main function is showcasing the robots interacting with each other.
 
 ## ex00: Aaaaand... OPEN!
 
+**ClapTrap** will be used as the parent class  in the following exercises, inheriting its functions.
+
 <div align="center">
 <img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/claptrap.png" alt="ClapTrap"/>
 </div>
@@ -290,6 +292,7 @@ Every main function is showcasing the robots interacting with each other.
 
 ## ex01: Serena, my love!
 
+**ScavTrap** is the first child class derived from ClapTrap, inheriting its functions.
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/scavtrap.png" alt="ScavTrap"/>
@@ -303,6 +306,7 @@ Every main function is showcasing the robots interacting with each other.
 
 # ex02: Repetitive work
 
+**FragTrap** is the another child class derived from ClapTrap, ihneriting its function and also having a special function, unique to the class.
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/fragtrap.png" alt="FragTrap"/>
@@ -316,6 +320,7 @@ Every main function is showcasing the robots interacting with each other.
 
 # ex03: Now it’s weird!
 
+**DiamondTrap** is the last child class derived from ClapTrap's children ScavTrap and FragTrap, creating a so called Diamond class. The DiamondTrap inherits different attributes from both parents and has a special function, unique to the class.
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/diamondtrap.png" alt="DiamondTrap"/>
