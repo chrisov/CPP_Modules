@@ -37,8 +37,6 @@ Simple string capitalizing program. It capitalizes the string passed as paramete
 | `$ ./megaphone`                   | `$ * LOUD AND UNBEARABLE FEEDBACK NOISE *` |
 | `$ ./megaphone "ssshh, be quiet!` | `$ SSSHH, BE QUIET!`                       |
 
-<br>
-
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
@@ -57,8 +55,6 @@ The application is structured into two main classes:
 **Phonebook Class**:<br>
 	Manages a collection of max 8 Contact objects.
 	Provides functionality to add new contacts and search for existing ones.
-
-<br>
 
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
@@ -90,8 +86,6 @@ This exercise implements a simple zombie simulation. It demonstrates the ability
 <img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/58181ac91f9ebac2bb0820fd8ebcfa6533c7c5af/image.png" alt="alt text" width="400"/>
 </div>
 
-<br>
-
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
@@ -102,8 +96,6 @@ This exercise implements a simple zombie simulation. It demonstrates the ability
 
 This exercise implements a zombie horde simulation. It demonstrates the ability of creating multiple zombie objects, as defined in [Single Zombie](#ex00-single-zombie-creation) exercise, dynamically.
 
-<br>
-
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
@@ -112,9 +104,7 @@ This exercise implements a zombie horde simulation. It demonstrates the ability 
 
 ## ex02: Pointers vs References
 
-This exercise's purpose is to make a clear difference of the functionality between a pointer and a reference in C++.
-
-<br>
+This exercise's purpose is to make a clear difference of the functionality between a pointer and a reference in C++, by printing both the address and the value of both a reference and a pointer to an original variable.
 
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
@@ -125,13 +115,7 @@ This exercise's purpose is to make a clear difference of the functionality betwe
 
 ## ex03: Weapon and Human Interaction Simulation
 
-This exercise implements a simulation of humans interacting with weapons. It demonstrates the ability of composing objects of two different classed together.
-
-**Weapon Class**:<br>
-Represents a weapon of a specific type (e.g., "club", "sword").
-Provides functionality to get and set the weapon's type dynamically.
-The weapon's type can be changed dynamically, and the change is reflected in the attack messages of both HumanA and HumanB.
-
+This exercise implements a simulation of humans interacting with weapons. It demonstrates the ability of composing objects of two different classes together.
 
 **HumanA Class**:<br>
 Represents a human that always has a weapon.
@@ -141,7 +125,10 @@ The weapon is passed to the object at the time of construction.
 Represents a human that can optionally have a weapon.
 The weapon can be assigned or changed dynamically after the human is created. The human can attack *only* if they have a weapon.
 
-<br>
+**Weapon Class**:<br>
+Represents a weapon of a specific type (e.g. "club", "sword", etc).
+Provides functionality to get and set the weapon's type dynamically.
+The weapon's type can be changed dynamically, and the change is reflected in the attack messages of both HumanA and HumanB.
 
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
@@ -157,7 +144,7 @@ This exercise implements a simple text replacing program, where it searches a .t
 $ ./sed text.txt search_string replace_string
 ```
 
-| Arguments      | Description             |
+| Parameters     | Description             |
 |----------------|-------------------------|
 | text.txt       | input file to search in |
 | search_string  | string to search for    |
@@ -188,8 +175,6 @@ Make sure your program can detect hi no matter where it appears.
 At the end, we just say goodbye instead of hi.
 ```
 
-<br>
-
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
@@ -208,8 +193,6 @@ The `Harl` class encapsulates the behavior of the character "Harl".
      - `ERROR`: A critical error that requires immediate attention.
    - Each complaint level is implemented as a private method in the `Harl` class.
 
-<br>
-
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
@@ -220,8 +203,6 @@ The `Harl` class encapsulates the behavior of the character "Harl".
 
 Similar to [Harl's Complaints](#ex05-harls-complaints), this exercise simulates a program that outputs all message up to the provided level of severity. So, if the *WARNING* is provided, it will output the *DEBUG* message, the *INFO* message and the *WARNING* message.
 
-<br>
-
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
@@ -229,16 +210,57 @@ Similar to [Harl's Complaints](#ex05-harls-complaints), this exercise simulates 
 <br>
 
 
-# CPP 02: Operators' overload
+# CPP 02: Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form
 
-## ex00: Fixed numbers
+This project demonstrates the creation of a Fixed point numbers class. It is overloading the basic mathematical operators (+, -, *, /), so that it will be able to function as a custom numeric type of variable.
 
-This exercise demonstrates the creation of a Fixed numbers class, 
+A Fixed point type of number is a way of representing real numbers (numbers with fractional parts) using integers, while keeping the decimal point in a fixed position.
+
+Our Fixed point numbers class will hold 8 bits of decimal places. This means that the true value of the number will be mulitplied by 2^8 = 256 before stored in the corresponding class's attribute.
+
+**NOTE**: Every exercise builds on top of the previous one
 
 <br>
+
+## ex00: My First Class in Orthodox Canonical Form
+
+This exercise demonstarates the creation of **0** as a Fixed point number. 
 
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
 </div>
 
 <br>
+
+## ex01: Towards a more useful fixed-point number class
+
+This exercise extends the Fixed class's functionality, by adding parameterized constructors and supporting convertion of a Fixed point type to classic numberical types (int, float).
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex02: Now we’re talking
+
+This exercise demonstrates the overloading functionality of most mathematical operators (+, -, *, /), as well as the creation of a min/max function.
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex03: BSP
+
+This exercise demonstrates the *point-in-triangle* functionality of the program, using the BSP method *(Barycentric Subdivion Procedure*). It is a way of locating a Point inside (or around) a triangle using weights relative to the triangle's vertices. If all weights are non-negative and sum to 1, then the Point in question belongs to the triangle. If any of those weights are negative, the Point is outside.
+ 
+**NOTE**: In this implementation, if the Point is located *on* any of the triangle's vertices, it is considered to be *outside* the triangle.
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
