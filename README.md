@@ -26,7 +26,7 @@
 
 <br>
 
-# CPP 00: Intro to C++
+# CPP 00: Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuf
 
 ## ex00: Megaphone
 
@@ -43,7 +43,7 @@ Simple string capitalizing program. It capitalizes the string passed as paramete
 
 <br>
 
-## ex01: Phonebook application
+## ex01: My Awesome PhoneBook
 
 This exercise implements a simple phonebook application in C++, that allows users to store and retrieve contact information. The phonebook has a maximum capacity of 8 contacts. After reaching its full capacity, it then rewrites the oldest contact.<br>
 The application is structured into two main classes:
@@ -62,13 +62,11 @@ The application is structured into two main classes:
 
 <br>
 
-## ex02: Bank Account Management System
+## ex02: The Job Of Your Dreams
 
 This program implements an **already developed** simple bank account management system, it provides functionality to manage multiple accounts, track deposits and withdrawals, and display account information.<br>
 
 The purpose of the exercise is to create the body of several functions that are defined in the class per the subject, in order for the program's output to match the log file provided.
-
-<br>
 
 <p style="text-align: right;">
   <a href="#top">⬆️ Return to top</a>
@@ -76,9 +74,9 @@ The purpose of the exercise is to create the body of several functions that are 
 
 <br>
 
-# CPP 01: Classes & Instances
+# CPP 01: Memory allocation, pointers to members, references and switch statements
 
-## ex00: Single Zombie Creation
+## ex00: BraiiiiiiinnnzzzZ
 
 This exercise implements a simple zombie simulation. It demonstrates the ability to create zombie objects, both from the stack and the heap memory.
 
@@ -92,9 +90,9 @@ This exercise implements a simple zombie simulation. It demonstrates the ability
 
 <br>
 
-## ex01: Zombie Horde Simulation
+## ex01: Moar brainz!
 
-This exercise implements a zombie horde simulation. It demonstrates the ability of creating multiple zombie objects, as defined in [Single Zombie](#ex00-single-zombie-creation) exercise, dynamically.
+This exercise implements a zombie horde simulation. It demonstrates the ability of creating multiple zombie objects, as defined in [BraiiiiiiinnnzzzZ](#ex00-single-zombie-creation) exercise, dynamically.
 
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
@@ -102,7 +100,7 @@ This exercise implements a zombie horde simulation. It demonstrates the ability 
 
 <br>
 
-## ex02: Pointers vs References
+## ex02: HI THIS IS BRAIN
 
 This exercise's purpose is to make a clear difference of the functionality between a pointer and a reference in C++, by printing both the address and the value of both a reference and a pointer to an original variable.
 
@@ -113,7 +111,7 @@ This exercise's purpose is to make a clear difference of the functionality betwe
 <br>
 
 
-## ex03: Weapon and Human Interaction Simulation
+## ex03: Unnecessary violence
 
 This exercise implements a simulation of humans interacting with weapons. It demonstrates the ability of composing objects of two different classes together.
 
@@ -181,7 +179,7 @@ At the end, we just say goodbye instead of hi.
 
 <br>
 
-## ex05: Harl's Complaints
+## ex05: Harl 2.0
 
 This exercise implements a simple program that simulates a character named "Harl" expressing complaints at different levels of severity.
 
@@ -199,9 +197,9 @@ The `Harl` class encapsulates the behavior of the character "Harl".
 
 <br>
 
-## ex06: Harl's Complaints Filter
+## ex06: Harl Filter
 
-Similar to [Harl's Complaints](#ex05-harls-complaints), this exercise simulates a program that outputs all message up to the provided level of severity. So, if the *WARNING* is provided, it will output the *DEBUG* message, the *INFO* message and the *WARNING* message.
+Similar to [Harl 2.0](#ex05-harls-complaints), this exercise simulates a program that outputs all message up to the provided level of severity. So, if the *WARNING* is provided, it will output the *DEBUG* message, the *INFO* message and the *WARNING* message.
 
 <div align="right">
   <a href="#top">⬆️ Return to top</a>
@@ -263,4 +261,70 @@ This exercise demonstrates the *point-in-triangle* functionality of the program,
 </div>
 
 <br>
+
+# CPP 03: Inheritance
+
+This projects demonstrates the functionality of the inheritance property in Object Orienting C++, where a class can be derived as a child class of a parent one, inheriting its functions. In this project, there are different types of robot classes, others functioning as parents, others as children inheriting different type of functions as the project progresses.
+
+Every robot class is described by the same private attributes, but of different values, as seen in the corresponding exercises, as well as a special function.
+
+Every main function is showcasing the robots interacting with each other.
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex00: Aaaaand... OPEN!
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/claptrap.png" alt="alt text" width="400"/>
+</div>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex01: Serena, my love!
+
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/scavtrap.png" alt="alt text" width="400"/>
+</div>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+# ex02: Repetitive work
+
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/fragtrap.png" alt="alt text" width="400"/>
+</div>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+# ex03: Now it’s weird!
+
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/diamondtrap.png" alt="alt text" width="400"/>
+</div>
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
 
