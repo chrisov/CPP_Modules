@@ -279,7 +279,7 @@ Every main function is showcasing the robots interacting with each other.
 ## ex00: Aaaaand... OPEN!
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/claptrap.png" alt="alt text" width="400"/>
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/claptrap.png" alt="ClapTrap"/>
 </div>
 
 <div align="right">
@@ -292,7 +292,7 @@ Every main function is showcasing the robots interacting with each other.
 
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/scavtrap.png" alt="alt text" width="400"/>
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/scavtrap.png" alt="ScavTrap"/>
 </div>
 
 <div align="right">
@@ -305,7 +305,7 @@ Every main function is showcasing the robots interacting with each other.
 
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/fragtrap.png" alt="alt text" width="400"/>
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/fragtrap.png" alt="FragTrap"/>
 </div>
 
 <div align="right">
@@ -318,7 +318,7 @@ Every main function is showcasing the robots interacting with each other.
 
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/diamondtrap.png" alt="alt text" width="400"/>
+<img src="https://raw.githubusercontent.com/chrisov/CPP_Modules/8c925b57761c9026ae9f233a6f5a78a057d9882c/diamondtrap.png" alt="DiamondTrap"/>
 </div>
 
 <div align="right">
