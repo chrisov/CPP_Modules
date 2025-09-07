@@ -332,4 +332,36 @@ Every main function is showcasing the robots interacting with each other.
 
 <br>
 
+# CPP 04: Subtype Polymorphism, Abstract Classes, and Interfaces
 
+## ex00: Polymorphism
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex01: I don’t want to set the world on fire
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex02: Abstract class
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
+
+## ex03: Interface & recap
+
+<div align="right">
+  <a href="#top">⬆️ Return to top</a>
+</div>
+
+<br>
