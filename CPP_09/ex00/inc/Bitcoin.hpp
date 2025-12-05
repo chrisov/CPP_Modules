@@ -1,6 +1,8 @@
 #ifndef BITCOIN_HPP
 #define BITCOIN_HPP
 
+#define DB_FILENAME "data.csv"
+
 #include <iostream>
 #include <map>
 #include <fstream>

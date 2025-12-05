@@ -51,7 +51,7 @@ std::ostream&	operator<<(std::ostream& out, const std::map<Date, double>& obj) {
 ****************************************************/
 
 bool	Bitcoin::initDb(void) {
-	std::ifstream	db("data.csv");
+	std::ifstream	db(DB_FILENAME);
 	std::string		line;
 	char**			matrix;
 	Date			date;
@@ -81,6 +81,9 @@ void	Bitcoin::parseInfile(std::ifstream& f) {
 
 	getline(f, line);
 	while (getline(f, line)) {
+		
+		if (line.empty())
+			continue;
 		matrix = Parse::split(line, '|');
 		try {
 			infile_date.setDate(matrix[0]);
@@ -99,7 +102,7 @@ void	Bitcoin::parseInfile(std::ifstream& f) {
 				throw ExtremelyLargeValueException();
 		}
 		catch (const BTCException& e) {
-			std::cerr << color("Error", RED) << ": " << e.what() << std::endl;
+			std::cerr << color("Error", RED) << ": " << e.what() << " => " << atoi(matrix[1]) << std::endl;
 			Parse::freeCharArray(matrix);
 			continue ;
 		}
@@ -124,7 +127,7 @@ void	Bitcoin::searchDb(void) const {
 		std::cout << _value << " = " << (*it).second * _value << std::endl;
 	}
 	else
-		std::cerr << color("Error", RED) << ": Too early infile date!" << std::endl; 
+		std::cerr << color("Error", RED) << ": Too early infile date! => " << _date << std::endl; 
 }
 
 std::map<Date, float>&	Bitcoin::getDb(void) {

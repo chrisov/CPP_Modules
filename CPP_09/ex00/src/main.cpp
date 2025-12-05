@@ -6,10 +6,9 @@ int main (int argc, const char **argv) {
 	if (!Bitcoin::initDb())
 		std::cerr << color("Error", RED) << ": Database not provided!" << std::endl;
 	std::ifstream infile(argv[1]);
-	if (infile.is_open())
-		Bitcoin::parseInfile(infile);
-	else
-		std::cerr << color("Error", RED) << ": Could not open file!" << std::endl;
+	if (!infile.is_open())
+		return (std::cerr << color("Error", RED) << ": Could not open file!" << std::endl, 1);
+	Bitcoin::parseInfile(infile);
 	infile.close();
 	return (0);
 }
