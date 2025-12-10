@@ -15,6 +15,7 @@ namespace utils {
 	char**				split(const std::string& str, char delim);
     void				freeCharArray(char **arr);
 	int					arraySize(char **arr);
+	bool				areAllNumeric(int argc, const char* argv[]);
 
 	template <typename cont>
 	void	printCont(cont con) {

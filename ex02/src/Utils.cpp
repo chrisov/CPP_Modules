@@ -50,3 +50,26 @@ int	utils::arraySize(char **arr) {
 	return (i);
 }
 
+static bool isNumeric(const std::string& s) {
+	if (s.empty() || s[0] == '-')
+		return false;
+
+	size_t start = 0;
+	if (s[0] == '+')
+		start = 1;
+	if (start == s.size())
+		return (false);
+	for (size_t i = start; i < s.size(); ++i) {
+		if (!std::isdigit(static_cast<unsigned char>(s[i])))
+			return (false);
+	}
+	return (true);
+}
+
+bool utils::areAllNumeric(int argc, const char* argv[]) {
+	for (int i = 1; i < argc; ++i) {
+		if (!isNumeric(argv[i]))
+			return (false);
+	}
+	return (true);
+}
