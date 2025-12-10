@@ -49,8 +49,8 @@ bool	Utils::paramCheck(const char *str) {
 	int i = 0;
 	while (str[i]) {
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '+' && str[i] != '-'
-		&& str[i] != '*' && str[i] != '/' && str[i] != ' ')
-		return (false);
+			&& str[i] != '*' && str[i] != '/' && str[i] != ' ')
+			return (false);
 		i++;
 	}
 	char	**matrix = Utils::split(str, ' ');

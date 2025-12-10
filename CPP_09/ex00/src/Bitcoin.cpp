@@ -81,10 +81,14 @@ void	Bitcoin::parseInfile(std::ifstream& f) {
 
 	getline(f, line);
 	while (getline(f, line)) {
-		
 		if (line.empty())
 			continue;
 		matrix = Parse::split(line, '|');
+		if (std::string(matrix[0]).find('-') == std::string::npos) {
+			std::cerr << color("Error", RED) << ": Incorrect Date format!" << std::endl;
+			Parse::freeCharArray(matrix);
+			continue;
+		}
 		try {
 			infile_date.setDate(matrix[0]);
 		}
@@ -102,7 +106,7 @@ void	Bitcoin::parseInfile(std::ifstream& f) {
 				throw ExtremelyLargeValueException();
 		}
 		catch (const BTCException& e) {
-			std::cerr << color("Error", RED) << ": " << e.what() << " => " << atoi(matrix[1]) << std::endl;
+			std::cerr << color("Error", RED) << ": " << e.what() << " => " << std::strtol(matrix[1], nullptr, 10) << std::endl;
 			Parse::freeCharArray(matrix);
 			continue ;
 		}
